@@ -31,7 +31,7 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
                     var urlContentArray = urlContent.componentsSeparatedByString("<td class=\"Auditors smwtype_wpg\">")
                     
                         if urlContentArray.count > 0 {
-                        for var i = 1; i < urlContentArray.count+1; i++ {
+                        for var i = 1; i < urlContentArray.count; i++ {
                             
                             let nameResult = (urlContentArray[i] as! NSString).componentsSeparatedByString("title=\"")
                             var auditorName: String = (nameResult[1] as! NSString).componentsSeparatedByString("\"")[0] as! String
