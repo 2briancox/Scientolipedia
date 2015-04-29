@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0445A90D1AEC7CE500D9D773 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445A90C1AEC7CE500D9D773 /* TableViewCell.swift */; };
+		0445A9111AEDAFE500D9D773 /* AuditorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445A9101AEDAFE500D9D773 /* AuditorListViewController.swift */; };
+		0445A9131AEDB23B00D9D773 /* AuditorListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445A9121AEDB23B00D9D773 /* AuditorListViewCell.swift */; };
+		0445A9151AEDD0F400D9D773 /* AuditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445A9141AEDD0F300D9D773 /* AuditorModel.swift */; };
 		04E393F81AE9A89D00E4F342 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E393F71AE9A89D00E4F342 /* AppDelegate.swift */; };
 		04E393FB1AE9A89D00E4F342 /* Scientolipedia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04E393F91AE9A89D00E4F342 /* Scientolipedia.xcdatamodeld */; };
 		04E393FD1AE9A89D00E4F342 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E393FC1AE9A89D00E4F342 /* ViewController.swift */; };
@@ -27,6 +31,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0445A90C1AEC7CE500D9D773 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		0445A9101AEDAFE500D9D773 /* AuditorListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuditorListViewController.swift; sourceTree = "<group>"; };
+		0445A9121AEDB23B00D9D773 /* AuditorListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuditorListViewCell.swift; sourceTree = "<group>"; };
+		0445A9141AEDD0F300D9D773 /* AuditorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuditorModel.swift; sourceTree = "<group>"; };
 		04E393F21AE9A89D00E4F342 /* Scientolipedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scientolipedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E393F61AE9A89D00E4F342 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04E393F71AE9A89D00E4F342 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,11 +89,15 @@
 			children = (
 				04E393F71AE9A89D00E4F342 /* AppDelegate.swift */,
 				04E393FC1AE9A89D00E4F342 /* ViewController.swift */,
+				0445A9101AEDAFE500D9D773 /* AuditorListViewController.swift */,
+				0445A9141AEDD0F300D9D773 /* AuditorModel.swift */,
 				04E393FE1AE9A89D00E4F342 /* Main.storyboard */,
 				04E394011AE9A89D00E4F342 /* Images.xcassets */,
 				04E394031AE9A89D00E4F342 /* LaunchScreen.xib */,
 				04E393F91AE9A89D00E4F342 /* Scientolipedia.xcdatamodeld */,
 				04E393F51AE9A89D00E4F342 /* Supporting Files */,
+				0445A90C1AEC7CE500D9D773 /* TableViewCell.swift */,
+				0445A9121AEDB23B00D9D773 /* AuditorListViewCell.swift */,
 			);
 			path = Scientolipedia;
 			sourceTree = "<group>";
@@ -216,6 +228,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				04E393FD1AE9A89D00E4F342 /* ViewController.swift in Sources */,
+				0445A9131AEDB23B00D9D773 /* AuditorListViewCell.swift in Sources */,
+				0445A9111AEDAFE500D9D773 /* AuditorListViewController.swift in Sources */,
+				0445A90D1AEC7CE500D9D773 /* TableViewCell.swift in Sources */,
+				0445A9151AEDD0F400D9D773 /* AuditorModel.swift in Sources */,
 				04E393FB1AE9A89D00E4F342 /* Scientolipedia.xcdatamodeld in Sources */,
 				04E393F81AE9A89D00E4F342 /* AppDelegate.swift in Sources */,
 			);
@@ -415,6 +431,7 @@
 				04E394161AE9A89D00E4F342 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04E394171AE9A89D00E4F342 /* Build configuration list for PBXNativeTarget "ScientolipediaTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +440,7 @@
 				04E394191AE9A89D00E4F342 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
