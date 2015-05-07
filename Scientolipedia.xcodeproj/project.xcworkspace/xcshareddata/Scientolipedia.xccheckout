@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>35C5A15C-9F04-46F0-A1AC-2A09FDC5F99D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Scientolipedia</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>53EFC41081825AA890F09A3E486E7C2ED175FAD6</key>
+		<string>https://github.com/2briancox/Scientolipedia.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Scientolipedia.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>53EFC41081825AA890F09A3E486E7C2ED175FAD6</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/2briancox/Scientolipedia.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>53EFC41081825AA890F09A3E486E7C2ED175FAD6</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>53EFC41081825AA890F09A3E486E7C2ED175FAD6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Scientolipedia</string>
+		</dict>
+	</array>
+</dict>
+</plist>
