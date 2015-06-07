@@ -13,10 +13,19 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var cameraWindow: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        let screenBounds = UIScreen.mainScreen().bounds
+        let inset: CGFloat = fabs(screenBounds.width - screenBounds.height)
+        
+        cameraWindow = UIWindow(frame: screenBounds)
+        cameraWindow!.rootViewController = ViewController()
+        cameraWindow!.backgroundColor = UIColor.blackColor()
+        cameraWindow!.hidden = false
+
         return true
     }
 

@@ -13,5 +13,4 @@ struct AuditorModel {
     var level: String
     var country: String
     var state: String
-    var address: NSURL
 }

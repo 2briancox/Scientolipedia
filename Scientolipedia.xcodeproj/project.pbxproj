@@ -7,10 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0411BDF61AFB3723001B8080 /* AuditorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411BDF51AFB3723001B8080 /* AuditorPageViewController.swift */; };
 		0445A90D1AEC7CE500D9D773 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445A90C1AEC7CE500D9D773 /* TableViewCell.swift */; };
 		0445A9111AEDAFE500D9D773 /* AuditorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445A9101AEDAFE500D9D773 /* AuditorListViewController.swift */; };
 		0445A9131AEDB23B00D9D773 /* AuditorListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445A9121AEDB23B00D9D773 /* AuditorListViewCell.swift */; };
 		0445A9151AEDD0F400D9D773 /* AuditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445A9141AEDD0F300D9D773 /* AuditorModel.swift */; };
+		047E293E1B0EB0F30066D9C2 /* WordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047E293D1B0EB0F30066D9C2 /* WordTableViewCell.swift */; };
+		049C9B121B06E24F00D4035F /* PictureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049C9B111B06E24F00D4035F /* PictureHandler.swift */; };
+		049EA9701B224FEA00BFF953 /* AnthologyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EA96F1B224FEA00BFF953 /* AnthologyListViewController.swift */; };
+		049EA9721B22562200BFF953 /* AnthologyListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EA9711B22562200BFF953 /* AnthologyListTableViewCell.swift */; };
+		049EA9741B225A8B00BFF953 /* AnthologyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049EA9731B225A8B00BFF953 /* AnthologyViewController.swift */; };
+		04A97D0F1B0ACB6400BC0101 /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A97D0E1B0ACB6400BC0101 /* LegalViewController.swift */; };
+		04A97D111B0AFE6F00BC0101 /* GlossaryStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A97D101B0AFE6F00BC0101 /* GlossaryStartViewController.swift */; };
+		04C0B5F41B12274700EB6FA8 /* BiographiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0B5F31B12274700EB6FA8 /* BiographiesViewController.swift */; };
+		04C0B5F61B13E2D800EB6FA8 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0B5F51B13E2D800EB6FA8 /* ProfileTableViewCell.swift */; };
+		04C0B5F81B18164D00EB6FA8 /* BiographyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0B5F71B18164D00EB6FA8 /* BiographyViewController.swift */; };
+		04E12A671B08714B00D2231C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E12A661B08714B00D2231C /* AboutViewController.swift */; };
 		04E393F81AE9A89D00E4F342 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E393F71AE9A89D00E4F342 /* AppDelegate.swift */; };
 		04E393FB1AE9A89D00E4F342 /* Scientolipedia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04E393F91AE9A89D00E4F342 /* Scientolipedia.xcdatamodeld */; };
 		04E393FD1AE9A89D00E4F342 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E393FC1AE9A89D00E4F342 /* ViewController.swift */; };
@@ -31,10 +43,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0411BDF51AFB3723001B8080 /* AuditorPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuditorPageViewController.swift; sourceTree = "<group>"; };
 		0445A90C1AEC7CE500D9D773 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		0445A9101AEDAFE500D9D773 /* AuditorListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuditorListViewController.swift; sourceTree = "<group>"; };
 		0445A9121AEDB23B00D9D773 /* AuditorListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuditorListViewCell.swift; sourceTree = "<group>"; };
 		0445A9141AEDD0F300D9D773 /* AuditorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuditorModel.swift; sourceTree = "<group>"; };
+		047E293D1B0EB0F30066D9C2 /* WordTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordTableViewCell.swift; sourceTree = "<group>"; };
+		049C9B111B06E24F00D4035F /* PictureHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureHandler.swift; sourceTree = "<group>"; };
+		049EA96F1B224FEA00BFF953 /* AnthologyListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnthologyListViewController.swift; sourceTree = "<group>"; };
+		049EA9711B22562200BFF953 /* AnthologyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnthologyListTableViewCell.swift; sourceTree = "<group>"; };
+		049EA9731B225A8B00BFF953 /* AnthologyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnthologyViewController.swift; sourceTree = "<group>"; };
+		04A97D0E1B0ACB6400BC0101 /* LegalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalViewController.swift; sourceTree = "<group>"; };
+		04A97D101B0AFE6F00BC0101 /* GlossaryStartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryStartViewController.swift; sourceTree = "<group>"; };
+		04C0B5F31B12274700EB6FA8 /* BiographiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BiographiesViewController.swift; path = ../BiographiesViewController.swift; sourceTree = "<group>"; };
+		04C0B5F51B13E2D800EB6FA8 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		04C0B5F71B18164D00EB6FA8 /* BiographyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiographyViewController.swift; sourceTree = "<group>"; };
+		04E12A661B08714B00D2231C /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		04E393F21AE9A89D00E4F342 /* Scientolipedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scientolipedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E393F61AE9A89D00E4F342 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04E393F71AE9A89D00E4F342 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +114,15 @@
 				04E393F71AE9A89D00E4F342 /* AppDelegate.swift */,
 				04E393FC1AE9A89D00E4F342 /* ViewController.swift */,
 				0445A9101AEDAFE500D9D773 /* AuditorListViewController.swift */,
+				0411BDF51AFB3723001B8080 /* AuditorPageViewController.swift */,
+				04E12A661B08714B00D2231C /* AboutViewController.swift */,
+				04A97D0E1B0ACB6400BC0101 /* LegalViewController.swift */,
+				04A97D101B0AFE6F00BC0101 /* GlossaryStartViewController.swift */,
+				04C0B5F31B12274700EB6FA8 /* BiographiesViewController.swift */,
+				04C0B5F71B18164D00EB6FA8 /* BiographyViewController.swift */,
+				049EA96F1B224FEA00BFF953 /* AnthologyListViewController.swift */,
+				049EA9731B225A8B00BFF953 /* AnthologyViewController.swift */,
+				049C9B111B06E24F00D4035F /* PictureHandler.swift */,
 				0445A9141AEDD0F300D9D773 /* AuditorModel.swift */,
 				04E393FE1AE9A89D00E4F342 /* Main.storyboard */,
 				04E394011AE9A89D00E4F342 /* Images.xcassets */,
@@ -97,7 +130,10 @@
 				04E393F91AE9A89D00E4F342 /* Scientolipedia.xcdatamodeld */,
 				04E393F51AE9A89D00E4F342 /* Supporting Files */,
 				0445A90C1AEC7CE500D9D773 /* TableViewCell.swift */,
+				047E293D1B0EB0F30066D9C2 /* WordTableViewCell.swift */,
 				0445A9121AEDB23B00D9D773 /* AuditorListViewCell.swift */,
+				04C0B5F51B13E2D800EB6FA8 /* ProfileTableViewCell.swift */,
+				049EA9711B22562200BFF953 /* AnthologyListTableViewCell.swift */,
 			);
 			path = Scientolipedia;
 			sourceTree = "<group>";
@@ -227,12 +263,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				049EA9741B225A8B00BFF953 /* AnthologyViewController.swift in Sources */,
+				049EA9721B22562200BFF953 /* AnthologyListTableViewCell.swift in Sources */,
 				04E393FD1AE9A89D00E4F342 /* ViewController.swift in Sources */,
+				049EA9701B224FEA00BFF953 /* AnthologyListViewController.swift in Sources */,
 				0445A9131AEDB23B00D9D773 /* AuditorListViewCell.swift in Sources */,
+				049C9B121B06E24F00D4035F /* PictureHandler.swift in Sources */,
+				04C0B5F61B13E2D800EB6FA8 /* ProfileTableViewCell.swift in Sources */,
+				047E293E1B0EB0F30066D9C2 /* WordTableViewCell.swift in Sources */,
 				0445A9111AEDAFE500D9D773 /* AuditorListViewController.swift in Sources */,
 				0445A90D1AEC7CE500D9D773 /* TableViewCell.swift in Sources */,
 				0445A9151AEDD0F400D9D773 /* AuditorModel.swift in Sources */,
 				04E393FB1AE9A89D00E4F342 /* Scientolipedia.xcdatamodeld in Sources */,
+				04C0B5F41B12274700EB6FA8 /* BiographiesViewController.swift in Sources */,
+				04A97D111B0AFE6F00BC0101 /* GlossaryStartViewController.swift in Sources */,
+				04A97D0F1B0ACB6400BC0101 /* LegalViewController.swift in Sources */,
+				04C0B5F81B18164D00EB6FA8 /* BiographyViewController.swift in Sources */,
+				0411BDF61AFB3723001B8080 /* AuditorPageViewController.swift in Sources */,
+				04E12A671B08714B00D2231C /* AboutViewController.swift in Sources */,
 				04E393F81AE9A89D00E4F342 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,9 +410,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Scientolipedia/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -372,7 +423,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Scientolipedia/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -18,13 +18,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         
         let menuItem1: Dictionary<String, String> = ["name": "Auditors", "explanation": "Browse Independent Auditors"]
-        let menuItem2: Dictionary<String, String> = ["name": "Glossary", "explanation": "Define Scientology Nomenclature"]
-        let menuItem3: Dictionary<String, String> = ["name": "Biographies", "explanation": "Stories of Scientologists"]
-        let menuItem4: Dictionary<String, String> = ["name": "LRH Biography", "explanation": "Stories of L. Ron Hubbard"]
-        let menuItem5: Dictionary<String, String> = ["name": "History of Scientology", "explanation": "Know Our Past"]
+        let menuItem3: Dictionary<String, String> = ["name": "Glossary", "explanation": "Define Scientology Nomenclature"]
+        let menuItem2: Dictionary<String, String> = ["name": "Biographies", "explanation": "Stories of Scientologists"]
+//        let menuItem4: Dictionary<String, String> = ["name": "LRH Biography", "explanation": "Stories of L. Ron Hubbard"]
+        let menuItem5: Dictionary<String, String> = ["name": "Anthology", "explanation": "Know Our Past"]
         let menuItem6: Dictionary<String, String> = ["name": "Main Page", "explanation": "Browse Scientolipedia.org"]
+        let menuItem8: Dictionary<String, String> = ["name": "About", "explanation": "Background on App"]
+        let menuItem7: Dictionary<String, String> = ["name": "Participate", "explanation": "Chip in and help!"]
         
-        mainMenuArray = [menuItem1, menuItem2, menuItem3, menuItem4, menuItem5, menuItem6]
+        mainMenuArray = [menuItem1, menuItem2, menuItem3, menuItem5, menuItem6, menuItem7, menuItem8]
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,7 +40,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return self.mainMenuArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -52,18 +54,34 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.imageViewSection.image = UIImage(named: menuItem["name"]!)
         
         return cell
-        
     }
     
     //UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.row {
         case 0:
-            println("ZERO")
             performSegueWithIdentifier("showAuditorListSegue", sender: self)
+        case 1:
+            performSegueWithIdentifier("showBiographies", sender: self)
+        case 2:
+            performSegueWithIdentifier("showGlossary", sender: self)
+        case 3:
+            performSegueWithIdentifier("showAnthologyList", sender: self)
+        case 4:
+            let address = NSURL(string: "http://scientolipedia.org/info/Main_Page")
+            UIApplication.sharedApplication().openURL(address!)
+        case 5:
+            var address = NSURL(string: "http://scientolipedia.org/info/Project_Supporters")
+            UIApplication.sharedApplication().openURL(address!)
+        case 6:
+            performSegueWithIdentifier("showAbout", sender: self)
         default:
             println(indexPath.row)
         }
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return false
     }
 
 }
