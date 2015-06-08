@@ -55,8 +55,6 @@ class AnthologyViewController: UIViewController {
         
         var theData: NSString = completeData["*"] as! NSString
         
-        println(theData)
-        
         theData = theData.stringByReplacingOccurrencesOfString("\n\n", withString: "%%%%%")
         
         var theDataArray = theData.componentsSeparatedByString("\n") as! [NSString]

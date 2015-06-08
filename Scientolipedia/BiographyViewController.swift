@@ -70,8 +70,6 @@ class BiographyViewController: UIViewController {
 
         var theData: NSString = completeData["*"] as! NSString
 
-        println(theData)
-
         theData = theData.stringByReplacingOccurrencesOfString("\n\n", withString: "%%%%%")
 
         var theDataArray = theData.componentsSeparatedByString("\n") as! [NSString]
@@ -277,8 +275,6 @@ class BiographyViewController: UIViewController {
 
         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("%%%%%", withString: "\n\n")
         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
-//        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("]", withString: "")
-//        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[", withString: "")
         
         textView.text = theParagraph
         

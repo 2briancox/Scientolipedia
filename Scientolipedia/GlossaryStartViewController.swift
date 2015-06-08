@@ -125,8 +125,6 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                         definition = definitionArray[0] as String
                     }
                     
-                    println(definition)
-                    
                     definition = definition.stringByReplacingOccurrencesOfString("<b>", withString: "")
                     
                     definition = definition.stringByReplacingOccurrencesOfString("</b>", withString: "")
