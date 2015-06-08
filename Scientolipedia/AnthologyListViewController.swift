@@ -167,6 +167,7 @@ class AnthologyListViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.anthologyTableView.deselectRowAtIndexPath(indexPath, animated: false)
         performSegueWithIdentifier("showAnthology", sender: indexPath.row)
     }
     

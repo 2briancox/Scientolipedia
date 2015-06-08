@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class AboutViewController: UIViewController {
+class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +23,14 @@ class AboutViewController: UIViewController {
     }
     
     @IBAction func briansEmailPressed(sender: UIButton) {
-        var address = NSURL(string: "message:2briancox@gmail.com")
-        UIApplication.sharedApplication().openURL(address!)
+        let messageBody: NSString = "== This message was sent through the Scientolipedia phone app. ==\n\n"
+        let toRecipients: NSArray = NSArray(array: ["2briancox@gmail.com"])
+        var mailComposer: MFMailComposeViewController = MFMailComposeViewController()
+        mailComposer.mailComposeDelegate = self
+        mailComposer.setToRecipients(toRecipients as [AnyObject])
+        mailComposer.setSubject("Scientolipedia App")
+        mailComposer.setMessageBody(messageBody as String, isHTML: false)
+        self.presentViewController(mailComposer, animated: true, completion: nil)
     }
     
     
@@ -31,14 +38,8 @@ class AboutViewController: UIViewController {
         performSegueWithIdentifier("showLegal", sender: self)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
-    */
 
 }

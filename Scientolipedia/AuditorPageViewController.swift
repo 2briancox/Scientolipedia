@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class AuditorPageViewController: UIViewController {
+class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     var theAuditor: AuditorModel!
     
@@ -311,6 +312,9 @@ class AuditorPageViewController: UIViewController {
         }
         
         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("%%%%%", withString: "\n\n")
+        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
+//        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("]", withString: "")
+//        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[", withString: "")
         
         auditorParagraphText.text = theParagraph
         
@@ -416,8 +420,13 @@ class AuditorPageViewController: UIViewController {
     }
     
     @IBAction func emailButtonPressed(sender: UIButton) {
-        var address = NSURL(string: "message:" + self.auditorEmail)
-        UIApplication.sharedApplication().openURL(address!)
+        let messageBody: NSString = "== This message was sent through the Scientolipedia phone app. ==\n\n"
+        let toRecipients: NSArray = NSArray(array: [auditorEmail])
+        var mailComposer: MFMailComposeViewController = MFMailComposeViewController()
+        mailComposer.mailComposeDelegate = self
+        mailComposer.setToRecipients(toRecipients as [AnyObject])
+        mailComposer.setMessageBody(messageBody as String, isHTML: false)
+        self.presentViewController(mailComposer, animated: true, completion: nil)
     }
     
     @IBAction func websiteButtonPressed(sender: UIButton) {
@@ -435,6 +444,10 @@ class AuditorPageViewController: UIViewController {
         
         UIApplication.sharedApplication().openURL(NSURL(string:auditorURL)!)
         
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
 }

@@ -90,11 +90,11 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         return cell
-        
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("showAuditorPage", sender: self)
+        self.auditorTableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
     func showError() {

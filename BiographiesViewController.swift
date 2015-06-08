@@ -113,6 +113,7 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.profileTableView.deselectRowAtIndexPath(indexPath, animated: false)
         performSegueWithIdentifier("showBiography", sender: indexPath.row)
     }
     

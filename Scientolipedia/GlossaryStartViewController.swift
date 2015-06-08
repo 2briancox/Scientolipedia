@@ -200,12 +200,7 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
         
         let frameHeight = self.view.bounds.size.height
-        
-        println("The Frame Height: \(frameHeight)")
         var spacing: CGFloat = (frameHeight - 418)/26 as CGFloat
-        
-        println("Spacing is \(spacing)")
-        println("\nRightFrame origin is \(self.view.bounds.origin.x), \(self.view.bounds.origin.y)\n")
         
         spaceAB.setValue(spacing, forKey: "constant")
         spaceBC.setValue(spacing, forKey: "constant")

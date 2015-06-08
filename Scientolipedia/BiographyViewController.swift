@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class BiographyViewController: UIViewController {
     
@@ -38,6 +39,7 @@ class BiographyViewController: UIViewController {
     var deathInfo = ""
     var caseLevel = ""
     var descriptionText = ""
+    var email = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -196,6 +198,12 @@ class BiographyViewController: UIViewController {
                 imageName = imageName.stringByReplacingOccurrencesOfString("=", withString: "")
                 i--; continue
             }
+            if theDataArray[i].hasPrefix("|Email=") {
+                email = theDataArray[i].substringFromIndex(7)
+                theDataArray.removeAtIndex(i)
+                email = email.stringByReplacingOccurrencesOfString("=", withString: "")
+                i--; continue
+            }
         }
         
         var theParagraph = ""
@@ -217,6 +225,9 @@ class BiographyViewController: UIViewController {
         }
         if yearsActive != "" {
             theParagraph = "== Years Active ==\n" + yearsActive + "\n\n" + theParagraph
+        }
+        if email != "" {
+            theParagraph = "== Email Address ==\n" + email + "\n\n" + theParagraph
         }
         if website != "" {
             theParagraph = "== Website ==\n" + website + "\n\n" + theParagraph
@@ -265,6 +276,9 @@ class BiographyViewController: UIViewController {
         }
 
         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("%%%%%", withString: "\n\n")
+        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
+//        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("]", withString: "")
+//        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[", withString: "")
         
         textView.text = theParagraph
         

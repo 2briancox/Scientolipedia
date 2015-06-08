@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class AnthologyViewController: UIViewController {
 
@@ -140,6 +141,9 @@ class AnthologyViewController: UIViewController {
         }
         
         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("%%%%%", withString: "\n\n")
+        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
+//        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("]", withString: "=")
+//        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[", withString: "=")
         
         textView.text = theParagraph
         

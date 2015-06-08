@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let menuItem3: Dictionary<String, String> = ["name": "Glossary", "explanation": "Define Scientology Nomenclature"]
         let menuItem2: Dictionary<String, String> = ["name": "Biographies", "explanation": "Stories of Scientologists"]
 //        let menuItem4: Dictionary<String, String> = ["name": "LRH Biography", "explanation": "Stories of L. Ron Hubbard"]
-        let menuItem5: Dictionary<String, String> = ["name": "Anthology", "explanation": "Know Our Past"]
+        let menuItem5: Dictionary<String, String> = ["name": "History of Scientology", "explanation": "Know Our Past"]
         let menuItem6: Dictionary<String, String> = ["name": "Main Page", "explanation": "Browse Scientolipedia.org"]
         let menuItem8: Dictionary<String, String> = ["name": "About", "explanation": "Background on App"]
         let menuItem7: Dictionary<String, String> = ["name": "Participate", "explanation": "Chip in and help!"]
@@ -58,6 +58,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
         switch indexPath.row {
         case 0:
             performSegueWithIdentifier("showAuditorListSegue", sender: self)
