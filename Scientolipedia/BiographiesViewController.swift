@@ -47,7 +47,8 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
         
         let frameHeight = self.view.bounds.size.height
         
-        let spacing: CGFloat = (frameHeight - 418)/26 as CGFloat
+        let spacing: CGFloat = (frameHeight - 470)/25 as CGFloat
+        
         
         spaceAB.setValue(spacing, forKey: "constant")
         spaceBC.setValue(spacing, forKey: "constant")
@@ -77,7 +78,7 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
         
         
         var parsingProfileError: NSError? = nil
-        let profileListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+Personal+Profiles]]&po=&eq=yes&p[format]=json&order[0]=ASC&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[order][ascending]=1&p[headers]=show&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes"
+        let profileListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+Biographies]]&po=&eq=yes&p[format]=json&order[0]=ASC&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[order][ascending]=1&p[headers]=show&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes"
         let profileListURL = NSURL(string: profileListAddress)
         let profileJSONData = NSData(contentsOfURL: profileListURL!)
         var parsedProfileData = NSJSONSerialization.JSONObjectWithData(profileJSONData!, options: .AllowFragments, error: &parsingProfileError) as! [String: AnyObject]
@@ -124,7 +125,6 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
     
     func scrollToLetter (letter: String) {
         for var i = 0; i < profileNames.count; i++ {

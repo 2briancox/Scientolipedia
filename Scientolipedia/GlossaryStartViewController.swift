@@ -127,6 +127,8 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                     
                     definition = definition.stringByReplacingOccurrencesOfString("<b>", withString: "")
                     
+                    definition = definition.stringByReplacingOccurrencesOfString("<p>", withString: "")
+                    
                     definition = definition.stringByReplacingOccurrencesOfString("</b>", withString: "")
                     
                     definition = definition.stringByReplacingOccurrencesOfString("</i>", withString: "")
@@ -198,7 +200,7 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
         
         let frameHeight = self.view.bounds.size.height
-        var spacing: CGFloat = (frameHeight - 418)/26 as CGFloat
+        let spacing: CGFloat = (frameHeight - 470)/25 as CGFloat
         
         spaceAB.setValue(spacing, forKey: "constant")
         spaceBC.setValue(spacing, forKey: "constant")

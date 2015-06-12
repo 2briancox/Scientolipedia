@@ -47,7 +47,7 @@ class AnthologyListViewController: UIViewController {
         
         let frameHeight = self.view.bounds.size.height
         
-        let spacing: CGFloat = (frameHeight - 418)/26 as CGFloat
+        let spacing: CGFloat = (frameHeight - 470)/25 as CGFloat
         
         spaceAB.setValue(spacing, forKey: "constant")
         spaceBC.setValue(spacing, forKey: "constant")

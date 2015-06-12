@@ -47,8 +47,10 @@ class BiographyViewController: UIViewController {
         var profileURL = profileName.stringByReplacingOccurrencesOfString(" ", withString: "_")
 
         profileURL = ("http://scientolipedia.org/w/api.php?action=query&titles=" + profileURL + "&prop=revisions&rvprop=content&format=json" as NSString) as String
-
+        
         profileURL = profileURL.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        
+        profileURL = profileURL.stringByReplacingOccurrencesOfString("_&_", withString: "_%26_")
 
         let pageURL = NSURL(string: profileURL)
 

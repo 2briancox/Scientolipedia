@@ -55,10 +55,9 @@
 		049EA9711B22562200BFF953 /* AnthologyListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnthologyListTableViewCell.swift; sourceTree = "<group>"; };
 		049EA9731B225A8B00BFF953 /* AnthologyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnthologyViewController.swift; sourceTree = "<group>"; };
 		04A4FA161B24BD9000CE4E4A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		04A4FA1A1B24C4F500CE4E4A /* Scientolipedia-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Scientolipedia-Bridging-Header.h"; sourceTree = "<group>"; };
 		04A97D0E1B0ACB6400BC0101 /* LegalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalViewController.swift; sourceTree = "<group>"; };
 		04A97D101B0AFE6F00BC0101 /* GlossaryStartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryStartViewController.swift; sourceTree = "<group>"; };
-		04C0B5F31B12274700EB6FA8 /* BiographiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BiographiesViewController.swift; path = ../BiographiesViewController.swift; sourceTree = "<group>"; };
+		04C0B5F31B12274700EB6FA8 /* BiographiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiographiesViewController.swift; sourceTree = "<group>"; };
 		04C0B5F51B13E2D800EB6FA8 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		04C0B5F71B18164D00EB6FA8 /* BiographyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiographyViewController.swift; sourceTree = "<group>"; };
 		04E12A661B08714B00D2231C /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -139,7 +138,6 @@
 				0445A9121AEDB23B00D9D773 /* AuditorListViewCell.swift */,
 				04C0B5F51B13E2D800EB6FA8 /* ProfileTableViewCell.swift */,
 				049EA9711B22562200BFF953 /* AnthologyListTableViewCell.swift */,
-				04A4FA1A1B24C4F500CE4E4A /* Scientolipedia-Bridging-Header.h */,
 			);
 			path = Scientolipedia;
 			sourceTree = "<group>";
@@ -425,7 +423,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a687d3f2-e94f-4d9f-91e2-8935be52a5e2";
-				SWIFT_OBJC_BRIDGING_HEADER = "Scientolipedia/Scientolipedia-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -442,7 +441,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a687d3f2-e94f-4d9f-91e2-8935be52a5e2";
-				SWIFT_OBJC_BRIDGING_HEADER = "Scientolipedia/Scientolipedia-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
