@@ -103,300 +103,325 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
         let theAuditorJSONURL = (BASE_URL + "api.php?action=query&titles=" + urlName + "&prop=revisions&rvprop=content&format=json").stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
         
         let pathForJSON = NSURL(string: theAuditorJSONURL!)
-    
-        let auditorJSON = NSData(contentsOfURL: pathForJSON!, options: nil, error: nil)
+        var parsedJSON: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
         
-        var parsedJSON = NSJSONSerialization.JSONObjectWithData(auditorJSON!, options: .AllowFragments, error: &parsingAuditorError) as! [String: AnyObject]
+        let task = NSURLSession.sharedSession().dataTaskWithURL(pathForJSON!, completionHandler: { (data, response, error) -> Void in
+            
+            var urlError = false
+            
+            if error == nil {
+              
+                let auditorJSON = data
         
-        var auditorJSONArray = parsedJSON["query"] as! [String: AnyObject]
+                parsedJSON = NSJSONSerialization.JSONObjectWithData(auditorJSON!, options: .AllowFragments, error: &parsingAuditorError) as! [String: AnyObject]
+                
+            } else {
+                
+                urlError = true
+                
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                 if urlError == true {
+                
+                     self.showAlertWithText(header: "Warning", message: "That word was not able to load from the server.")
+                
+                 } else {
+                    
+                    var auditorJSONArray = parsedJSON["query"] as! [String: AnyObject]
+                    
+                    var this = auditorJSONArray["pages"] as! NSDictionary
+                    
+                    var dataForAuditor = this.allValues.last as! [String: AnyObject]
+                    
+                    var auditorPageRevs = dataForAuditor["revisions"] as! [[String: AnyObject]]
+                    
+                    var completeData = auditorPageRevs[0]
+                    
+                    var theData: NSString = completeData["*"] as! NSString
+                    
+                    theData = theData.stringByReplacingOccurrencesOfString("\n\n", withString: "%%%%%")
+                    
+                    var theDataArray = theData.componentsSeparatedByString("\n") as! [NSString]
+                    
+                    for var i = 0; i < (theDataArray.count); i++ {
+                        theDataArray[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                        if theDataArray[i].containsString("{") || theDataArray[i].containsString("}") || theDataArray[i].containsString("<") || theDataArray[i].containsString(">") || theDataArray[i].containsString("__") || theDataArray[i].hasPrefix("[[Category:") || theDataArray[i].hasPrefix("width: ") || theDataArray[i].hasPrefix("height: ") || theDataArray[i].hasPrefix("[[File:") || theDataArray[i] == "" || theDataArray[i] == "-" || theDataArray[i] == " " || theDataArray[i].hasPrefix("|Year=") || theDataArray[i].hasPrefix("|Intro=") || theDataArray[i].hasPrefix("|LR=") || theDataArray[i].hasPrefix("|Grades=") || theDataArray[i].hasPrefix("|WDAH=") || theDataArray[i].hasPrefix("|keywords=") || theDataArray[i].hasPrefix("|Purif=") || theDataArray[i].hasPrefix("|Clears=") || theDataArray[i].hasPrefix("|OTs=") || theDataArray[i].hasPrefix("|Basic Courses=") || theDataArray[i].hasPrefix("|St Hat=") || theDataArray[i].hasPrefix("|Levels=") || theDataArray[i].hasPrefix("|Internships=") || theDataArray[i].hasPrefix("|Solo Crse=") {
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Auditing Delivery=") {
+                            self.auditorAuditOffer = theDataArray[i].substringFromIndex(19)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Training Offered=") {
+                            self.auditorTrainOffer = theDataArray[i].substringFromIndex(18)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Auditing Offered=") {
+                            self.auditorAuditOffer = theDataArray[i].substringFromIndex(18)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Case Supervision=") {
+                            self.auditorCaseSup = theDataArray[i].substringFromIndex(18)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Primary Contact=") {
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Training Level=") {
+                            self.auditorLevel = theDataArray[i].substringFromIndex(16)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Social Media=") {
+                            self.auditorSocial = theDataArray[i].substringFromIndex(14)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Postal Code=") {
+                            self.auditorPostalCode = theDataArray[i].substringFromIndex(13)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|searchlabel=") {
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Event Info=") {
+                            self.auditorEventInfo = theDataArray[i].substringFromIndex(12)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Case Level=") {
+                            self.auditorCase = theDataArray[i].substringFromIndex(12)
+                            if self.auditorCase.hasPrefix("Original") {
+                                self.auditorCase = (self.auditorCase as NSString).substringFromIndex(8)
+                            }
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|mainlabel=") {
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|titlemode=") {
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Country=") {
+                            self.auditorCountry = theDataArray[i].substringFromIndex(9)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Website=") {
+                            self.auditorWebsite = theDataArray[i].substringFromIndex(9)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|headers=") {
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|format=") {
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Image=") {
+                            self.auditorImage = theDataArray[i].substringFromIndex(7)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Email=") {
+                            self.auditorEmail = theDataArray[i].substringFromIndex(7)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|State=") {
+                            self.auditorState = theDataArray[i].substringFromIndex(7)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Phone=") {
+                            self.auditorPhone = theDataArray[i].substringFromIndex(7)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Skype=") {
+                            self.auditorSkype = theDataArray[i].substringFromIndex(7)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|limit=") {
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|title=") {
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|class=") {
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Event=") {
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|City=") {
+                            self.auditorCity = theDataArray[i].substringFromIndex(6)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Name=") {
+                            self.auditorName = theDataArray[i].substringFromIndex(6)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|link=") {
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|Geo=") {
+                            self.auditorGEO = theDataArray[i].substringFromIndex(5)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                        if theDataArray[i].hasPrefix("|description=") {
+                            self.auditorDescription = theDataArray[i].substringFromIndex(13)
+                            theDataArray.removeAtIndex(i)
+                            i--; continue
+                        }
+                    }
+                    
+                    var theParagraph = ""
+                    
+                    for var i = 0; i < theDataArray.count; i++ {
+                        if theDataArray[i].substringToIndex(1) == "=" {
+                            theParagraph += "\n\n"
+                        }
+                        theParagraph = theParagraph + (theDataArray[i] as String) + " "
+                        if theDataArray[i].substringFromIndex(theDataArray[i].length - 1)  == "=" || theDataArray[i].substringFromIndex(theDataArray[i].length - 1)  == ":" {
+                            theParagraph += "\n"
+                        }
+                    }
+                    
+                    if self.auditorTrainOffer != "" {
+                        theParagraph += "\n\n== Training Offered ==\n" + self.auditorTrainOffer
+                    }
+                    
+                    if self.auditorAuditOffer != "" {
+                        theParagraph += "\n\n== Auditing Offered ==\n" + self.auditorAuditOffer
+                    }
+                    
+                    if self.auditorSocial != "" {
+                        theParagraph += "\n\n== Social ==\n" + self.auditorSocial
+                    }
+                    
+                    if self.auditorSkype != "" {
+                        theParagraph += "\n== Skype ==\n" + self.auditorSkype
+                    }
+                    
+                    if self.auditorDescription != "" {
+                        theParagraph += "\n\n== Description ==\n" + self.auditorDescription
+                    }
+                    
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("%%%%%", withString: "\n\n")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
+                    
+                    self.auditorParagraphText.text = theParagraph
+                    
+                    self.auditorNameLabel.text = self.theAuditor.name
+                    
+                    if self.auditorLevel != "" {
+                        self.auditorLevelLabel.text = "Lvl:" + self.auditorLevel
+                    } else {
+                        self.levelLabelHeight.setValue(CGFloat(0.0), forKey: "constant")
+                        self.levelBottom.setValue(CGFloat(0.0), forKey: "constant")
+                    }
+                    
+                    if self.auditorCaseSup != "" {
+                        self.auditorCSLabel.text = "CS:" + self.auditorCaseSup
+                    } else {
+                        self.csLabelHeight.setValue(CGFloat(0.0), forKey: "constant")
+                        self.csBottom.setValue(CGFloat(0.0), forKey: "constant")
+                    }
+                    
+                    if self.auditorCase != "" {
+                        self.auditorCaseLabel.text = "Case:" + self.auditorCase
+                    } else {
+                        self.caseLabelHeight.setValue(CGFloat(0.0), forKey: "constant")
+                        self.caseBottom.setValue(CGFloat(0.0), forKey: "constant")
+                    }
+                    
+                    if self.auditorCountry != "" {
+                        self.auditorCountryLabel.text = self.auditorCountry
+                    } else {
+                        self.countryLabelHeight.setValue(CGFloat(0.0), forKey: "constant")
+                        self.countryBottom.setValue(CGFloat(0.0), forKey: "constant")
+                    }
+                    
+                    if self.auditorState != "" {
+                        self.auditorStateLabel.text = self.auditorState
+                    } else {
+                        self.stateLabelHeight.setValue(CGFloat(0.0), forKey: "constant")
+                        self.stateBottom.setValue(CGFloat(0.0), forKey: "constant")
+                    }
+                    
+                    if self.auditorCity != "" {
+                        self.auditorCityLabel.text = self.auditorCity
+                    } else {
+                        self.cityLabelHeight.setValue(CGFloat(0.0), forKey: "constant")
+                        self.cityBottom.setValue(CGFloat(0.0), forKey: "constant")
+                    }
+                    
+                    if self.auditorImage != "" {
+                        var imageURL = NSURL(string: showPic(self.auditorImage))
+                        var imageData = NSData(contentsOfURL: imageURL!)
+                        self.auditorImageView.image = UIImage(data: imageData!)
+                    } else {
+                        self.imageViewHeight.setValue(CGFloat(0.0), forKey: "constant")
+                        self.imageViewWidth.setValue(CGFloat(0.0), forKey: "constant")
+                    }
+                    
+                    if self.auditorPhone != "" {
+                        self.phoneButtonLabel.setTitle(self.auditorPhone, forState: UIControlState.Normal)
+                    } else {
+                        self.phoneButtonHeight.setValue(CGFloat(0.0), forKey: "constant")
+                        self.phoneButtonHeight.setValue(CGFloat(0.0), forKey: "multiplier")
+                        self.phoneButtonLabel.hidden = true
+                        self.phoneBottom.setValue(CGFloat(0.0), forKey: "constant")
+                    }
+                    
+                    if self.auditorEmail != "" {
+                        self.emailButtonLabel.setTitle(self.auditorEmail, forState: UIControlState.Normal)
+                    } else {
+                        self.emailButtonHeight.setValue(CGFloat(0.0), forKey: "constant")
+                        self.emailButtonHeight.setValue(CGFloat(0.0), forKey: "multiplier")
+                        self.emailButtonLabel.hidden = true
+                        self.emailBottom.setValue(CGFloat(0.0), forKey: "constant")
+                    }
+                    
+                    if self.auditorWebsite != "" {
+                        self.websiteButtonLabel.setTitle(self.auditorWebsite, forState: UIControlState.Normal)
+                    } else {
+                        self.websiteButtonHeight.setValue(CGFloat(0.0), forKey: "constant")
+                        self.websiteButtonHeight.setValue(CGFloat(0.0), forKey: "multiplier")
+                        self.websiteButtonLabel.hidden = true
+                        self.websiteBottom.setValue(CGFloat(0.0), forKey: "constant")
+                    }
+                }
+            }
+            
+        })
         
-        var this = auditorJSONArray["pages"] as! NSDictionary
-        
-        var dataForAuditor = this.allValues.last as! [String: AnyObject]
-        
-        var auditorPageRevs = dataForAuditor["revisions"] as! [[String: AnyObject]]
-        
-        var completeData = auditorPageRevs[0]
-        
-        var theData: NSString = completeData["*"] as! NSString
-        
-        theData = theData.stringByReplacingOccurrencesOfString("\n\n", withString: "%%%%%")
-        
-        var theDataArray = theData.componentsSeparatedByString("\n") as! [NSString]
-        
-        for var i = 0; i < (theDataArray.count); i++ {
-            theDataArray[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-            if theDataArray[i].containsString("{") || theDataArray[i].containsString("}") || theDataArray[i].containsString("<") || theDataArray[i].containsString(">") || theDataArray[i].containsString("__") || theDataArray[i].hasPrefix("[[Category:") || theDataArray[i].hasPrefix("width: ") || theDataArray[i].hasPrefix("height: ") || theDataArray[i].hasPrefix("[[File:") || theDataArray[i] == "" || theDataArray[i] == "-" || theDataArray[i] == " " || theDataArray[i].hasPrefix("|Year=") || theDataArray[i].hasPrefix("|Intro=") || theDataArray[i].hasPrefix("|LR=") || theDataArray[i].hasPrefix("|Grades=") || theDataArray[i].hasPrefix("|WDAH=") || theDataArray[i].hasPrefix("|keywords=") || theDataArray[i].hasPrefix("|Purif=") || theDataArray[i].hasPrefix("|Clears=") || theDataArray[i].hasPrefix("|OTs=") || theDataArray[i].hasPrefix("|Basic Courses=") || theDataArray[i].hasPrefix("|St Hat=") || theDataArray[i].hasPrefix("|Levels=") || theDataArray[i].hasPrefix("|Internships=") || theDataArray[i].hasPrefix("|Solo Crse=") {
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Auditing Delivery=") {
-                auditorAuditOffer = theDataArray[i].substringFromIndex(19)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Training Offered=") {
-                auditorTrainOffer = theDataArray[i].substringFromIndex(18)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Auditing Offered=") {
-                auditorAuditOffer = theDataArray[i].substringFromIndex(18)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Case Supervision=") {
-                auditorCaseSup = theDataArray[i].substringFromIndex(18)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Primary Contact=") {
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Training Level=") {
-                auditorLevel = theDataArray[i].substringFromIndex(16)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Social Media=") {
-                auditorSocial = theDataArray[i].substringFromIndex(14)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Postal Code=") {
-                auditorPostalCode = theDataArray[i].substringFromIndex(13)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|searchlabel=") {
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Event Info=") {
-                auditorEventInfo = theDataArray[i].substringFromIndex(12)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Case Level=") {
-                auditorCase = theDataArray[i].substringFromIndex(12)
-                if auditorCase.hasPrefix("Original") {
-                    auditorCase = (auditorCase as NSString).substringFromIndex(8)
-                 }
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|mainlabel=") {
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|titlemode=") {
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Country=") {
-                auditorCountry = theDataArray[i].substringFromIndex(9)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Website=") {
-                auditorWebsite = theDataArray[i].substringFromIndex(9)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|headers=") {
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|format=") {
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Image=") {
-                auditorImage = theDataArray[i].substringFromIndex(7)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Email=") {
-                auditorEmail = theDataArray[i].substringFromIndex(7)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|State=") {
-                auditorState = theDataArray[i].substringFromIndex(7)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Phone=") {
-                auditorPhone = theDataArray[i].substringFromIndex(7)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Skype=") {
-                auditorSkype = theDataArray[i].substringFromIndex(7)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|limit=") {
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|title=") {
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|class=") {
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Event=") {
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|City=") {
-                auditorCity = theDataArray[i].substringFromIndex(6)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Name=") {
-                auditorName = theDataArray[i].substringFromIndex(6)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|link=") {
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|Geo=") {
-                auditorGEO = theDataArray[i].substringFromIndex(5)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-            if theDataArray[i].hasPrefix("|description=") {
-                auditorDescription = theDataArray[i].substringFromIndex(13)
-                theDataArray.removeAtIndex(i)
-                i--; continue
-            }
-        }
-        
-        var theParagraph = ""
-        
-        for var i = 0; i < theDataArray.count; i++ {
-            if theDataArray[i].substringToIndex(1) == "=" {
-                theParagraph += "\n\n"
-            }
-            theParagraph = theParagraph + (theDataArray[i] as String) + " "
-            if theDataArray[i].substringFromIndex(theDataArray[i].length - 1)  == "=" || theDataArray[i].substringFromIndex(theDataArray[i].length - 1)  == ":" {
-                theParagraph += "\n"
-            }
-        }
-        
-        if auditorTrainOffer != "" {
-            theParagraph += "\n\n== Training Offered ==\n" + auditorTrainOffer
-        }
-        
-        if auditorAuditOffer != "" {
-            theParagraph += "\n\n== Auditing Offered ==\n" + auditorAuditOffer
-        }
-        
-        if auditorSocial != "" {
-            theParagraph += "\n\n== Social ==\n" + auditorSocial
-        }
-        
-        if auditorSkype != "" {
-            theParagraph += "\n== Skype ==\n" + auditorSkype
-        }
-        
-        if auditorDescription != "" {
-            theParagraph += "\n\n== Description ==\n" + auditorDescription
-        }
-        
-        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("%%%%%", withString: "\n\n")
-        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
-//        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("]", withString: "")
-//        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[", withString: "")
-        
-        auditorParagraphText.text = theParagraph
-        
-        auditorNameLabel.text = theAuditor.name
-        
-        if auditorLevel != "" {
-            auditorLevelLabel.text = "Lvl:" + auditorLevel
-        } else {
-            levelLabelHeight.setValue(CGFloat(0.0), forKey: "constant")
-            levelBottom.setValue(CGFloat(0.0), forKey: "constant")
-        }
-        
-        if auditorCaseSup != "" {
-            auditorCSLabel.text = "CS:" + auditorCaseSup
-        } else {
-            csLabelHeight.setValue(CGFloat(0.0), forKey: "constant")
-            csBottom.setValue(CGFloat(0.0), forKey: "constant")
-        }
-        
-        if auditorCase != "" {
-            auditorCaseLabel.text = "Case:" + auditorCase
-        } else {
-            caseLabelHeight.setValue(CGFloat(0.0), forKey: "constant")
-            caseBottom.setValue(CGFloat(0.0), forKey: "constant")
-        }
-        
-        if auditorCountry != "" {
-            auditorCountryLabel.text = auditorCountry
-        } else {
-            countryLabelHeight.setValue(CGFloat(0.0), forKey: "constant")
-            countryBottom.setValue(CGFloat(0.0), forKey: "constant")
-        }
-        
-        if auditorState != "" {
-            auditorStateLabel.text = auditorState
-        } else {
-            stateLabelHeight.setValue(CGFloat(0.0), forKey: "constant")
-            stateBottom.setValue(CGFloat(0.0), forKey: "constant")
-        }
-        
-        if auditorCity != "" {
-            auditorCityLabel.text = auditorCity
-        } else {
-            cityLabelHeight.setValue(CGFloat(0.0), forKey: "constant")
-            cityBottom.setValue(CGFloat(0.0), forKey: "constant")
-        }
-        
-        if auditorImage != "" {
-            var imageURL = NSURL(string: showPic(auditorImage))
-            var imageData = NSData(contentsOfURL: imageURL!)
-            auditorImageView.image = UIImage(data: imageData!)
-        } else {
-            imageViewHeight.setValue(CGFloat(0.0), forKey: "constant")
-            imageViewWidth.setValue(CGFloat(0.0), forKey: "constant")
-        }
-        
-        if auditorPhone != "" {
-            phoneButtonLabel.setTitle(auditorPhone, forState: UIControlState.Normal)
-        } else {
-            phoneButtonHeight.setValue(CGFloat(0.0), forKey: "constant")
-            phoneButtonHeight.setValue(CGFloat(0.0), forKey: "multiplier")
-            phoneButtonLabel.hidden = true
-            phoneBottom.setValue(CGFloat(0.0), forKey: "constant")
-        }
-        
-        if auditorEmail != "" {
-            emailButtonLabel.setTitle(auditorEmail, forState: UIControlState.Normal)
-        } else {
-            emailButtonHeight.setValue(CGFloat(0.0), forKey: "constant")
-            emailButtonHeight.setValue(CGFloat(0.0), forKey: "multiplier")
-            emailButtonLabel.hidden = true
-            emailBottom.setValue(CGFloat(0.0), forKey: "constant")
-        }
-        
-        if auditorWebsite != "" {
-            websiteButtonLabel.setTitle(auditorWebsite, forState: UIControlState.Normal)
-        } else {
-            websiteButtonHeight.setValue(CGFloat(0.0), forKey: "constant")
-            websiteButtonHeight.setValue(CGFloat(0.0), forKey: "multiplier")
-            websiteButtonLabel.hidden = true
-            websiteBottom.setValue(CGFloat(0.0), forKey: "constant")
-        }
+        task.resume()
 
         self.auditorParagraphText.scrollRangeToVisible(NSRange(0...0))
     }
@@ -448,6 +473,12 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
     
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func showAlertWithText (header : String = "Warning", message : String) {
+        var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
 }

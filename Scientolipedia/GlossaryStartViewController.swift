@@ -49,7 +49,6 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
     var wordURLStrings: [String] = []
     
     
-    
     //TableView functions
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

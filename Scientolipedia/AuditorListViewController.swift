@@ -24,69 +24,68 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
         let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: "http://scientolipedia.org/w/index.php?title=Special:Ask&q=[[Category%3AAuditors]]&p=format%3Djson%2Flink%3Dall%2Fheaders%3Dshow%2Fmainlabel%3DAuditors%2Fsearchlabel%3D%E2%80%A6-20further-20results%2Fclass%3Dsortable-20wikitable-20smwtable&po=%3FCountry%0A%3FTraining+Level%0A%3FState%0A&sort=Country&order=ascending&limit=500&eq=no")!, completionHandler: { (data, response, error) -> Void in
             
             var urlError = false
+            var keysForDict: [String] = []
+            var auditorArray: [String: AnyObject] = Dictionary<String, AnyObject>()
             
             if error == nil {
-
-                /* Path for JSON file */
-                var pathForAuditorJSON = NSURL(string: "http://scientolipedia.org/w/index.php?title=Special:Ask&q=[[Category%3AAuditors]]&p=format%3Djson%2Flink%3Dall%2Fheaders%3Dshow%2Fmainlabel%3DAuditors%2Fsearchlabel%3D%E2%80%A6-20further-20results%2Fclass%3Dsortable-20wikitable-20smwtable&po=%3FCountry%0A%3FTraining+Level%0A%3FState%0A&sort=Country&order=ascending&limit=500&eq=no")
-            
-                /* Raw JSON data */
-                var rawAuditorJSON = NSData(contentsOfURL: pathForAuditorJSON!)
                 
                 /* Error object */
                 var parsingAuditorError: NSError? = nil
                 
                 /* Parse the data into usable form */
-                var parsedAuditorJSON = NSJSONSerialization.JSONObjectWithData(rawAuditorJSON!, options: .AllowFragments, error: &parsingAuditorError) as! [String: AnyObject]
+                var parsedAuditorJSON = NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments, error: &parsingAuditorError) as! [String: AnyObject]
                 
-                var auditorArray = parsedAuditorJSON["results"] as! [String: AnyObject]
+                auditorArray = parsedAuditorJSON["results"] as! [String: AnyObject]
                 
-                let keysForDict = auditorArray.keys.array as [String]
+                keysForDict = auditorArray.keys.array as [String]
                 
-                for var i = 0; i < keysForDict.count; i++ {
-                    let params = auditorArray[keysForDict[i]] as! [String: AnyObject]
-                    
-                    let prints = params["printouts"] as! [String: AnyObject]
-                    
-                    let name: String = params["fulltext"] as! String
-                    
-                    let auditorState = (prints["State"] as! [String]).count > 0 ? (prints["State"] as! [String])[0] : ""
-                    
-                    let auditorCountry = (prints["Country"] as! [String]).count > 0 ? (prints["Country"] as! [String])[0] : ""
-                    
-                    let auditorTraining = (prints["Training Level"] as! [String]).count > 0 ? "Level: " + (prints["Training Level"] as! [String])[0] : ""
-                    
-                    let auditor: AuditorModel = AuditorModel(name: name, level: auditorTraining, country: auditorCountry, state: auditorState)
-                    self.auditors.append(auditor)
-                }
-                
-                for auditor in self.auditors {
-                    var inThere = false
-                    for country in self.countryList {
-                        if auditor.country == country {
-                            inThere = true
-                        }
-                    }
-                    if !inThere {
-                        self.countryList.append(auditor.country)
-                    }
-                }
-                
-                self.countryList = self.countryList.sorted{
-                    (countryOne: String, countryTwo: String) -> Bool in
-                    
-                    return countryOne < countryTwo
-                }
-                
+            } else {
+
+                urlError = true
             }
             
             dispatch_async(dispatch_get_main_queue()) {
                 
                 if urlError == true {
                     
-                    self.showAlertWithText(header: "Warning", message: "That word was not able to load from the server.")
+                    self.showAlertWithText(header: "Warning", message: "That Auditor Profile was not able to load from the server.")
 
                 } else {
+                    
+                    for var i = 0; i < keysForDict.count; i++ {
+                        let params = auditorArray[keysForDict[i]] as! [String: AnyObject]
+                        
+                        let prints = params["printouts"] as! [String: AnyObject]
+                        
+                        let name: String = params["fulltext"] as! String
+                        
+                        let auditorState = (prints["State"] as! [String]).count > 0 ? (prints["State"] as! [String])[0] : ""
+                        
+                        let auditorCountry = (prints["Country"] as! [String]).count > 0 ? (prints["Country"] as! [String])[0] : ""
+                        
+                        let auditorTraining = (prints["Training Level"] as! [String]).count > 0 ? "Level: " + (prints["Training Level"] as! [String])[0] : ""
+                        
+                        let auditor: AuditorModel = AuditorModel(name: name, level: auditorTraining, country: auditorCountry, state: auditorState)
+                        self.auditors.append(auditor)
+                    }
+                    
+                    for auditor in self.auditors {
+                        var inThere = false
+                        for country in self.countryList {
+                            if auditor.country == country {
+                                inThere = true
+                            }
+                        }
+                        if !inThere {
+                            self.countryList.append(auditor.country)
+                        }
+                    }
+                    
+                    self.countryList = self.countryList.sorted{
+                        (countryOne: String, countryTwo: String) -> Bool in
+                        
+                        return countryOne < countryTwo
+                    }
                     
                     for country in self.countryList {
                         self.auditorCountrySortHold.removeAll(keepCapacity: true)
