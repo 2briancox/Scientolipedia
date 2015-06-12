@@ -30,9 +30,8 @@ class AnthologyViewController: UIViewController {
     var birthDate = ""
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
-        println(anthologyName)
+        super.viewDidLoad()
         
         var anthologyURL = anthologyName.stringByReplacingOccurrencesOfString(" ", withString: "_")
         
@@ -42,28 +41,19 @@ class AnthologyViewController: UIViewController {
         
         anthologyURL = anthologyURL.stringByReplacingOccurrencesOfString("_&_", withString: "_%26_")
         
-        println("AnthologyURL = " + anthologyURL)
-        
         let pageURL = NSURL(string: anthologyURL)
         
         var parsingError: NSError? = nil
         
-        let anthologyJSONData = NSData(contentsOfURL: pageURL!)
-        println("AnthologyJSONData Successful")
+        let data = NSData(contentsOfURL: pageURL!)
         
-        var parsedAnthologyData = NSJSONSerialization.JSONObjectWithData(anthologyJSONData!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
-        println("ParsedData was successful")
+        var parsedAnthologyData = NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
         
         var anthologyJSONArray = parsedAnthologyData["query"] as! [String: AnyObject]
-        println("AnthologyJSONArray was successful")
         
         var this = anthologyJSONArray["pages"] as! NSDictionary
-        println("this was successful")
-        println(this)
         
         var dataForAnthology = this.allValues.last as! [String: AnyObject]
-        println("ParsedData was successful")
-        println(dataForAnthology)
         
         var goodToGo = false
         
@@ -75,15 +65,10 @@ class AnthologyViewController: UIViewController {
         
         if goodToGo {
             var anthologyPageRevs = dataForAnthology["revisions"] as! [[String: AnyObject]]
-            println("anthologyPageRev was successful")
             
             var completeData = anthologyPageRevs[0]
             
-            println("completeData was successful")
-            
             var theData: NSString = completeData["*"] as! NSString
-            
-            println(theData)
             
             theData = theData.stringByReplacingOccurrencesOfString("\n\n", withString: "%%%%%")
             
@@ -192,24 +177,22 @@ class AnthologyViewController: UIViewController {
             
             theParagraph = theParagraph.stringByReplacingOccurrencesOfString("%%%%%", withString: "\n\n")
             theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
-    //        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("]", withString: "=")
-    //        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[", withString: "=")
-            
             theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br /> ", withString: "\n")
             theParagraph = theParagraph.stringByReplacingOccurrencesOfString("{{#seo:", withString: "")
             theParagraph = theParagraph.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             
-            println("\n\n" + (theData as String))
+            self.textView.text = theParagraph
             
-            textView.text = theParagraph
+            self.anthologyNameLabel.text = self.anthologyName
             
-            anthologyNameLabel.text = anthologyName
+            self.textView.scrollRangeToVisible(NSRange(0...0))
             
-            self.textView.scrollRangeToVisible(NSRange(0...0)) 
         } else {
             
             self.navigationController?.popViewControllerAnimated(true)
-            showAlertWithText(header: "Warning", message: "This page is corrupt and cannot load.")
+            
+            showAlertWithText(header: "Warning", message: "This page cannot load right now.  Please try again.")
+            
         }
     
     }
@@ -221,12 +204,17 @@ class AnthologyViewController: UIViewController {
     }
     
     func showAlertWithText (header : String = "Warning", message : String) {
+        
         var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        
         self.presentViewController(alert, animated: true, completion: nil)
+        
     }
     
     @IBAction func openPageButtonPressed(sender: UIBarButtonItem) {
+        
         var anthologyURL = anthologyName.stringByReplacingOccurrencesOfString(" ", withString: "_")
         
         anthologyURL = ("http://scientolipedia.org/info/" + anthologyURL as NSString) as String

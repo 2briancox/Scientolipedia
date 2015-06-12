@@ -100,7 +100,7 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
             
                  if urlError == true {
                 
-                     self.showAlertWithText(header: "Warning", message: "That word was not able to load from the server.")
+                     self.showAlertWithText(header: "Warning", message: "This page cannot load right now. Please try again.")
                 
                  } else {
 

@@ -77,34 +77,43 @@ class AnthologyListViewController: UIViewController {
         
         
         var parsingError: NSError? = nil
+        var anthologyParsedData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+        var videosListDict: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+        
+        
+        
         var anthologyListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+History+of+Scientology]]+OR+[[Category%3A+Anthology]]&po=&eq=yes&p[format]=json&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[sort]=&p[order][ascending]=1&p[headers]=show&p[mainlabel]=&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[prettyprint]=1&eq=yes"
         let anthologyListURL = NSURL(string: anthologyListAddress)
         let anthologyJSONData = NSData(contentsOfURL: anthologyListURL!)
-        var anthologyProfileData = NSJSONSerialization.JSONObjectWithData(anthologyJSONData!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
+        anthologyParsedData = NSJSONSerialization.JSONObjectWithData(anthologyJSONData!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
+        
+        
         
         let videosListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+History+of+Scientology]]+[[Category%3A+Videos]]+OR+[[Category%3A+Anthology]]+[[Category%3A+Videos]]&po=&eq=yes&p[format]=json&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[sort]=&p[order][ascending]=1&p[headers]=show&p[mainlabel]=&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes"
         let videosListURL = NSURL(string: videosListAddress)
         let videosJSONData = NSData(contentsOfURL: videosListURL!)
         var videosParsedData = NSJSONSerialization.JSONObjectWithData(videosJSONData!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
+        videosListDict = videosParsedData["results"] as! Dictionary<String, AnyObject>
         
         
-        let videosListDict = videosParsedData["results"] as! Dictionary<String, AnyObject>
         
         let shipsListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+Sea+Org+Ships]]+&po=&eq=yes&p[format]=json&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[sort]=&p[order][ascending]=1&p[headers]=show&p[mainlabel]=&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes"
         let shipsListURL = NSURL(string: shipsListAddress)
         let shipsJSONData = NSData(contentsOfURL: shipsListURL!)
         var shipsParsedData = NSJSONSerialization.JSONObjectWithData(shipsJSONData!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
-        
         let shipsListDict = shipsParsedData["results"] as! Dictionary<String, AnyObject>
+        
+        
         
         let profileListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+Personal+Profiles]]+[[Category%3A+History+of+Scientology]]+OR+[[Category%3A+Personal+Profiles]]+[[Category%3A+Anthology]]&po=&eq=yes&p[format]=json&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[sort]=&p[order][ascending]=1&p[headers]=show&p[mainlabel]=&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes"
         let profileListURL = NSURL(string: profileListAddress)
         let profileJSONData = NSData(contentsOfURL: profileListURL!)
         var profileParsedData = NSJSONSerialization.JSONObjectWithData(profileJSONData!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
-        
         let profileListDict = profileParsedData["results"] as! Dictionary<String, AnyObject>
         
-        var anthologyListDict = anthologyProfileData["results"] as! Dictionary<String, AnyObject>
+        
+        
+        var anthologyListDict = anthologyParsedData["results"] as! Dictionary<String, AnyObject>
         
         var anthologyArray = anthologyListDict.keys.array
         
