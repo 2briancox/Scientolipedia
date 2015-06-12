@@ -15,6 +15,55 @@ func showPic (imageName: String) -> String {
     
     let imageJSONURL: NSURL = NSURL(string: ("http://scientolipedia.org/w/api.php?action=query&list=allimages&aiprefix=" + imName + "&format=json").stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
     
+    let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: "...")!, completionHandler: { (data, response, error) -> Void in
+            
+            var urlError = false
+            
+            // var definition = ""
+            
+            if error == nil {
+                
+                // var urlContent = NSString(data: data, encoding: NSUTF8StringEncoding) as NSString!
+                //
+                // var urlContentArray: [String] = []
+                //
+                // var hasTable = false
+                //
+                // var takenFromLink = false
+                //
+                // if urlContent.containsString("</td></tr></table>\n<p>") {
+                // ...
+                
+                
+            } else {
+                
+                urlError = true
+                
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                if urlError == true {
+                    
+                    return nil
+                    
+                } else {
+                    //     if (definition as NSString).containsString("</span><span class=\"mw-lingo-tooltip-tip \"><span class=\"mw-lingo-tooltip-definition \">") {
+                    //         definition = definition.componentsSeparatedByString("</span><span class=\"mw-lingo-tooltip-tip \"><span class=\"mw-lingo-tooltip-definition \">")[1]
+                    //     }
+                    //
+                    //     self.definitionTextView.text = definition
+                    //     self.wordTitleLabel.textColor = UIColor(white: CGFloat(0.0), alpha: CGFloat(1.0))
+                    //     self.definitionTextView.textColor = UIColor(white: CGFloat(0.0), alpha: CGFloat(1.0))
+                    //     self.definitionTextView.scrollRangeToVisible(NSRange(0...0))
+                    
+            }
+        }
+        
+    })
+    
+    task.resume()
+    
     var parsingAuditorError: NSError? = nil
     
     let imageJSON = NSData(contentsOfURL: imageJSONURL, options: nil, error: nil)
@@ -30,4 +79,5 @@ func showPic (imageName: String) -> String {
     let imageUrl = firstOne["url"] as! String
 
     return imageUrl
+    
 }

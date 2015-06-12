@@ -48,7 +48,7 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 if urlError == true {
                     
-                    self.showAlertWithText(header: "Warning", message: "That Auditor Profile was not able to load from the server.")
+                    self.showAlertWithText(header: "Warning", message: "This page cannot load right now. Please try again.")
 
                 } else {
                     

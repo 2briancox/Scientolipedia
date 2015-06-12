@@ -38,6 +38,7 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
         performSegueWithIdentifier("showLegal", sender: self)
     }
 
+    
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }

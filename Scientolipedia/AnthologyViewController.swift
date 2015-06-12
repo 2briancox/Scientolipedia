@@ -35,165 +35,188 @@ class AnthologyViewController: UIViewController {
         
         var anthologyURL = anthologyName.stringByReplacingOccurrencesOfString(" ", withString: "_")
         
+        var parsedAnthologyData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+        
         anthologyURL = ("http://scientolipedia.org/w/api.php?action=query&titles=" + anthologyURL + "&prop=revisions&rvprop=content&format=json" as NSString) as String
         
         anthologyURL = anthologyURL.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         
         anthologyURL = anthologyURL.stringByReplacingOccurrencesOfString("_&_", withString: "_%26_")
         
-        let pageURL = NSURL(string: anthologyURL)
-        
-        var parsingError: NSError? = nil
-        
-        let data = NSData(contentsOfURL: pageURL!)
-        
-        var parsedAnthologyData = NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
-        
-        var anthologyJSONArray = parsedAnthologyData["query"] as! [String: AnyObject]
-        
-        var this = anthologyJSONArray["pages"] as! NSDictionary
-        
-        var dataForAnthology = this.allValues.last as! [String: AnyObject]
-        
-        var goodToGo = false
-        
-        for item in dataForAnthology.keys.array {
-            if item == "revisions" {
-                goodToGo = true
-            }
-        }
-        
-        if goodToGo {
-            var anthologyPageRevs = dataForAnthology["revisions"] as! [[String: AnyObject]]
+        let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: anthologyURL)!, completionHandler: { (data, response, error) -> Void in
             
-            var completeData = anthologyPageRevs[0]
+            var urlError = false
             
-            var theData: NSString = completeData["*"] as! NSString
-            
-            theData = theData.stringByReplacingOccurrencesOfString("\n\n", withString: "%%%%%")
-            
-            var theDataArray = theData.componentsSeparatedByString("\n") as! [NSString]
-            
-            for var i = 0; i < (theDataArray.count); i++ {
+            if error == nil {
                 
-                theDataArray[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                var parsingError: NSError? = nil
                 
-                if theDataArray[i].hasPrefix("{") || theDataArray[i].hasPrefix("}") || theDataArray[i].containsString("__") || theDataArray[i].hasPrefix("[[Category:") || theDataArray[i].hasPrefix("[[File:") || theDataArray[i] == "" || theDataArray[i] == "-" || theDataArray[i] == " " || theDataArray[i].hasPrefix("|Social=") || theDataArray[i].hasPrefix("== comments")  || theDataArray[i].hasPrefix("|titlemode=") || theDataArray[i].hasPrefix("|keywords=") || theDataArray[i].hasPrefix("|Image=") || theDataArray[i].hasPrefix("|Author=") || theDataArray[i].hasPrefix("|Type of Article=") || theDataArray[i].hasPrefix("|Topic=") {
-                    theDataArray.removeAtIndex(i)
-                    i--; continue
-                }
-                if theDataArray[i].hasPrefix("|Name=") {
-                    name = theDataArray[i].substringFromIndex(5)
-                    theDataArray.removeAtIndex(i)
-                    name = name.stringByReplacingOccurrencesOfString("=", withString: "")
-                    i--; continue
-                }
-                if theDataArray[i].hasPrefix("|Period=") {
-                    period = theDataArray[i].substringFromIndex(7)
-                    theDataArray.removeAtIndex(i)
-                    period = period.stringByReplacingOccurrencesOfString("=", withString: "")
-                    i--; continue
-                }
-                if theDataArray[i].hasPrefix("|Location=") {
-                    location = theDataArray[i].substringFromIndex(9)
-                    theDataArray.removeAtIndex(i)
-                    location = location.stringByReplacingOccurrencesOfString("=", withString: "")
-                    i--; continue
-                }
-                if theDataArray[i].hasPrefix("|Year=") {
-                    year = theDataArray[i].substringFromIndex(5)
-                    theDataArray.removeAtIndex(i)
-                    year = year.stringByReplacingOccurrencesOfString("=", withString: "")
-                    i--; continue
-                }
-                if theDataArray[i].hasPrefix("|Email=") {
-                    email = theDataArray[i].substringFromIndex(6)
-                    theDataArray.removeAtIndex(i)
-                    email = email.stringByReplacingOccurrencesOfString("=", withString: "")
-                    i--; continue
-                }
-                if theDataArray[i].hasPrefix("|Website=") {
-                    website = theDataArray[i].substringFromIndex(8)
-                    theDataArray.removeAtIndex(i)
-                    website = website.stringByReplacingOccurrencesOfString("=", withString: "")
-                    i--; continue
-                }
-                if theDataArray[i].hasPrefix("|title=") {
-                    titleS = theDataArray[i].substringFromIndex(6)
-                    theDataArray.removeAtIndex(i)
-                    titleS = titleS.stringByReplacingOccurrencesOfString("=", withString: "")
-                    i--; continue
-                }
-                if theDataArray[i].hasPrefix("|description=") {
-                    descriptionS = theDataArray[i].substringFromIndex(12)
-                    theDataArray.removeAtIndex(i)
-                    descriptionS = descriptionS.stringByReplacingOccurrencesOfString("=", withString: "")
-                    i--; continue
-                }
-                if theDataArray[i].hasPrefix("|Birthdate=") {
-                    birthDate = theDataArray[i].substringFromIndex(10)
-                    theDataArray.removeAtIndex(i)
-                    birthDate = birthDate.stringByReplacingOccurrencesOfString("=", withString: "")
-                    i--; continue
+                parsedAnthologyData = NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
+                
+            } else {
+                
+                urlError = true
+                
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                if urlError == true {
+                    
+                    self.showAlertWithText(header: "Warning", message: "This page cannot load right now. Please try again.")
+                    
+                } else {
+                    var anthologyJSONArray = parsedAnthologyData["query"] as! [String: AnyObject]
+                    
+                    var this = anthologyJSONArray["pages"] as! NSDictionary
+                    
+                    var dataForAnthology = this.allValues.last as! [String: AnyObject]
+                    
+                    var goodToGo = false
+                    
+                    for item in dataForAnthology.keys.array {
+                        if item == "revisions" {
+                            goodToGo = true
+                        }
+                    }
+                    
+                    if goodToGo {
+                        var anthologyPageRevs = dataForAnthology["revisions"] as! [[String: AnyObject]]
+                        
+                        var completeData = anthologyPageRevs[0]
+                        
+                        var theData: NSString = completeData["*"] as! NSString
+                        
+                        theData = theData.stringByReplacingOccurrencesOfString("\n\n", withString: "%%%%%")
+                        
+                        var theDataArray = theData.componentsSeparatedByString("\n") as! [NSString]
+                        
+                        for var i = 0; i < (theDataArray.count); i++ {
+                            
+                            theDataArray[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                            
+                            if theDataArray[i].hasPrefix("{") || theDataArray[i].hasPrefix("}") || theDataArray[i].containsString("__") || theDataArray[i].hasPrefix("[[Category:") || theDataArray[i].hasPrefix("[[File:") || theDataArray[i] == "" || theDataArray[i] == "-" || theDataArray[i] == " " || theDataArray[i].hasPrefix("|Social=") || theDataArray[i].hasPrefix("== comments")  || theDataArray[i].hasPrefix("|titlemode=") || theDataArray[i].hasPrefix("|keywords=") || theDataArray[i].hasPrefix("|Image=") || theDataArray[i].hasPrefix("|Author=") || theDataArray[i].hasPrefix("|Type of Article=") || theDataArray[i].hasPrefix("|Topic=") {
+                                theDataArray.removeAtIndex(i)
+                                i--; continue
+                            }
+                            if theDataArray[i].hasPrefix("|Name=") {
+                                self.name = theDataArray[i].substringFromIndex(5)
+                                theDataArray.removeAtIndex(i)
+                                self.name = self.name.stringByReplacingOccurrencesOfString("=", withString: "")
+                                i--; continue
+                            }
+                            if theDataArray[i].hasPrefix("|Period=") {
+                                self.period = theDataArray[i].substringFromIndex(7)
+                                theDataArray.removeAtIndex(i)
+                                self.period = self.period.stringByReplacingOccurrencesOfString("=", withString: "")
+                                i--; continue
+                            }
+                            if theDataArray[i].hasPrefix("|Location=") {
+                                self.location = theDataArray[i].substringFromIndex(9)
+                                theDataArray.removeAtIndex(i)
+                                self.location = self.location.stringByReplacingOccurrencesOfString("=", withString: "")
+                                i--; continue
+                            }
+                            if theDataArray[i].hasPrefix("|Year=") {
+                                self.year = theDataArray[i].substringFromIndex(5)
+                                theDataArray.removeAtIndex(i)
+                                self.year = self.year.stringByReplacingOccurrencesOfString("=", withString: "")
+                                i--; continue
+                            }
+                            if theDataArray[i].hasPrefix("|Email=") {
+                                self.email = theDataArray[i].substringFromIndex(6)
+                                theDataArray.removeAtIndex(i)
+                                self.email = self.email.stringByReplacingOccurrencesOfString("=", withString: "")
+                                i--; continue
+                            }
+                            if theDataArray[i].hasPrefix("|Website=") {
+                                self.website = theDataArray[i].substringFromIndex(8)
+                                theDataArray.removeAtIndex(i)
+                                self.website = self.website.stringByReplacingOccurrencesOfString("=", withString: "")
+                                i--; continue
+                            }
+                            if theDataArray[i].hasPrefix("|title=") {
+                                self.titleS = theDataArray[i].substringFromIndex(6)
+                                theDataArray.removeAtIndex(i)
+                                self.titleS = self.titleS.stringByReplacingOccurrencesOfString("=", withString: "")
+                                i--; continue
+                            }
+                            if theDataArray[i].hasPrefix("|description=") {
+                                self.descriptionS = theDataArray[i].substringFromIndex(12)
+                                theDataArray.removeAtIndex(i)
+                                self.descriptionS = self.descriptionS.stringByReplacingOccurrencesOfString("=", withString: "")
+                                i--; continue
+                            }
+                            if theDataArray[i].hasPrefix("|Birthdate=") {
+                                self.birthDate = theDataArray[i].substringFromIndex(10)
+                                theDataArray.removeAtIndex(i)
+                                self.birthDate = self.birthDate.stringByReplacingOccurrencesOfString("=", withString: "")
+                                i--; continue
+                            }
+                        }
+                        
+                        var theParagraph = ""
+                        
+                        for var i = 0; i < theDataArray.count; i++ {
+                            if theDataArray[i].substringToIndex(1) == "=" {
+                                theParagraph += "\n\n"
+                            }
+                            theParagraph = theParagraph + (theDataArray[i] as String) + " "
+                            if theDataArray[i].substringFromIndex(theDataArray[i].length - 1)  == "=" || theDataArray[i].substringFromIndex(theDataArray[i].length - 1)  == ":" {
+                                theParagraph += "\n"
+                            }
+                        }
+                        
+                        if self.descriptionS != "" {
+                            theParagraph = "== Description ==\n" + self.descriptionS + "\n\n" + theParagraph
+                        }
+                        if self.titleS != "" {
+                            theParagraph = "== Title ==\n" + self.titleS + "\n\n" + theParagraph
+                        }
+                        if self.email != "" {
+                            theParagraph = "== Email ==\n" + self.email + "\n\n" + theParagraph
+                        }
+                        if self.website != "" {
+                            theParagraph = "== Website ==\n" + self.website + "\n\n" + theParagraph
+                        }
+                        if self.year != "" {
+                            theParagraph = "== Year ==\n" + self.year + "\n\n" + theParagraph
+                        }
+                        if self.location != "" {
+                            theParagraph = "== Location ==\n" + self.location + "\n\n" + theParagraph
+                        }
+                        if self.period != "" {
+                            theParagraph = "== Period ==\n" + self.period + "\n\n" + theParagraph
+                        }
+                        if self.name != "" {
+                            theParagraph = "== Name ==\n" + self.name + "\n\n" + theParagraph
+                        }
+                        
+                        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("%%%%%", withString: "\n\n")
+                        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
+                        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
+                        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("{{#seo:", withString: "")
+                        theParagraph = theParagraph.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                        
+                        self.textView.text = theParagraph
+                        
+                        self.anthologyNameLabel.text = self.anthologyName
+                        
+                        self.textView.scrollRangeToVisible(NSRange(0...0))
+                        
+                    } else {
+                        
+                        self.navigationController?.popViewControllerAnimated(true)
+                        
+                        self.showAlertWithText(header: "Warning", message: "This page is corrupted.  Please contact a site admin.")
+                        
+                    }
                 }
             }
             
-            var theParagraph = ""
-            
-            for var i = 0; i < theDataArray.count; i++ {
-                if theDataArray[i].substringToIndex(1) == "=" {
-                    theParagraph += "\n\n"
-                }
-                theParagraph = theParagraph + (theDataArray[i] as String) + " "
-                if theDataArray[i].substringFromIndex(theDataArray[i].length - 1)  == "=" || theDataArray[i].substringFromIndex(theDataArray[i].length - 1)  == ":" {
-                    theParagraph += "\n"
-                }
-            }
-            
-            if descriptionS != "" {
-                theParagraph = "== Description ==\n" + descriptionS + "\n\n" + theParagraph
-            }
-            if titleS != "" {
-                theParagraph = "== Title ==\n" + titleS + "\n\n" + theParagraph
-            }
-            if email != "" {
-                theParagraph = "== Email ==\n" + email + "\n\n" + theParagraph
-            }
-            if website != "" {
-                theParagraph = "== Website ==\n" + website + "\n\n" + theParagraph
-            }
-            if year != "" {
-                theParagraph = "== Year ==\n" + year + "\n\n" + theParagraph
-            }
-            if location != "" {
-                theParagraph = "== Location ==\n" + location + "\n\n" + theParagraph
-            }
-            if period != "" {
-                theParagraph = "== Period ==\n" + period + "\n\n" + theParagraph
-            }
-            if name != "" {
-                theParagraph = "== Name ==\n" + name + "\n\n" + theParagraph
-            }
-            
-            theParagraph = theParagraph.stringByReplacingOccurrencesOfString("%%%%%", withString: "\n\n")
-            theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
-            theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br /> ", withString: "\n")
-            theParagraph = theParagraph.stringByReplacingOccurrencesOfString("{{#seo:", withString: "")
-            theParagraph = theParagraph.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            
-            self.textView.text = theParagraph
-            
-            self.anthologyNameLabel.text = self.anthologyName
-            
-            self.textView.scrollRangeToVisible(NSRange(0...0))
-            
-        } else {
-            
-            self.navigationController?.popViewControllerAnimated(true)
-            
-            showAlertWithText(header: "Warning", message: "This page cannot load right now.  Please try again.")
-            
-        }
+        })
+        
+        task.resume()
     
     }
     
