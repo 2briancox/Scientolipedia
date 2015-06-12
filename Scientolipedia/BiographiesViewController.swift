@@ -76,7 +76,6 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
         spaceXY.setValue(spacing, forKey: "constant")
         spaceYZ.setValue(spacing, forKey: "constant")
         
-        var parsingProfileError: NSError? = nil
         var parsedProfileData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
         
         let profileListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+Biographies]]&po=&eq=yes&p[format]=json&order[0]=ASC&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[order][ascending]=1&p[headers]=show&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes"
@@ -87,8 +86,9 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
             
             if error == nil {
                 
-                parsedProfileData = NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments, error: &parsingProfileError) as! [String: AnyObject]
+                var parsingProfileError: NSError? = nil
                 
+                parsedProfileData = NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments, error: &parsingProfileError) as! [String: AnyObject]
             
             } else {
             
