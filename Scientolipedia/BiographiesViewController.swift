@@ -76,23 +76,51 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
         spaceXY.setValue(spacing, forKey: "constant")
         spaceYZ.setValue(spacing, forKey: "constant")
         
-        
         var parsingProfileError: NSError? = nil
+        var parsedProfileData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+        
         let profileListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+Biographies]]&po=&eq=yes&p[format]=json&order[0]=ASC&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[order][ascending]=1&p[headers]=show&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes"
-        let profileListURL = NSURL(string: profileListAddress)
-        let profileJSONData = NSData(contentsOfURL: profileListURL!)
-        var parsedProfileData = NSJSONSerialization.JSONObjectWithData(profileJSONData!, options: .AllowFragments, error: &parsingProfileError) as! [String: AnyObject]
         
-        let wordListDict = parsedProfileData["results"] as! Dictionary<String, AnyObject>
+        let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: profileListAddress)!, completionHandler: { (data, response, error) -> Void in
+            
+            var urlError = false
+            
+            if error == nil {
+                
+                parsedProfileData = NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments, error: &parsingProfileError) as! [String: AnyObject]
+                
+            
+            } else {
+            
+                urlError = true
+            
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+            
+                 if urlError == true {
+                
+                     self.showAlertWithText(header: "Warning", message: "That word was not able to load from the server.")
+                
+                 } else {
+
+                    let wordListDict = parsedProfileData["results"] as! Dictionary<String, AnyObject>
+                    
+                    for this in wordListDict.keys.array {
+                        self.profileNames.append(this)
+                    }
+                    
+                    self.profileNames = self.profileNames.sorted{
+                        (nameOne: String, nameTwo: String) -> Bool in
+                        return nameOne < nameTwo
+                    }
+                }
+                
+            }
         
-        for this in wordListDict.keys.array {
-            profileNames.append(this)
-        }
-        
-        profileNames = profileNames.sorted{
-            (nameOne: String, nameTwo: String) -> Bool in
-            return nameOne < nameTwo
-        }
+        })
+    
+        task.resume()
         
     }
 
@@ -217,6 +245,12 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         (segue.destinationViewController as! BiographyViewController).profileName = profileNames[sender as! Int]
+    }
+    
+    func showAlertWithText (header : String = "Warning", message : String) {
+        var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
 }
