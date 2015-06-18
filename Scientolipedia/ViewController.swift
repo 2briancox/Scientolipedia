@@ -12,20 +12,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var tableView: UITableView!
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var mainMenuArray: [Dictionary<String,String>] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let menuItem1: Dictionary<String, String> = ["name": "Auditors", "explanation": "Browse Independent Auditors"]
-        let menuItem3: Dictionary<String, String> = ["name": "Glossary", "explanation": "Define Scientology Nomenclature"]
+        let menuItem1: Dictionary<String, String> = ["name": "Auditors", "explanation": "Browse Auditors by Country"]
         let menuItem2: Dictionary<String, String> = ["name": "Biographies", "explanation": "Stories of Scientologists"]
-        let menuItem5: Dictionary<String, String> = ["name": "History of Scientology", "explanation": "Know Our Past"]
-        let menuItem6: Dictionary<String, String> = ["name": "Main Page", "explanation": "Browse Scientolipedia.org"]
-        let menuItem8: Dictionary<String, String> = ["name": "About", "explanation": "Background on App"]
-        let menuItem7: Dictionary<String, String> = ["name": "Participate", "explanation": "Get involved and help!"]
+        let menuItem3: Dictionary<String, String> = ["name": "Glossary", "explanation": "Define Scientology Nomenclature"]
+        let menuItem4: Dictionary<String, String> = ["name": "History of Scientology", "explanation": "Know Our Past"]
+        let menuItem5: Dictionary<String, String> = ["name": "Main Page", "explanation": "Browse Scientolipedia.org"]
+        let menuItem6: Dictionary<String, String> = ["name": "Participate", "explanation": "Get involved and help!"]
+        let menuItem7: Dictionary<String, String> = ["name": "About", "explanation": "Background on App"]
         
-        mainMenuArray = [menuItem1, menuItem2, menuItem3, menuItem5, menuItem6, menuItem7, menuItem8]
+        mainMenuArray = [menuItem1, menuItem2, menuItem3, menuItem4, menuItem5, menuItem6, menuItem7]
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,6 +82,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             println(indexPath.row)
         }
     }
+    
     
     override func shouldAutorotate() -> Bool {
         return false

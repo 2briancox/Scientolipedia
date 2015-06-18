@@ -17,6 +17,8 @@ class AnthologyViewController: UIViewController {
     
     @IBOutlet weak var openInBrowser: UIBarButtonItem!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var anthologyName: String = ""
     
     var name = ""
@@ -33,9 +35,11 @@ class AnthologyViewController: UIViewController {
         
         super.viewDidLoad()
         
+        self.activityIndicator.startAnimating()
+        
         var anthologyURL = anthologyName.stringByReplacingOccurrencesOfString(" ", withString: "_")
         
-        var parsedAnthologyData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+        var parsedAnthologyData: [String: AnyObject] = Dictionary<String, AnyObject>()
         
         anthologyURL = ("http://scientolipedia.org/w/api.php?action=query&titles=" + anthologyURL + "&prop=revisions&rvprop=content&format=json" as NSString) as String
         
@@ -195,6 +199,7 @@ class AnthologyViewController: UIViewController {
                         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("%%%%%", withString: "\n\n")
                         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
                         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
+                        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br>", withString: "\n")
                         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("{{#seo:", withString: "")
                         theParagraph = theParagraph.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                         
@@ -203,6 +208,10 @@ class AnthologyViewController: UIViewController {
                         self.anthologyNameLabel.text = self.anthologyName
                         
                         self.textView.scrollRangeToVisible(NSRange(0...0))
+                        
+                        self.activityIndicator.hidesWhenStopped = true
+                        
+                        self.activityIndicator.stopAnimating()
                         
                     } else {
                         
@@ -248,6 +257,9 @@ class AnthologyViewController: UIViewController {
         
     }
 
-
+    
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
 
 }

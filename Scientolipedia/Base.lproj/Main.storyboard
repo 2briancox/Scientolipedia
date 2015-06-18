@@ -327,23 +327,6 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 <color key="textColor" red="0.60444286616161613" green="0.60444286616161613" blue="0.60444286616161613" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" showsHorizontalScrollIndicator="NO" editable="NO" text=" 1. Select the first letter on the right.  2. Choose the word to define below." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5J-hu-dVy">
-                                <rect key="frame" x="16" y="91" width="550" height="253"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="135" id="G1T-vr-IEy"/>
-                                    <constraint firstAttribute="height" constant="175" id="wOY-RS-Lo3"/>
-                                </constraints>
-                                <color key="textColor" red="0.52714646460000003" green="0.52714646460000003" blue="0.52714646460000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="G1T-vr-IEy"/>
-                                        <exclude reference="wOY-RS-Lo3"/>
-                                    </mask>
-                                </variation>
-                            </textView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yDj-5v-Bdg">
                                 <rect key="frame" x="16" y="352" width="550" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -720,6 +703,26 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                     <action selector="zButtonPressed:" destination="5h0-Hx-jYJ" eventType="touchUpInside" id="l7o-sB-8ck"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" showsHorizontalScrollIndicator="NO" editable="NO" text=" 1. Select the first letter on the right.  2. Choose the word to define below." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5J-hu-dVy">
+                                <rect key="frame" x="16" y="91" width="550" height="253"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="135" id="G1T-vr-IEy"/>
+                                    <constraint firstAttribute="height" constant="175" id="wOY-RS-Lo3"/>
+                                </constraints>
+                                <color key="textColor" red="0.52714646460000003" green="0.52714646460000003" blue="0.52714646460000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="G1T-vr-IEy"/>
+                                        <exclude reference="wOY-RS-Lo3"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ryS-6B-8XK">
+                                <rect key="frame" x="290" y="198" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -748,6 +751,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                             <constraint firstItem="1nX-Kj-FC3" firstAttribute="top" secondItem="JeF-I0-yXf" secondAttribute="bottom" constant="7" id="MWG-3a-Jki"/>
                             <constraint firstItem="uSM-c1-hcA" firstAttribute="top" secondItem="zpr-rP-MSd" secondAttribute="bottom" constant="7" id="QHi-7c-CEJ"/>
                             <constraint firstItem="LAE-xz-2VH" firstAttribute="top" secondItem="Uey-X8-8B8" secondAttribute="bottom" constant="7" id="QML-o0-FRg"/>
+                            <constraint firstItem="ryS-6B-8XK" firstAttribute="top" secondItem="Gc9-ob-zCG" secondAttribute="bottom" constant="115" id="QV1-mo-f3t"/>
                             <constraint firstItem="nox-A8-I9K" firstAttribute="centerX" secondItem="HiE-VN-kz9" secondAttribute="centerX" id="SFV-UK-2Lp"/>
                             <constraint firstItem="Uey-X8-8B8" firstAttribute="centerX" secondItem="HiE-VN-kz9" secondAttribute="centerX" id="ScM-8f-Ij7"/>
                             <constraint firstItem="HiE-VN-kz9" firstAttribute="centerX" secondItem="3hJ-xo-X4Q" secondAttribute="centerX" id="Sn1-AK-51J"/>
@@ -784,11 +788,13 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                             <constraint firstItem="yDj-5v-Bdg" firstAttribute="trailing" secondItem="Gc9-ob-zCG" secondAttribute="trailing" id="uTh-5G-aUg"/>
                             <constraint firstItem="3hJ-xo-X4Q" firstAttribute="top" secondItem="LAE-xz-2VH" secondAttribute="bottom" constant="7" id="uqV-cz-mhA"/>
                             <constraint firstItem="Gc9-ob-zCG" firstAttribute="top" secondItem="TTm-bF-27k" secondAttribute="bottom" id="viT-Hq-gIa"/>
+                            <constraint firstAttribute="centerX" secondItem="ryS-6B-8XK" secondAttribute="centerX" id="vqX-dj-YxG"/>
                             <constraint firstItem="nox-A8-I9K" firstAttribute="top" secondItem="44s-04-nCH" secondAttribute="bottom" constant="7" id="wnM-PW-5xm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Glossary" id="Ft6-Ky-HEO"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="ryS-6B-8XK" id="TNf-lK-akg"/>
                         <outlet property="definitionTextView" destination="r5J-hu-dVy" id="T0w-X6-ZMc"/>
                         <outlet property="spaceAB" destination="64V-y6-COL" id="KdB-yX-luD"/>
                         <outlet property="spaceBC" destination="8Sz-Zj-V9p" id="lDx-gN-7I1"/>
@@ -934,10 +940,15 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                     <outlet property="delegate" destination="iz5-e1-LN0" id="PcO-13-0dD"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OdX-Wb-iHL">
+                                <rect key="frame" x="290" y="214" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="PYf-yF-U3B" firstAttribute="bottom" secondItem="ZvU-Nv-Sf4" secondAttribute="top" id="1Ce-q5-SJM"/>
+                            <constraint firstAttribute="centerX" secondItem="OdX-Wb-iHL" secondAttribute="centerX" id="KQx-xI-hFd"/>
+                            <constraint firstItem="OdX-Wb-iHL" firstAttribute="top" secondItem="PWD-ar-wby" secondAttribute="bottom" constant="150" id="Kp8-8K-JjH"/>
                             <constraint firstItem="PYf-yF-U3B" firstAttribute="top" secondItem="y7v-ZP-5fV" secondAttribute="top" constant="20" symbolic="YES" id="MSE-eo-Lhv"/>
                             <constraint firstItem="PYf-yF-U3B" firstAttribute="leading" secondItem="y7v-ZP-5fV" secondAttribute="leading" id="wzf-JL-NdV"/>
                             <constraint firstAttribute="trailing" secondItem="PYf-yF-U3B" secondAttribute="trailing" id="zbk-Wk-tqw"/>
@@ -945,6 +956,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                     </view>
                     <navigationItem key="navigationItem" title="Auditors" id="iBI-yl-BlO"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="OdX-Wb-iHL" id="5lF-Xx-ysC"/>
                         <outlet property="auditorTableView" destination="PYf-yF-U3B" id="meP-Mr-S86"/>
                         <segue destination="fEx-jO-NhN" kind="show" identifier="showAuditorPage" id="bXZ-j2-Q6X"/>
                     </connections>
@@ -1337,11 +1349,15 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                     <outlet property="delegate" destination="NRO-Rm-aYp" id="dPi-82-Zmi"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sdD-Dk-xC5">
+                                <rect key="frame" x="290" y="214" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cCi-0c-xLp" firstAttribute="centerX" secondItem="e8r-IL-fIH" secondAttribute="centerX" id="1T3-gH-bl9"/>
                             <constraint firstItem="9y9-Uw-ISl" firstAttribute="top" secondItem="aBh-QZ-18M" secondAttribute="bottom" id="2ac-no-fiq"/>
+                            <constraint firstAttribute="centerX" secondItem="sdD-Dk-xC5" secondAttribute="centerX" id="3vc-Wg-y55"/>
                             <constraint firstItem="l9O-Sz-vga" firstAttribute="top" secondItem="cCi-0c-xLp" secondAttribute="bottom" id="5uX-jf-pel"/>
                             <constraint firstItem="yND-tt-2rd" firstAttribute="centerX" secondItem="e8r-IL-fIH" secondAttribute="centerX" id="6Xd-Vl-Ssn"/>
                             <constraint firstItem="awx-DL-Rtt" firstAttribute="centerX" secondItem="e8r-IL-fIH" secondAttribute="centerX" id="7RV-0I-fih"/>
@@ -1381,6 +1397,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                             <constraint firstItem="RBf-35-Vax" firstAttribute="top" secondItem="Bw6-5g-g5c" secondAttribute="bottom" id="dxc-sh-cdd"/>
                             <constraint firstItem="ZYS-DA-yy8" firstAttribute="top" secondItem="EZ7-02-Fcn" secondAttribute="bottom" id="f7s-mb-Tzv"/>
                             <constraint firstItem="Lrm-4b-v21" firstAttribute="top" secondItem="ZYS-DA-yy8" secondAttribute="bottom" id="glf-yS-AvE"/>
+                            <constraint firstItem="sdD-Dk-xC5" firstAttribute="top" secondItem="U1D-Xl-ggd" secondAttribute="bottom" constant="150" id="hHb-Cu-uiJ"/>
                             <constraint firstItem="EuY-G1-IjV" firstAttribute="leading" secondItem="bs5-0R-003" secondAttribute="leadingMargin" id="iCK-gd-9oC"/>
                             <constraint firstItem="Soi-oO-Hw1" firstAttribute="top" secondItem="HG6-n6-cWe" secondAttribute="bottom" id="iDk-51-k5a"/>
                             <constraint firstItem="vwz-bm-JON" firstAttribute="top" secondItem="DRQ-Kb-hG0" secondAttribute="bottom" id="iPe-S0-R32"/>
@@ -1400,6 +1417,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                     </view>
                     <navigationItem key="navigationItem" title="Biographies" id="9sF-Im-uAL"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="sdD-Dk-xC5" id="x2O-ui-XuF"/>
                         <outlet property="profileTableView" destination="EuY-G1-IjV" id="oGn-ac-iB2"/>
                         <outlet property="spaceAB" destination="H4m-xA-cS7" id="FYc-7P-MxO"/>
                         <outlet property="spaceBC" destination="YZK-bA-svI" id="4D8-Vl-1lU"/>
@@ -1817,11 +1835,15 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                     <outlet property="delegate" destination="8kq-ke-2pH" id="Xx2-td-xrZ"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ue5-os-gZc">
+                                <rect key="frame" x="290" y="214" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="gdg-Q2-RVf" firstAttribute="top" secondItem="aK9-Vh-hS7" secondAttribute="bottom" constant="8" id="0Nm-l5-d8r"/>
                             <constraint firstItem="hjN-Ec-xcw" firstAttribute="top" secondItem="idL-xU-dzK" secondAttribute="bottom" constant="8" id="0Ut-sq-Fg4"/>
+                            <constraint firstAttribute="centerX" secondItem="ue5-os-gZc" secondAttribute="centerX" id="2vS-Nh-gmq"/>
                             <constraint firstItem="hjN-Ec-xcw" firstAttribute="centerX" secondItem="BQe-to-mjN" secondAttribute="centerX" id="372-Wl-oS2"/>
                             <constraint firstItem="hjN-Ec-xcw" firstAttribute="centerX" secondItem="ofp-lW-1Wx" secondAttribute="centerX" id="3qq-a4-Aem"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hjN-Ec-xcw" secondAttribute="trailing" constant="-16" id="4Jf-s3-Nvp"/>
@@ -1874,12 +1896,14 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                             <constraint firstItem="3Zr-Oe-xA7" firstAttribute="centerX" secondItem="hjN-Ec-xcw" secondAttribute="centerX" id="u18-Lx-MV7"/>
                             <constraint firstItem="g1U-Pb-ryS" firstAttribute="top" secondItem="hNJ-hx-LPC" secondAttribute="bottom" constant="8" id="udy-hK-yqI"/>
                             <constraint firstItem="gdg-Q2-RVf" firstAttribute="centerX" secondItem="hjN-Ec-xcw" secondAttribute="centerX" id="vJq-2D-zSN"/>
+                            <constraint firstItem="ue5-os-gZc" firstAttribute="top" secondItem="idL-xU-dzK" secondAttribute="bottom" constant="150" id="w87-N9-I5S"/>
                             <constraint firstItem="vps-pG-wKw" firstAttribute="top" secondItem="hjN-Ec-xcw" secondAttribute="bottom" constant="8" id="xl4-Tt-sj5"/>
                             <constraint firstItem="OoA-Yp-Rah" firstAttribute="top" secondItem="Ioj-VI-TZs" secondAttribute="bottom" constant="8" id="yNy-a4-m2w"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Histories" id="zG8-7s-GyH"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="ue5-os-gZc" id="HHE-i3-Csm"/>
                         <outlet property="anthologyTableView" destination="Ioj-VI-TZs" id="puq-qT-mWS"/>
                         <outlet property="spaceAB" destination="xl4-Tt-sj5" id="ncm-Ym-ey2"/>
                         <outlet property="spaceBC" destination="eMo-b8-5i7" id="dhI-p3-i5O"/>
@@ -1937,7 +1961,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKu-4T-XgX">
                                 <rect key="frame" x="160" y="106" width="280" height="125"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Participate" translatesAutoresizingMaskIntoConstraints="NO" id="cSQ-Zv-z06">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfilePicture" translatesAutoresizingMaskIntoConstraints="NO" id="cSQ-Zv-z06">
                                         <rect key="frame" x="8" y="8" width="264" height="109"/>
                                     </imageView>
                                 </subviews>
@@ -1951,20 +1975,24 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                     <constraint firstAttribute="width" constant="280" id="eLM-pz-4eV"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhd-tf-UwH">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" showsHorizontalScrollIndicator="NO" editable="NO" text="                      ... Please wait ..." translatesAutoresizingMaskIntoConstraints="NO" id="dhd-tf-UwH">
                                 <rect key="frame" x="16" y="239" width="568" height="353"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                             </textView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mPg-T2-Y7P">
+                                <rect key="frame" x="290" y="276" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="mPg-T2-Y7P" secondAttribute="centerX" id="9aW-GD-lld"/>
                             <constraint firstItem="4zE-ON-ihg" firstAttribute="top" secondItem="dhd-tf-UwH" secondAttribute="bottom" constant="8" id="G2V-mk-rj4"/>
                             <constraint firstItem="dhd-tf-UwH" firstAttribute="top" secondItem="eKu-4T-XgX" secondAttribute="bottom" constant="8" id="IfO-1j-eZw"/>
                             <constraint firstItem="dhd-tf-UwH" firstAttribute="leading" secondItem="w97-D9-p6n" secondAttribute="leadingMargin" id="Ivz-6h-xaM"/>
+                            <constraint firstItem="mPg-T2-Y7P" firstAttribute="top" secondItem="eKu-4T-XgX" secondAttribute="bottom" constant="45" id="OXU-aQ-Gly"/>
                             <constraint firstItem="I6G-VF-xUb" firstAttribute="trailing" secondItem="w97-D9-p6n" secondAttribute="trailingMargin" id="TaI-od-wSf"/>
                             <constraint firstItem="I6G-VF-xUb" firstAttribute="leading" secondItem="w97-D9-p6n" secondAttribute="leadingMargin" id="r4S-rZ-EmO"/>
                             <constraint firstItem="I6G-VF-xUb" firstAttribute="top" secondItem="M8j-fy-ygh" secondAttribute="bottom" constant="8" id="sEb-6a-MqH"/>
@@ -1981,6 +2009,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="mPg-T2-Y7P" id="jr2-iN-5M4"/>
                         <outlet property="pictureTopSpace" destination="zGG-Lg-bnO" id="mgd-Pr-kH3"/>
                         <outlet property="picutreHeight" destination="bcN-M9-jBQ" id="htY-tS-KGx"/>
                         <outlet property="profileImage" destination="cSQ-Zv-z06" id="QHt-tg-ju7"/>
@@ -2040,7 +2069,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cntry:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Jp-HD-mI1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Jp-HD-mI1">
                                 <rect key="frame" x="168" y="161" width="416" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="Fz4-TY-ogk"/>
@@ -2094,7 +2123,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                     <action selector="websiteButtonPressed:" destination="fEx-jO-NhN" eventType="touchUpInside" id="Mah-DW-1J1"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O1x-b8-Cp2">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfilePicture" translatesAutoresizingMaskIntoConstraints="NO" id="O1x-b8-Cp2">
                                 <rect key="frame" x="16" y="92" width="144" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="144" id="4de-1G-UG4"/>
@@ -2110,14 +2139,16 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0FR-Gy-7bB">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" showsHorizontalScrollIndicator="NO" editable="NO" text="                      ... Please wait ..." translatesAutoresizingMaskIntoConstraints="NO" id="0FR-Gy-7bB">
                                 <rect key="frame" x="16" y="309" width="568" height="271"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </textView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="fVA-vC-XdX">
+                                <rect key="frame" x="290" y="339" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -2145,6 +2176,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                             <constraint firstItem="yhb-3l-NI4" firstAttribute="trailing" secondItem="QdV-Wh-Izr" secondAttribute="trailingMargin" id="YI1-UM-tov"/>
                             <constraint firstItem="zre-FA-ah9" firstAttribute="top" secondItem="6Jp-HD-mI1" secondAttribute="bottom" constant="8" id="YiH-Oa-B21"/>
                             <constraint firstItem="0FR-Gy-7bB" firstAttribute="trailing" secondItem="QdV-Wh-Izr" secondAttribute="trailingMargin" id="Z3M-fK-bSG"/>
+                            <constraint firstAttribute="centerX" secondItem="fVA-vC-XdX" secondAttribute="centerX" id="ZEe-rL-GIV"/>
                             <constraint firstItem="yhb-3l-NI4" firstAttribute="top" secondItem="M3Q-GR-lmg" secondAttribute="bottom" constant="8" id="aYt-Bq-yNZ"/>
                             <constraint firstItem="O1x-b8-Cp2" firstAttribute="leading" secondItem="QdV-Wh-Izr" secondAttribute="leadingMargin" id="cox-ll-Eny"/>
                             <constraint firstItem="b8O-Kg-pU3" firstAttribute="leading" secondItem="O1x-b8-Cp2" secondAttribute="trailing" constant="8" id="dYo-6i-uyj"/>
@@ -2158,6 +2190,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                             <constraint firstItem="M3Q-GR-lmg" firstAttribute="leading" secondItem="QdV-Wh-Izr" secondAttribute="leadingMargin" id="s8p-BU-9ho"/>
                             <constraint firstItem="BtP-WV-BoS" firstAttribute="top" secondItem="NYt-XH-I3V" secondAttribute="bottom" constant="3" id="t9g-hh-LsN"/>
                             <constraint firstItem="8oc-fj-upV" firstAttribute="trailing" secondItem="QdV-Wh-Izr" secondAttribute="trailingMargin" id="uWJ-Ef-azH"/>
+                            <constraint firstItem="fVA-vC-XdX" firstAttribute="top" secondItem="CeJ-Bi-9PL" secondAttribute="bottom" constant="30" id="wmR-Ml-OHg"/>
                             <constraint firstItem="8oc-fj-upV" firstAttribute="top" secondItem="BtP-WV-BoS" secondAttribute="bottom" constant="8" id="xTQ-cK-W01"/>
                         </constraints>
                         <variation key="default">
@@ -2174,6 +2207,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="fVA-vC-XdX" id="ZHu-JQ-P6R"/>
                         <outlet property="auditorCSLabel" destination="8oc-fj-upV" id="gyE-6L-CN6"/>
                         <outlet property="auditorCaseLabel" destination="b8O-Kg-pU3" id="yg5-BS-3Wv"/>
                         <outlet property="auditorCityLabel" destination="scO-kv-DtS" id="fi4-ud-O0p"/>
@@ -2242,7 +2276,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="anthologyNameLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gi-Hk-ykC">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gi-Hk-ykC">
                                 <rect key="frame" x="16" y="72" width="568" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="9ml-UK-6sH"/>
@@ -2251,22 +2285,26 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlH-Oh-46j">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" showsHorizontalScrollIndicator="NO" editable="NO" text="                      ... Please wait ..." translatesAutoresizingMaskIntoConstraints="NO" id="vlH-Oh-46j">
                                 <rect key="frame" x="16" y="113" width="568" height="435"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </textView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6ex-3g-wOw">
+                                <rect key="frame" x="290" y="265" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vlH-Oh-46j" firstAttribute="trailing" secondItem="U4b-YK-a4R" secondAttribute="trailingMargin" id="2aQ-cI-3KF"/>
                             <constraint firstItem="4gi-Hk-ykC" firstAttribute="trailing" secondItem="U4b-YK-a4R" secondAttribute="trailingMargin" id="2bi-e5-fg3"/>
                             <constraint firstItem="Y2q-h1-qbG" firstAttribute="top" secondItem="vlH-Oh-46j" secondAttribute="bottom" constant="8" id="6Hz-8Q-kar"/>
+                            <constraint firstAttribute="centerX" secondItem="6ex-3g-wOw" secondAttribute="centerX" id="6Ql-Gn-0uD"/>
                             <constraint firstItem="4gi-Hk-ykC" firstAttribute="leading" secondItem="U4b-YK-a4R" secondAttribute="leadingMargin" id="Jk7-ZJ-oJs"/>
                             <constraint firstItem="vlH-Oh-46j" firstAttribute="top" secondItem="4gi-Hk-ykC" secondAttribute="bottom" constant="8" id="LN0-OV-4QJ"/>
+                            <constraint firstItem="6ex-3g-wOw" firstAttribute="top" secondItem="4gi-Hk-ykC" secondAttribute="bottom" constant="160" id="l6j-c6-rYq"/>
                             <constraint firstItem="4gi-Hk-ykC" firstAttribute="top" secondItem="Vqj-G3-wW1" secondAttribute="bottom" constant="8" id="we6-4Q-CAO"/>
                             <constraint firstItem="vlH-Oh-46j" firstAttribute="leading" secondItem="U4b-YK-a4R" secondAttribute="leadingMargin" id="xVd-zu-wsb"/>
                         </constraints>
@@ -2281,6 +2319,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="6ex-3g-wOw" id="ffS-Kz-S87"/>
                         <outlet property="anthologyNameLabel" destination="4gi-Hk-ykC" id="9u4-Uq-ZXn"/>
                         <outlet property="openInBrowser" destination="xM0-Zj-v9b" id="cKb-9a-OqT"/>
                         <outlet property="textView" destination="vlH-Oh-46j" id="sfi-gj-suF"/>
@@ -2293,7 +2332,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
     </scenes>
     <resources>
         <image name="Auditors" width="230" height="181"/>
-        <image name="Participate" width="207" height="243"/>
+        <image name="ProfilePicture" width="80" height="120"/>
         <image name="ScientolipediaLogo" width="422" height="50"/>
     </resources>
 </document>

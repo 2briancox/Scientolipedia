@@ -90,9 +90,12 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
     
     @IBOutlet weak var levelBottom: NSLayoutConstraint!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.activityIndicator.startAnimating()
         
         var parsingAuditorError: NSError? = nil
         // Do any additional setup after loading the view
@@ -103,7 +106,7 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
         let theAuditorJSONURL = (BASE_URL + "api.php?action=query&titles=" + urlName + "&prop=revisions&rvprop=content&format=json").stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
         
         let pathForJSON = NSURL(string: theAuditorJSONURL!)
-        var parsedJSON: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+        var parsedJSON: [String: AnyObject] = Dictionary<String, AnyObject>()
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(pathForJSON!, completionHandler: { (data, response, error) -> Void in
             
@@ -334,6 +337,10 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                     
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("%%%%%", withString: "\n\n")
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br>", withString: "\n")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("{{#seo:", withString: "")
+                    theParagraph = theParagraph.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                     
                     self.auditorParagraphText.text = theParagraph
                     
@@ -382,7 +389,7 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                     }
                     
                     if self.auditorImage != "" {
-                        var imageURL = NSURL(string: showPic(self.auditorImage))
+                        var imageURL = NSURL(string: showPic(self.auditorImage as String))
                         var imageData = NSData(contentsOfURL: imageURL!)
                         self.auditorImageView.image = UIImage(data: imageData!)
                     } else {
@@ -394,7 +401,6 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                         self.phoneButtonLabel.setTitle(self.auditorPhone, forState: UIControlState.Normal)
                     } else {
                         self.phoneButtonHeight.setValue(CGFloat(0.0), forKey: "constant")
-                        self.phoneButtonHeight.setValue(CGFloat(0.0), forKey: "multiplier")
                         self.phoneButtonLabel.hidden = true
                         self.phoneBottom.setValue(CGFloat(0.0), forKey: "constant")
                     }
@@ -403,7 +409,6 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                         self.emailButtonLabel.setTitle(self.auditorEmail, forState: UIControlState.Normal)
                     } else {
                         self.emailButtonHeight.setValue(CGFloat(0.0), forKey: "constant")
-                        self.emailButtonHeight.setValue(CGFloat(0.0), forKey: "multiplier")
                         self.emailButtonLabel.hidden = true
                         self.emailBottom.setValue(CGFloat(0.0), forKey: "constant")
                     }
@@ -412,10 +417,12 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                         self.websiteButtonLabel.setTitle(self.auditorWebsite, forState: UIControlState.Normal)
                     } else {
                         self.websiteButtonHeight.setValue(CGFloat(0.0), forKey: "constant")
-                        self.websiteButtonHeight.setValue(CGFloat(0.0), forKey: "multiplier")
                         self.websiteButtonLabel.hidden = true
                         self.websiteBottom.setValue(CGFloat(0.0), forKey: "constant")
                     }
+                    
+                    self.activityIndicator.hidesWhenStopped = true
+                    self.activityIndicator.stopAnimating()
                 }
             }
             
@@ -479,6 +486,11 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
         var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
+    override func shouldAutorotate() -> Bool {
+        return false
     }
 
 }

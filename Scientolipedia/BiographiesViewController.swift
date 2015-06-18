@@ -36,12 +36,16 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var spaceXY: NSLayoutConstraint!
     @IBOutlet weak var spaceYZ: NSLayoutConstraint!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var profileTableView: UITableView!
     
     var profileNames: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.activityIndicator.startAnimating()
         
         UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
         
@@ -114,6 +118,11 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
                         (nameOne: String, nameTwo: String) -> Bool in
                         return nameOne < nameTwo
                     }
+                    
+                    self.profileTableView.reloadData()
+                    self.activityIndicator.hidesWhenStopped = true
+                    self.activityIndicator.stopAnimating()
+                    
                 }
                 
             }

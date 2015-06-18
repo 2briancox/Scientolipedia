@@ -42,5 +42,9 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
 
 }

@@ -19,6 +19,8 @@ class BiographyViewController: UIViewController {
     
     @IBOutlet weak var textView: UITextView!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var profileName: String = ""
     var imageName = ""
     var birthday = ""
@@ -44,7 +46,11 @@ class BiographyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var parsedProfileData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+        self.activityIndicator.startAnimating()
+        
+        self.profileNameLabel.text = self.profileName
+        
+        var parsedProfileData: [String: AnyObject] = Dictionary<String, AnyObject>()
         
         var profileURL = profileName.stringByReplacingOccurrencesOfString(" ", withString: "_")
 
@@ -53,10 +59,8 @@ class BiographyViewController: UIViewController {
         profileURL = profileURL.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         
         profileURL = profileURL.stringByReplacingOccurrencesOfString("_&_", withString: "_%26_")
-
-        let pageURL = NSURL(string: profileURL)
         
-        let task = NSURLSession.sharedSession().dataTaskWithURL(pageURL!, completionHandler: { (data, response, error) -> Void in
+        let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: profileURL)!, completionHandler: { (data, response, error) -> Void in
             
             var urlError = false
             
@@ -297,20 +301,26 @@ class BiographyViewController: UIViewController {
 
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("%%%%%", withString: "\n\n")
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br>", withString: "\n")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("{{#seo:", withString: "")
+                    theParagraph = theParagraph.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                     
                     self.textView.text = theParagraph
                     
-                    self.profileNameLabel.text = self.profileName
+                    println(self.imageName)
                     
                     if self.imageName != "" {
-                        var imageURL = NSURL(string: showPic(self.imageName))
-                        var imageData = NSData(contentsOfURL: imageURL!)
+                        let imageData = NSData(contentsOfURL: NSURL(string: showPic(self.imageName as String))!)
                         self.profileImage.image = UIImage(data: imageData!)
                     } else {
                         self.picutreHeight.setValue(CGFloat(0.0), forKey: "constant")
                         self.pictureTopSpace.setValue(CGFloat(0.0), forKey: "constant")
                         self.profileImage.hidden = true
                     }
+                    
+                    self.activityIndicator.hidesWhenStopped = true
+                    self.activityIndicator.stopAnimating()
                     
                     self.textView.scrollRangeToVisible(NSRange(0...0))
                 }
@@ -342,5 +352,9 @@ class BiographyViewController: UIViewController {
             var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return false
     }
 }

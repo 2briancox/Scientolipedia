@@ -42,6 +42,8 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var spaceXY: NSLayoutConstraint!
     @IBOutlet weak var spaceYZ: NSLayoutConstraint!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var lettersArray: [String] = []
     
     var wordList: [String] = []
@@ -70,6 +72,8 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
         
         self.wordTitleLabel.text = "Definition: ..."
         definitionTextView.text = "\n\n\n                           ... Loading ... "
+        
+        self.activityIndicator.startAnimating()
         
         self.wordTitleLabel.textColor = UIColor.lightGrayColor()
         self.definitionTextView.textColor = UIColor.lightGrayColor()
@@ -183,6 +187,8 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                     self.definitionTextView.textColor = UIColor(white: CGFloat(0.0), alpha: CGFloat(1.0))
                     self.definitionTextView.scrollRangeToVisible(NSRange(0...0))
                     
+                    self.activityIndicator.stopAnimating()
+                    
                 }
             }
             
@@ -197,6 +203,8 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.activityIndicator.startAnimating()
         
         let frameHeight = self.view.bounds.size.height
         let spacing: CGFloat = (frameHeight - 470)/25 as CGFloat
@@ -230,42 +238,73 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
         var parsingAuditorError: NSError? = nil
         
         let glossaryURL = NSURL(string: "http://scientolipedia.org/w/index.php?title=Special:Ask&offset=0&limit=500&q=[[Category%3A+Glossary]]%0A&p=format%3Djson%2Flink%3Dall%2Fheaders%3Dshow%2Fsearchlabel%3D%E2%80%A6-20further-20results%2Fclass%3Dsortable-20wikitable-20smwtable&eq=yes")
+        var parsedGlossaryJSON: [String: AnyObject] = Dictionary<String, AnyObject>()
         
-        let glossaryJSONData = NSData(contentsOfURL: glossaryURL!)
-        
-        var parsedGlossaryJSON = NSJSONSerialization.JSONObjectWithData(glossaryJSONData!, options: .AllowFragments, error: &parsingAuditorError) as! [String: AnyObject]
-        
-        let wordListDict = parsedGlossaryJSON["results"] as! Dictionary<String, AnyObject>
-        
-        let words = wordListDict.keys.array
-        
-        wordList.removeAll(keepCapacity: false)
-        wordURLStrings.removeAll(keepCapacity: false)
-        lettersArray.removeAll(keepCapacity: false)
-        
-        for word in words {
-            wordList.append(word)
-        }
-
-        wordList = wordList.sorted{
-            (wordOne: String, wordTwo: String) -> Bool in
-            return wordOne < wordTwo
-        }
-        
-        for word in wordList {
-            let letter = (word as NSString).substringToIndex(1)
-            lettersArray.append(letter)
-            let wordURL: String = (wordListDict[word] as! Dictionary<String, AnyObject>)["fullurl"] as! String!
-            wordURLStrings.append(wordURL)
-        }
-        
-        for var i = lettersArray.count - 1; i > 0; i-- {
-            if lettersArray[i] == lettersArray[i-1] {
-                lettersArray.removeAtIndex(i)
+        let task = NSURLSession.sharedSession().dataTaskWithURL(glossaryURL!, completionHandler: { (data, response, error) -> Void in
+            
+                var urlError = false
+                
+                if error == nil {
+            
+                    parsedGlossaryJSON = NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments, error: &parsingAuditorError) as! [String: AnyObject]
+                    
+                } else {
+                    
+                    urlError = true
+                    
+                }
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                    if urlError == true {
+                        
+                        self.showAlertWithText(header: "Warning", message: "That word was not able to load from the server.")
+                        
+                    } else {
+                        
+                        
+                        let wordListDict = parsedGlossaryJSON["results"] as! Dictionary<String, AnyObject>
+                        
+                        let words = wordListDict.keys.array
+                        
+                        self.wordList.removeAll(keepCapacity: false)
+                        self.wordURLStrings.removeAll(keepCapacity: false)
+                        self.lettersArray.removeAll(keepCapacity: false)
+                        
+                        for word in words {
+                            self.wordList.append(word)
+                        }
+                        
+                        self.wordList = self.wordList.sorted{
+                            (wordOne: String, wordTwo: String) -> Bool in
+                            return wordOne < wordTwo
+                        }
+                        
+                        for word in self.wordList {
+                            let letter = (word as NSString).substringToIndex(1)
+                            self.lettersArray.append(letter)
+                            let wordURL: String = (wordListDict[word] as! Dictionary<String, AnyObject>)["fullurl"] as! String!
+                            self.wordURLStrings.append(wordURL)
+                        }
+                        
+                        for var i = self.lettersArray.count - 1; i > 0; i-- {
+                            if self.lettersArray[i] == self.lettersArray[i-1] {
+                                self.lettersArray.removeAtIndex(i)
+                            }
+                        }
+                        
+                        self.wordTableView.reloadData()
+                        
+                        self.activityIndicator.hidesWhenStopped = true
+                        self.activityIndicator.stopAnimating()
+                        
+                }
             }
-        }
+            
+        })
+    
+        task.resume()
         
-        wordTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -365,6 +404,10 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
     }
     @IBAction func zButtonPressed(sender: UIButton) {
         scrollToLetter("Z")
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return false
     }
 
 }
