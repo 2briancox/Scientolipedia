@@ -97,6 +97,27 @@ class BiographyViewController: UIViewController {
                     var theData: NSString = completeData["*"] as! NSString
 
                     theData = theData.stringByReplacingOccurrencesOfString("\n\n", withString: "%%%%%")
+                    
+                    while theData.containsString("[[File:") {
+                        let tempArray = theData.componentsSeparatedByString("[[File:")
+                        let subString = tempArray[1].componentsSeparatedByString("]]")[0] as! String
+                        let removeString = "[[File:" + subString + "]]"
+                        theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
+                    }
+                    
+                    while theData.containsString("<ref") {
+                        let tempArray = theData.componentsSeparatedByString("<ref")
+                        let subString = tempArray[1].componentsSeparatedByString(">")[0] as! String
+                        let removeString = "<ref" + subString + ">"
+                        theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
+                    }
+                    
+                    while theData.containsString("<flashmp3>") {
+                        let tempArray = theData.componentsSeparatedByString("<flashmp3>")
+                        let subString = tempArray[1].componentsSeparatedByString("</flashmp3>")[0] as! String
+                        let removeString = "<flashmp3>" + subString + "</flashmp3>"
+                        theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
+                    }
 
                     var theDataArray = theData.componentsSeparatedByString("\n") as! [NSString]
 
@@ -108,12 +129,28 @@ class BiographyViewController: UIViewController {
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
+                        
+                        if theDataArray[i] == "|-" {
+                            theDataArray.removeAtIndex(i)
+                            if theDataArray.count > i {
+                                theDataArray.removeAtIndex(i)
+                            }
+                            i--
+                            continue
+                        }
+                        if theDataArray[i].hasPrefix("|Birthdate=") {
+                            self.birthday = theDataArray[i].substringFromIndex(10)
+                            theDataArray.removeAtIndex(i)
+                            self.birthday = self.birthday.stringByReplacingOccurrencesOfString("=", withString: "")
+                            i--; continue
+                        }
                         if theDataArray[i].hasPrefix("|Birthday=") {
                             self.birthday = theDataArray[i].substringFromIndex(9)
                             theDataArray.removeAtIndex(i)
                             self.birthday = self.birthday.stringByReplacingOccurrencesOfString("=", withString: "")
                             i--; continue
                         }
+                        
                         if theDataArray[i].hasPrefix("|Birth info=") {
                             self.birthInfo = theDataArray[i].substringFromIndex(12)
                             theDataArray.removeAtIndex(i)
@@ -303,12 +340,11 @@ class BiographyViewController: UIViewController {
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br>", withString: "\n")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("</ref>", withString: "")
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("{{#seo:", withString: "")
                     theParagraph = theParagraph.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                     
                     self.textView.text = theParagraph
-                    
-                    println(self.imageName)
                     
                     if self.imageName != "" {
                         let imageData = NSData(contentsOfURL: NSURL(string: showPic(self.imageName as String))!)

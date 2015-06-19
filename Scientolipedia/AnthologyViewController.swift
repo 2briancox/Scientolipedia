@@ -78,8 +78,8 @@ class AnthologyViewController: UIViewController {
                     
                     var goodToGo = false
                     
-                    for item in dataForAnthology.keys.array {
-                        if item == "revisions" {
+                    for key in dataForAnthology.keys.array {
+                        if key == "revisions" {
                             goodToGo = true
                         }
                     }
@@ -93,7 +93,30 @@ class AnthologyViewController: UIViewController {
                         
                         theData = theData.stringByReplacingOccurrencesOfString("\n\n", withString: "%%%%%")
                         
+                        while theData.containsString("[[File:") {
+                            let tempArray = theData.componentsSeparatedByString("[[File:")
+                            let subString = tempArray[1].componentsSeparatedByString("]]")[0] as! String
+                            let removeString = "[[File:" + subString + "]]"
+                            theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
+                        }
+                        
+                        while theData.containsString("<ref") {
+                            let tempArray = theData.componentsSeparatedByString("<ref")
+                            let subString = tempArray[1].componentsSeparatedByString(">")[0] as! String
+                            let removeString = "<ref" + subString + ">"
+                            theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
+                        }
+                        
+                        while theData.containsString("<flashmp3>") {
+                            let tempArray = theData.componentsSeparatedByString("<flashmp3>")
+                            let subString = tempArray[1].componentsSeparatedByString("</flashmp3>")[0] as! String
+                            let removeString = "<flashmp3>" + subString + "</flashmp3>"
+                            theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
+                        }
+                        
                         var theDataArray = theData.componentsSeparatedByString("\n") as! [NSString]
+                        
+                        println(theDataArray)
                         
                         for var i = 0; i < (theDataArray.count); i++ {
                             
@@ -103,6 +126,16 @@ class AnthologyViewController: UIViewController {
                                 theDataArray.removeAtIndex(i)
                                 i--; continue
                             }
+                            
+                            if theDataArray[i] == "|-" {
+                                theDataArray.removeAtIndex(i)
+                                if theDataArray.count > i {
+                                    theDataArray.removeAtIndex(i)
+                                }
+                                i--
+                                continue
+                            }
+                            
                             if theDataArray[i].hasPrefix("|Name=") {
                                 self.name = theDataArray[i].substringFromIndex(5)
                                 theDataArray.removeAtIndex(i)
@@ -158,6 +191,7 @@ class AnthologyViewController: UIViewController {
                                 i--; continue
                             }
                         }
+                        println("Finished Filtering")
                         
                         var theParagraph = ""
                         
@@ -170,6 +204,8 @@ class AnthologyViewController: UIViewController {
                                 theParagraph += "\n"
                             }
                         }
+                        
+                        println("Finished reconstituting")
                         
                         if self.descriptionS != "" {
                             theParagraph = "== Description ==\n" + self.descriptionS + "\n\n" + theParagraph
@@ -199,6 +235,7 @@ class AnthologyViewController: UIViewController {
                         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("%%%%%", withString: "\n\n")
                         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
                         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
+                        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("</ref>", withString: "")
                         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br>", withString: "\n")
                         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("{{#seo:", withString: "")
                         theParagraph = theParagraph.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())

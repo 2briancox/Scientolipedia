@@ -255,11 +255,14 @@ class AnthologyListViewController: UIViewController {
             }
 
         })
-
-        task1.resume()
+        
+        dispatch_async(concurrentQueue) {
+            task1.resume()
+            task3.resume()
+            task4.resume()
+        }
+        
         task2.resume()
-        task3.resume()
-        task4.resume()
 
     }
 

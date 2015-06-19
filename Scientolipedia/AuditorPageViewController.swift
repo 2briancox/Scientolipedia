@@ -146,6 +146,27 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                     
                     theData = theData.stringByReplacingOccurrencesOfString("\n\n", withString: "%%%%%")
                     
+                    while theData.containsString("[[File:") {
+                        let tempArray = theData.componentsSeparatedByString("[[File:")
+                        let subString = tempArray[1].componentsSeparatedByString("]]")[0] as! String
+                        let removeString = "[[File:" + subString + "]]"
+                        theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
+                    }
+                    
+                    while theData.containsString("<ref") {
+                        let tempArray = theData.componentsSeparatedByString("<ref")
+                        let subString = tempArray[1].componentsSeparatedByString(">")[0] as! String
+                        let removeString = "<ref" + subString + ">"
+                        theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
+                    }
+                    
+                    while theData.containsString("<flashmp3>") {
+                        let tempArray = theData.componentsSeparatedByString("<flashmp3>")
+                        let subString = tempArray[1].componentsSeparatedByString("</flashmp3>")[0] as! String
+                        let removeString = "<flashmp3>" + subString + "</flashmp3>"
+                        theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
+                    }
+                    
                     var theDataArray = theData.componentsSeparatedByString("\n") as! [NSString]
                     
                     for var i = 0; i < (theDataArray.count); i++ {
@@ -154,6 +175,16 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
+                        
+                        if theDataArray[i] == "|-" {
+                            theDataArray.removeAtIndex(i)
+                            if theDataArray.count > i {
+                                theDataArray.removeAtIndex(i)
+                            }
+                            i--
+                            continue
+                        }
+                        
                         if theDataArray[i].hasPrefix("|Auditing Delivery=") {
                             self.auditorAuditOffer = theDataArray[i].substringFromIndex(19)
                             theDataArray.removeAtIndex(i)
