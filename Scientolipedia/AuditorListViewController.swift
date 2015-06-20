@@ -50,7 +50,7 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 if urlError == true {
                     
-                    self.showAlertWithText(header: "Warning", message: "This page cannot load right now. Please try again.")
+                    self.showAlertWithText(header: "Warning", message: "This page cannot load right now. Please try again later.")
 
                 } else {
                     
@@ -108,11 +108,11 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
                         }
                         
                     }
-                    
+
                     self.auditorTableView.reloadData()
                     self.activityIndicator.hidesWhenStopped = true
                     self.activityIndicator.stopAnimating()
-                    
+
                 }
             }
         })

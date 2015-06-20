@@ -1903,8 +1903,27 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                     </view>
                     <navigationItem key="navigationItem" title="Histories" id="zG8-7s-GyH"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="ue5-os-gZc" id="HHE-i3-Csm"/>
+                        <outlet property="aButton" destination="hjN-Ec-xcw" id="v4E-h9-4zn"/>
+                        <outlet property="activityIndicator" destination="ue5-os-gZc" id="4DR-hO-Jre"/>
                         <outlet property="anthologyTableView" destination="Ioj-VI-TZs" id="puq-qT-mWS"/>
+                        <outlet property="bButton" destination="vps-pG-wKw" id="y8O-hc-1Mb"/>
+                        <outlet property="cButton" destination="DoC-90-dGu" id="gC0-su-NQn"/>
+                        <outlet property="dButton" destination="CQN-sd-7Xo" id="2ip-sZ-dgc"/>
+                        <outlet property="eButton" destination="wSs-zu-IDl" id="1LA-xt-9hq"/>
+                        <outlet property="fButton" destination="Ouj-X4-eOx" id="PFi-ri-Fan"/>
+                        <outlet property="gButton" destination="exo-x3-SQj" id="rUo-uj-Nfb"/>
+                        <outlet property="hButton" destination="aK9-Vh-hS7" id="NrP-Uo-lUj"/>
+                        <outlet property="iButton" destination="gdg-Q2-RVf" id="eF0-dm-ce2"/>
+                        <outlet property="jButton" destination="OC4-aW-DHG" id="saZ-Tg-FML"/>
+                        <outlet property="kButton" destination="sif-Ap-J3v" id="1RJ-O1-dy3"/>
+                        <outlet property="lButton" destination="ofp-lW-1Wx" id="QhU-0r-ZJM"/>
+                        <outlet property="mButton" destination="4mT-JO-JG6" id="Ugx-le-ZDU"/>
+                        <outlet property="nButton" destination="xQP-70-8Ai" id="yOA-S7-F1T"/>
+                        <outlet property="oButton" destination="BQe-to-mjN" id="1nr-wA-0mY"/>
+                        <outlet property="pButton" destination="DhN-wO-GYH" id="20j-hF-bPU"/>
+                        <outlet property="qButton" destination="bAO-Ov-fyi" id="teK-UN-IKo"/>
+                        <outlet property="rButton" destination="XHm-x6-NxX" id="Rkw-wY-QxA"/>
+                        <outlet property="sButton" destination="KDe-r1-yIf" id="M0R-Ol-a7X"/>
                         <outlet property="spaceAB" destination="xl4-Tt-sj5" id="ncm-Ym-ey2"/>
                         <outlet property="spaceBC" destination="eMo-b8-5i7" id="dhI-p3-i5O"/>
                         <outlet property="spaceCD" destination="iDM-sH-Uv1" id="BQE-HR-DQu"/>
@@ -1930,6 +1949,13 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                         <outlet property="spaceWX" destination="afk-Cc-UHf" id="yY8-y3-8Kw"/>
                         <outlet property="spaceXY" destination="9ej-Me-MWr" id="hJe-SL-V5i"/>
                         <outlet property="spaceYZ" destination="df0-J9-C5s" id="30i-Sb-ez3"/>
+                        <outlet property="tButton" destination="WWn-K7-VTE" id="RRg-56-TtO"/>
+                        <outlet property="uButton" destination="hNJ-hx-LPC" id="XCT-Bs-7rI"/>
+                        <outlet property="vButton" destination="g1U-Pb-ryS" id="sab-VH-l1F"/>
+                        <outlet property="wButton" destination="eCo-kA-ZKg" id="Rtz-nt-G7b"/>
+                        <outlet property="xButton" destination="3Zr-Oe-xA7" id="zaF-pu-ZZF"/>
+                        <outlet property="yButton" destination="Y4L-Ui-1QT" id="lQY-Ji-iad"/>
+                        <outlet property="zButton" destination="pom-wh-Os2" id="EgS-MN-ONr"/>
                         <segue destination="EP0-Hq-qCu" kind="show" identifier="showAnthology" id="MaE-k4-dDT"/>
                     </connections>
                 </viewController>

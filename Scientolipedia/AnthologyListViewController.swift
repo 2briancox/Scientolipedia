@@ -41,6 +41,33 @@ class AnthologyListViewController: UIViewController {
     @IBOutlet weak var spaceXY: NSLayoutConstraint!
     @IBOutlet weak var spaceYZ: NSLayoutConstraint!
     
+    @IBOutlet weak var aButton: UIButton!
+    @IBOutlet weak var bButton: UIButton!
+    @IBOutlet weak var cButton: UIButton!
+    @IBOutlet weak var dButton: UIButton!
+    @IBOutlet weak var eButton: UIButton!
+    @IBOutlet weak var fButton: UIButton!
+    @IBOutlet weak var gButton: UIButton!
+    @IBOutlet weak var hButton: UIButton!
+    @IBOutlet weak var iButton: UIButton!
+    @IBOutlet weak var jButton: UIButton!
+    @IBOutlet weak var kButton: UIButton!
+    @IBOutlet weak var lButton: UIButton!
+    @IBOutlet weak var mButton: UIButton!
+    @IBOutlet weak var nButton: UIButton!
+    @IBOutlet weak var oButton: UIButton!
+    @IBOutlet weak var pButton: UIButton!
+    @IBOutlet weak var qButton: UIButton!
+    @IBOutlet weak var rButton: UIButton!
+    @IBOutlet weak var sButton: UIButton!
+    @IBOutlet weak var tButton: UIButton!
+    @IBOutlet weak var uButton: UIButton!
+    @IBOutlet weak var vButton: UIButton!
+    @IBOutlet weak var wButton: UIButton!
+    @IBOutlet weak var xButton: UIButton!
+    @IBOutlet weak var yButton: UIButton!
+    @IBOutlet weak var zButton: UIButton!
+    
     @IBOutlet weak var anthologyTableView: UITableView!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -55,6 +82,36 @@ class AnthologyListViewController: UIViewController {
         let frameHeight = self.view.bounds.size.height
         
         let spacing: CGFloat = (frameHeight - 470)/25 as CGFloat
+        
+        self.anthologyTableView.userInteractionEnabled = false
+        
+        self.anthologyTableView.hidden = true
+        self.aButton.hidden = true
+        self.bButton.hidden = true
+        self.cButton.hidden = true
+        self.dButton.hidden = true
+        self.eButton.hidden = true
+        self.fButton.hidden = true
+        self.gButton.hidden = true
+        self.hButton.hidden = true
+        self.iButton.hidden = true
+        self.jButton.hidden = true
+        self.kButton.hidden = true
+        self.lButton.hidden = true
+        self.mButton.hidden = true
+        self.nButton.hidden = true
+        self.oButton.hidden = true
+        self.pButton.hidden = true
+        self.qButton.hidden = true
+        self.rButton.hidden = true
+        self.sButton.hidden = true
+        self.tButton.hidden = true
+        self.uButton.hidden = true
+        self.vButton.hidden = true
+        self.wButton.hidden = true
+        self.xButton.hidden = true
+        self.yButton.hidden = true
+        self.zButton.hidden = true
         
         spaceAB.setValue(spacing, forKey: "constant")
         spaceBC.setValue(spacing, forKey: "constant")
@@ -82,20 +139,16 @@ class AnthologyListViewController: UIViewController {
         spaceXY.setValue(spacing, forKey: "constant")
         spaceYZ.setValue(spacing, forKey: "constant")
         
+        var urlError = false
         var parsingError: NSError? = nil
         var anthologyParsedData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
         var videosParsedData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
         var shipsParsedData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
         var profilesParsedData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
         
-        var concurrentQueue = dispatch_queue_create(
-            "com.scientolipedia.Scientolipedia.searchCalls", DISPATCH_QUEUE_CONCURRENT)
-        
         let videosListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+History+of+Scientology]]+[[Category%3A+Videos]]+OR+[[Category%3A+Anthology]]+[[Category%3A+Videos]]&po=&eq=yes&p[format]=json&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[sort]=&p[order][ascending]=1&p[headers]=show&p[mainlabel]=&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes"
         
         let task1 = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: videosListAddress)!, completionHandler: { (data, response, error) -> Void in
-            
-            var urlError = false
             
             if error == nil {
                 
@@ -107,29 +160,12 @@ class AnthologyListViewController: UIViewController {
                 
             }
             
-            dispatch_async(concurrentQueue) {
-                
-                if urlError == true {
-                    
-                    self.showAlertWithText(header: "Warning", message: "This list was not able to load from the server.  Please try again.")
-                    
-                } else {
-                    
-                    
-                    self.videosKeys = (videosParsedData["results"] as! Dictionary<String, AnyObject>).keys.array
-                    
-                }
-            }
-            
         })
-        
-        task1.resume()
         
         let anthologyListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+History+of+Scientology]]+OR+[[Category%3A+Anthology]]&po=&eq=yes&p[format]=json&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[sort]=&p[order][ascending]=1&p[headers]=show&p[mainlabel]=&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[prettyprint]=1&eq=yes"
         
         let task2 = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: anthologyListAddress)!, completionHandler: { (data, response, error) -> Void in
             
-            var urlError = false
             
             if error == nil {
                 
@@ -141,7 +177,7 @@ class AnthologyListViewController: UIViewController {
                 
             }
             
-            dispatch_async(concurrentQueue) {
+            dispatch_async(dispatch_get_main_queue()) {
                 
                 if urlError == true {
                     
@@ -151,46 +187,82 @@ class AnthologyListViewController: UIViewController {
                     
                     self.anthologyArray = (anthologyParsedData["results"] as! Dictionary<String, AnyObject>).keys.array
                     
-                }
-            }
-            
-            dispatch_barrier_sync(concurrentQueue) {
-                for video in self.videosKeys {
-                    for var i = 0; i < self.anthologyArray.count; i++ {
-                        if self.anthologyArray[i] == video || self.anthologyArray[i] == "Obituaries" {
-                            self.anthologyArray.removeAtIndex(i)
-                            i--
+                    self.profilesKeys = (profilesParsedData["results"] as! Dictionary<String, AnyObject>).keys.array
+                    
+                    self.videosKeys = (videosParsedData["results"] as! Dictionary<String, AnyObject>).keys.array
+                    
+                    self.shipsKeys = (shipsParsedData["results"] as! Dictionary<String, AnyObject>).keys.array
+                    
+                    for video in self.videosKeys {
+                        for var i = 0; i < self.anthologyArray.count; i++ {
+                            if self.anthologyArray[i] == video || self.anthologyArray[i] == "Obituaries" {
+                                self.anthologyArray.removeAtIndex(i)
+                                i--
+                            }
                         }
                     }
-                }
-                
-                for ship in self.shipsKeys {
-                    for var i = 0; i < self.anthologyArray.count; i++ {
-                        if self.anthologyArray[i] == ship {
-                            self.anthologyArray.removeAtIndex(i)
-                            i--
+                    
+                    for ship in self.shipsKeys {
+                        for var i = 0; i < self.anthologyArray.count; i++ {
+                            if self.anthologyArray[i] == ship {
+                                self.anthologyArray.removeAtIndex(i)
+                                i--
+                            }
                         }
                     }
-                }
-                
-                for profile in self.profilesKeys {
-                    for var i = 0; i < self.anthologyArray.count; i++ {
-                        if self.anthologyArray[i] == profile {
-                            self.anthologyArray.removeAtIndex(i)
-                            i--
+                    
+                    for profile in self.profilesKeys {
+                        for var i = 0; i < self.anthologyArray.count; i++ {
+                            if self.anthologyArray[i] == profile {
+                                self.anthologyArray.removeAtIndex(i)
+                                i--
+                            }
                         }
                     }
+                    
+                    self.anthologyArray = self.anthologyArray.sorted{
+                        (nameOne: String, nameTwo: String) -> Bool in
+                        return nameOne < nameTwo
+                    }
+                    
+                    self.anthologyTableView.hidden = false
+                    self.aButton.hidden = false
+                    self.bButton.hidden = false
+                    self.cButton.hidden = false
+                    self.dButton.hidden = false
+                    self.eButton.hidden = false
+                    self.fButton.hidden = false
+                    self.gButton.hidden = false
+                    self.hButton.hidden = false
+                    self.iButton.hidden = false
+                    self.jButton.hidden = false
+                    self.kButton.hidden = false
+                    self.lButton.hidden = false
+                    self.mButton.hidden = false
+                    self.nButton.hidden = false
+                    self.oButton.hidden = false
+                    self.pButton.hidden = false
+                    self.qButton.hidden = false
+                    self.rButton.hidden = false
+                    self.sButton.hidden = false
+                    self.tButton.hidden = false
+                    self.uButton.hidden = false
+                    self.vButton.hidden = false
+                    self.wButton.hidden = false
+                    self.xButton.hidden = false
+                    self.yButton.hidden = false
+                    self.zButton.hidden = false
+                    
+                    self.anthologyTableView.userInteractionEnabled = true
+                    
+                    self.activityIndicator.hidesWhenStopped = true
+                    self.activityIndicator.stopAnimating()
+                    
+                    self.anthologyTableView.reloadData()
+                    self.anthologyTableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+                    
                 }
-                
-                self.anthologyArray = self.anthologyArray.sorted{
-                    (nameOne: String, nameTwo: String) -> Bool in
-                    return nameOne < nameTwo
-                }
-                
-                self.activityIndicator.hidesWhenStopped = true
-                self.activityIndicator.stopAnimating()
-                
-                self.anthologyTableView.reloadData()
+                    
             }
             
         })
@@ -199,7 +271,6 @@ class AnthologyListViewController: UIViewController {
         
         let task3 = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: shipsListAddress)!, completionHandler: { (data, response, error) -> Void in
             
-            var urlError = false
             
             if error == nil {
                 
@@ -211,26 +282,12 @@ class AnthologyListViewController: UIViewController {
                 
             }
             
-            dispatch_async(concurrentQueue) {
-                
-                if urlError == true {
-                    
-                    self.showAlertWithText(header: "Warning", message: "This list was not able to load from the server.  Please try again.")
-                    
-                } else {
-                    
-                    self.shipsKeys = (shipsParsedData["results"] as! Dictionary<String, AnyObject>).keys.array
-                    
-                }
-            }
-            
         })
         
         let profileListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+Personal+Profiles]]+[[Category%3A+History+of+Scientology]]+OR+[[Category%3A+Personal+Profiles]]+[[Category%3A+Anthology]]&po=&eq=yes&p[format]=json&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[sort]=&p[order][ascending]=1&p[headers]=show&p[mainlabel]=&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes"
     
         let task4 = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: profileListAddress)!, completionHandler: { (data, response, error) -> Void in
             
-            var urlError = false
             
             if error == nil {
                 
@@ -242,27 +299,14 @@ class AnthologyListViewController: UIViewController {
                 
             }
 
-            dispatch_async(concurrentQueue) {
-                
-                if urlError == true {
-                    
-                    self.showAlertWithText(header: "Warning", message: "This list was not able to load from the server.  Please try again.")
-
-                } else {
-                    
-                    self.profilesKeys = (profilesParsedData["results"] as! Dictionary<String, AnyObject>).keys.array
-                }
-            }
-
         })
         
-        dispatch_async(concurrentQueue) {
-            task1.resume()
-            task3.resume()
-            task4.resume()
-        }
+        task1.resume()
+        task3.resume()
+        task4.resume()
         
         task2.resume()
+        
 
     }
 
@@ -303,7 +347,7 @@ class AnthologyListViewController: UIViewController {
     
     
     @IBAction func aButtonPressed(sender: UIButton) {
-        scrollToLetter("1")
+        scrollToLetter("A")
     }
     @IBAction func bButtonPressed(sender: UIButton) {
         scrollToLetter("B")

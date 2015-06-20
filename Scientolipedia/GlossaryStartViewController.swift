@@ -262,7 +262,6 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                         
                     } else {
                         
-                        
                         let wordListDict = parsedGlossaryJSON["results"] as! Dictionary<String, AnyObject>
                         
                         let words = wordListDict.keys.array

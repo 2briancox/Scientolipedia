@@ -105,6 +105,45 @@ class BiographyViewController: UIViewController {
                         theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
                     }
                     
+                    while theData.containsString("{|") {
+                        let tempArray = theData.componentsSeparatedByString("{|")
+                        let subString = tempArray[1].componentsSeparatedByString("|}")[0] as! String
+                        let removeString = "{|" + subString + "|}"
+                        theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
+                    }
+                    
+                    while theData.containsString("<span") {
+                        let tempArray = theData.componentsSeparatedByString("<span")
+                        let subString = tempArray[1].componentsSeparatedByString(">")[0] as! String
+                        let removeString = "<span" + subString + ">"
+                        theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
+                    }
+                    
+                    while theData.containsString("{{#") {
+                        let tempArray = theData.componentsSeparatedByString("{{#")
+                        let subString = tempArray[1].componentsSeparatedByString("}}")[0] as! String
+                        let removeString = "{{#" + subString + "}}"
+                        theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
+                    }
+                    
+                    while theData.containsString("\n\n\n") {
+                        theData = theData.stringByReplacingOccurrencesOfString("\n\n\n", withString: "\n\n")
+                    }
+                    
+                    while theData.containsString("<div") {
+                        let tempArray = theData.componentsSeparatedByString("<div")
+                        let subString = tempArray[1].componentsSeparatedByString(">")[0] as! String
+                        let removeString = "<div" + subString + ">"
+                        theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
+                    }
+                    
+                    while theData.containsString("<DynamicPageList>") {
+                        let tempArray = theData.componentsSeparatedByString("<DynamicPageList>")
+                        let subString = tempArray[1].componentsSeparatedByString("</DynamicPageList>")[0] as! String
+                        let removeString = "<DynamicPageList>" + subString + "</DynamicPageList>"
+                        theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
+                    }
+                    
                     while theData.containsString("<ref") {
                         let tempArray = theData.componentsSeparatedByString("<ref")
                         let subString = tempArray[1].componentsSeparatedByString(">")[0] as! String
@@ -341,6 +380,15 @@ class BiographyViewController: UIViewController {
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br>", withString: "\n")
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("</ref>", withString: "")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("</div>", withString: "")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("</span>", withString: "")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("</center>", withString: "")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<center>", withString: "")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("{{DISQUS}}", withString: "")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("</big>", withString: "")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<big>", withString: "")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<small>", withString: "")
+                    theParagraph = theParagraph.stringByReplacingOccurrencesOfString("</small>", withString: "")
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("{{#seo:", withString: "")
                     theParagraph = theParagraph.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                     
