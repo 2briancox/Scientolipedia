@@ -180,12 +180,12 @@ class AnthologyListViewController: UIViewController {
                         var badArticle = false
                         
                         for articleInfo in articleInfoArray {
-                            if (articleInfo["fulltext"] as! String) == "Category:Sea Org Ships" || (articleInfo["fulltext"] as! String) == "Category:Videos" || (articleInfo["fulltext"] as! String) == "Personal Profiles"  {
+                            if (articleInfo["fulltext"] as! String) == "Category:Sea Org Ships" || (articleInfo["fulltext"] as! String) == "Category:Videos" || (articleInfo["fulltext"] as! String) == "Category:Personal Profiles" || (articleInfo["fulltext"] as! String) == "Category:Biographies"   {
                                 badArticle = true
                             }
                         }
                         
-                        if badArticle {
+                        if badArticle || anthologyKeys[i] == "Obituaries" {
                             anthologyKeys.removeAtIndex(i)
                             i--
                         }
