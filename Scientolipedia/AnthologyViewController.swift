@@ -43,6 +43,8 @@ class AnthologyViewController: UIViewController {
         
         anthologyURL = ("http://scientolipedia.org/w/api.php?action=query&titles=" + anthologyURL + "&prop=revisions&rvprop=content&format=json" as NSString) as String
         
+        println(anthologyURL)
+        
         anthologyURL = anthologyURL.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
         
         anthologyURL = anthologyURL.stringByReplacingOccurrencesOfString("_&_", withString: "_%26_")

@@ -10,10 +10,7 @@ import UIKit
 
 class AnthologyListViewController: UIViewController {
     
-    var anthologyArray: [String] = []
-    var shipsKeys: [String] = []
-    var profilesKeys: [String] = []
-    var videosKeys: [String] = []
+    var anthologyNames: [String] = []
     
     @IBOutlet weak var spaceAB: NSLayoutConstraint!
     @IBOutlet weak var spaceBC: NSLayoutConstraint!
@@ -142,27 +139,8 @@ class AnthologyListViewController: UIViewController {
         var urlError = false
         var parsingError: NSError? = nil
         var anthologyParsedData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
-        var videosParsedData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
-        var shipsParsedData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
-        var profilesParsedData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
         
-        let videosListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+History+of+Scientology]]+[[Category%3A+Videos]]+OR+[[Category%3A+Anthology]]+[[Category%3A+Videos]]&po=&eq=yes&p[format]=json&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[sort]=&p[order][ascending]=1&p[headers]=show&p[mainlabel]=&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes"
-        
-        let task1 = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: videosListAddress)!, completionHandler: { (data, response, error) -> Void in
-            
-            if error == nil {
-                
-                videosParsedData = NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
-                
-            } else {
-                
-                urlError = true
-                
-            }
-            
-        })
-        
-        let anthologyListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+History+of+Scientology]]+OR+[[Category%3A+Anthology]]&po=&eq=yes&p[format]=json&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[sort]=&p[order][ascending]=1&p[headers]=show&p[mainlabel]=&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[prettyprint]=1&eq=yes"
+        let anthologyListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3AHistory+of+Scientology]]+OR+[[Category%3AAnthology]]&po=%3FCategory%0D%0A&eq=yes&p[format]=json&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[sort]=&p[order][ascending]=1&p[headers]=show&p[mainlabel]=&p[intro]=&p[outro]=&p[searchlabel]=further+results&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes"
         
         let task2 = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: anthologyListAddress)!, completionHandler: { (data, response, error) -> Void in
             
@@ -185,45 +163,41 @@ class AnthologyListViewController: UIViewController {
                     
                 } else {
                     
-                    self.anthologyArray = (anthologyParsedData["results"] as! Dictionary<String, AnyObject>).keys.array
+                    var data1 = NSData(contentsOfURL: NSURL(string: anthologyListAddress)!)
                     
-                    self.profilesKeys = (profilesParsedData["results"] as! Dictionary<String, AnyObject>).keys.array
+                    anthologyParsedData = NSJSONSerialization.JSONObjectWithData(data1!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
                     
-                    self.videosKeys = (videosParsedData["results"] as! Dictionary<String, AnyObject>).keys.array
+                    var anthologyKeys = (anthologyParsedData["results"] as! Dictionary<String, AnyObject>).keys.array
                     
-                    self.shipsKeys = (shipsParsedData["results"] as! Dictionary<String, AnyObject>).keys.array
-                    
-                    for video in self.videosKeys {
-                        for var i = 0; i < self.anthologyArray.count; i++ {
-                            if self.anthologyArray[i] == video || self.anthologyArray[i] == "Obituaries" {
-                                self.anthologyArray.removeAtIndex(i)
-                                i--
+                    for var i = 0; i < anthologyKeys.count; i++ {
+                        
+                        let article = (anthologyParsedData["results"] as! Dictionary<String, AnyObject>)[anthologyKeys[i]] as! Dictionary<String, AnyObject>
+                        
+                        let printouts = article["printouts"] as! Dictionary<String, AnyObject>
+                        
+                        let articleInfoArray = printouts["Category"] as! [[String: AnyObject]]
+                        
+                        var badArticle = false
+                        
+                        for articleInfo in articleInfoArray {
+                            if (articleInfo["fulltext"] as! String) == "Category:Sea Org Ships" || (articleInfo["fulltext"] as! String) == "Category:Videos" || (articleInfo["fulltext"] as! String) == "Personal Profiles"  {
+                                badArticle = true
                             }
                         }
-                    }
-                    
-                    for ship in self.shipsKeys {
-                        for var i = 0; i < self.anthologyArray.count; i++ {
-                            if self.anthologyArray[i] == ship {
-                                self.anthologyArray.removeAtIndex(i)
-                                i--
-                            }
+                        
+                        if badArticle {
+                            anthologyKeys.removeAtIndex(i)
+                            i--
                         }
+                        
                     }
                     
-                    for profile in self.profilesKeys {
-                        for var i = 0; i < self.anthologyArray.count; i++ {
-                            if self.anthologyArray[i] == profile {
-                                self.anthologyArray.removeAtIndex(i)
-                                i--
-                            }
-                        }
-                    }
-                    
-                    self.anthologyArray = self.anthologyArray.sorted{
+                    anthologyKeys = anthologyKeys.sorted{
                         (nameOne: String, nameTwo: String) -> Bool in
                         return nameOne < nameTwo
                     }
+                    
+                    self.anthologyNames = anthologyKeys
                     
                     self.anthologyTableView.hidden = false
                     self.aButton.hidden = false
@@ -267,43 +241,7 @@ class AnthologyListViewController: UIViewController {
             
         })
         
-        let shipsListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+Sea+Org+Ships]]+&po=&eq=yes&p[format]=json&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[sort]=&p[order][ascending]=1&p[headers]=show&p[mainlabel]=&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes"
         
-        let task3 = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: shipsListAddress)!, completionHandler: { (data, response, error) -> Void in
-            
-            
-            if error == nil {
-                
-                shipsParsedData = NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
-                
-            } else {
-                
-                urlError = true
-                
-            }
-            
-        })
-        
-        let profileListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3A+Personal+Profiles]]+[[Category%3A+History+of+Scientology]]+OR+[[Category%3A+Personal+Profiles]]+[[Category%3A+Anthology]]&po=&eq=yes&p[format]=json&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[sort]=&p[order][ascending]=1&p[headers]=show&p[mainlabel]=&p[intro]=&p[outro]=&p[searchlabel]=%E2%80%A6+further+results&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes"
-    
-        let task4 = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: profileListAddress)!, completionHandler: { (data, response, error) -> Void in
-            
-            
-            if error == nil {
-                
-                profilesParsedData = NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
-                
-            } else {
-                
-                urlError = true
-                
-            }
-
-        })
-        
-        task1.resume()
-        task3.resume()
-        task4.resume()
         
         task2.resume()
         
@@ -316,8 +254,8 @@ class AnthologyListViewController: UIViewController {
     }
     
     func scrollToLetter (letter: String) {
-        for var i = 0; i < anthologyArray.count; i++ {
-            if (anthologyArray[i] as NSString).substringToIndex(1) == letter {
+        for var i = 0; i < anthologyNames.count; i++ {
+            if (anthologyNames[i] as NSString).substringToIndex(1) == letter {
                 anthologyTableView.scrollToRowAtIndexPath(NSIndexPath(forItem: i, inSection: 0), atScrollPosition: UITableViewScrollPosition.Top, animated: true)
                 break
             }
@@ -327,17 +265,19 @@ class AnthologyListViewController: UIViewController {
     //TableView Functions
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: AnthologyListTableViewCell = anthologyTableView.dequeueReusableCellWithIdentifier("anthologyCell") as! AnthologyListTableViewCell
-        cell.anthologyNameLabel.text = anthologyArray[indexPath.row]
+        cell.anthologyNameLabel.text = anthologyNames[indexPath.row]
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.anthologyTableView.deselectRowAtIndexPath(indexPath, animated: false)
-        performSegueWithIdentifier("showAnthology", sender: indexPath.row)
+        if anthologyNames[indexPath.row] != "" {
+            performSegueWithIdentifier("showAnthology", sender: indexPath.row)
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return anthologyArray.count
+        return anthologyNames.count
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -426,7 +366,7 @@ class AnthologyListViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        (segue.destinationViewController as! AnthologyViewController).anthologyName = anthologyArray[sender as! Int]
+            (segue.destinationViewController as! AnthologyViewController).anthologyName = anthologyNames[sender as! Int]
     }
     
     func showAlertWithText (header : String = "Warning", message : String) {
