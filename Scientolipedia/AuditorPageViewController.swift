@@ -188,10 +188,6 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                         theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
                     }
                     
-                    while theData.containsString("\n\n\n") {
-                        theData = theData.stringByReplacingOccurrencesOfString("\n\n\n", withString: "\n\n")
-                    }
-                    
                     while theData.containsString("<DynamicPageList>") {
                         let tempArray = theData.componentsSeparatedByString("<DynamicPageList>")
                         let subString = tempArray[1].componentsSeparatedByString("</DynamicPageList>")[0] as! String
@@ -381,7 +377,8 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                         }
                         theParagraph = theParagraph + (theDataArray[i] as String) + " "
                         if theDataArray[i].substringFromIndex(theDataArray[i].length - 1)  == "=" || theDataArray[i].substringFromIndex(theDataArray[i].length - 1)  == ":" {
-                            theParagraph += "\n"
+                            
+                            theParagraph = theParagraph + "\n"
                         }
                     }
                     
@@ -404,7 +401,7 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                     if self.auditorDescription != "" {
                         theParagraph += "\n\n== Description ==\n" + self.auditorDescription
                     }
-                    
+
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("%%%%%", withString: "\n\n")
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("[http://", withString: "[ http://")
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("<br />", withString: "\n")
@@ -421,6 +418,10 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("</small>", withString: "")
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("{{#seo:", withString: "")
                     theParagraph = theParagraph.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                
+                    while (theParagraph as NSString).containsString("\n\n\n") {
+                        theParagraph = theParagraph.stringByReplacingOccurrencesOfString("\n\n\n", withString: "\n\n")
+                    }
                     
                     self.auditorParagraphText.text = theParagraph
                     

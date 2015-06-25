@@ -145,6 +145,8 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                     definition = definition.stringByReplacingOccurrencesOfString("&#160;", withString: " ")
                     
                     definition = definition.stringByReplacingOccurrencesOfString("&#8217;", withString: "'")
+                    
+                    definition = definition.stringByReplacingOccurrencesOfString("&amp;", withString: "&")
                 
                     if (definition as NSString).containsString("<span class=\"mw-lingo-tooltip \"><span class=\"mw-lingo-tooltip-abbr\">") {
                         var defTemp: String = ""
