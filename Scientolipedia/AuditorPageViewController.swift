@@ -418,11 +418,11 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("</small>", withString: "")
                     theParagraph = theParagraph.stringByReplacingOccurrencesOfString("{{#seo:", withString: "")
                     theParagraph = theParagraph.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-                
+
                     while (theParagraph as NSString).containsString("\n\n\n") {
                         theParagraph = theParagraph.stringByReplacingOccurrencesOfString("\n\n\n", withString: "\n\n")
                     }
-                    
+
                     self.auditorParagraphText.text = theParagraph
                     
                     self.auditorNameLabel.text = self.theAuditor.name
