@@ -98,11 +98,10 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                 if urlContent.containsString("</td></tr></table>\n<p>") {
                     urlContentArray = urlContent.componentsSeparatedByString("</td></tr></table>\n<p>") as! [String]
                     hasTable = true
-                } else if urlContent.containsString("Link\n</th>\n<td> <span class=\"mw-lingo-tooltip \"><span class=\"mw-lingo-tooltip-abbr\">") {
-                    urlContentArray = urlContent.componentsSeparatedByString("Link\n</th>\n<td> <span class=\"mw-lingo-tooltip \"><span class=\"mw-lingo-tooltip-abbr\">") as! [String]
-                    takenFromLink = true
+
                 } else if urlContent.containsString("</td></tr><tr><th> Definition\n</th>\n<td>") {
                     urlContentArray = urlContent.componentsSeparatedByString("</td></tr><tr><th> Definition\n</th>\n<td>") as! [String]
+
                 }
                 
                 if urlContentArray.count > 0 {
@@ -112,12 +111,6 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                     if hasTable {
                         
                         definitionArray = urlContentArray[1].componentsSeparatedByString("</p>")
-                        
-                        definition = definitionArray[0] as String
-                        
-                    } else if takenFromLink {
-                        
-                        definitionArray = urlContentArray[1].componentsSeparatedByString("<a href=\"")
                         
                         definition = definitionArray[0] as String
                         
@@ -147,18 +140,34 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                     definition = definition.stringByReplacingOccurrencesOfString("&#8217;", withString: "'")
                     
                     definition = definition.stringByReplacingOccurrencesOfString("&amp;", withString: "&")
+                    
                 
                     if (definition as NSString).containsString("<span class=\"mw-lingo-tooltip \"><span class=\"mw-lingo-tooltip-abbr\">") {
                         var defTemp: String = ""
                         let definitionSplitArray = definition.componentsSeparatedByString("<span class=\"mw-lingo-tooltip \"><span class=\"mw-lingo-tooltip-abbr\">") as [String]
                         defTemp = definitionSplitArray[0]
+
                         for var i = 1; i < definitionSplitArray.count; i++ {
                             var tempStringSandwichedPart: String = (definitionSplitArray[i] as NSString).componentsSeparatedByString("</span><span class=\"mw-lingo-tooltip-tip \"><span class=\"mw-lingo-tooltip-definition \">")[0] as! String
-                            let tempStringLastPart = definitionSplitArray[i].componentsSeparatedByString("</a></span></span></span>")[1]
+                            let tempStringLastPart = definitionSplitArray[i].componentsSeparatedByString("</span></span></span>")[1]
                             defTemp += tempStringSandwichedPart + tempStringLastPart
                         }
                         definition = defTemp
                     }
+                    
+                    while (definition as NSString).containsString("<a href=") {
+                        let defSplitArray = definition.componentsSeparatedByString("<a href=")
+                        definition = defSplitArray[0] + defSplitArray[1].componentsSeparatedByString(">")[1]
+                        definition = definition + ">"
+                        if defSplitArray.count > 2 {
+                            for var i = 2; i < defSplitArray.count; i++ {
+                                definition = definition + ">" + defSplitArray[i]
+                            }
+                        }
+                    }
+                    
+                    definition = definition.stringByReplacingOccurrencesOfString("</a>", withString: "")
+                    definition = definition.stringByReplacingOccurrencesOfString(">", withString: "")
                     
                 } else {
                     
