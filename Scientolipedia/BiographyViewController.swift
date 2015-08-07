@@ -298,6 +298,7 @@ class BiographyViewController: UIViewController {
                             self.imageName = theDataArray[i].substringFromIndex(7)
                             theDataArray.removeAtIndex(i)
                             self.imageName = self.imageName.stringByReplacingOccurrencesOfString("=", withString: "")
+                            self.imageName = self.imageName.stringByReplacingOccurrencesOfString(" ", withString: "_")
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Email=") {

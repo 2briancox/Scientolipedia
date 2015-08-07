@@ -22,6 +22,7 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         self.activityIndicator.startAnimating()
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: "http://scientolipedia.org/w/index.php?title=Special:Ask&q=[[Category%3AAuditors]]&p=format%3Djson%2Flink%3Dall%2Fheaders%3Dshow%2Fmainlabel%3DAuditors%2Fsearchlabel%3D%E2%80%A6-20further-20results%2Fclass%3Dsortable-20wikitable-20smwtable&po=%3FCountry%0A%3FTraining+Level%0A%3FState%0A&sort=Country&order=ascending&limit=500&eq=no")!, completionHandler: { (data, response, error) -> Void in
@@ -112,7 +113,9 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
                         self.auditorsSorted.removeAll(keepCapacity: true)
                         
                     }
-
+                    
+                    
+                    self.auditorTableView.backgroundColor = UIColor(red: 0xff, green: 0xF0, blue: 85)
                     self.auditorPerCountry.removeAtIndex(0)
                     self.auditorTableView.reloadData()
                     self.activityIndicator.hidesWhenStopped = true
@@ -163,6 +166,10 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor.whiteColor()
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("showAuditorPage", sender: self)
         self.auditorTableView.deselectRowAtIndexPath(indexPath, animated: false)
@@ -194,5 +201,4 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
     override func shouldAutorotate() -> Bool {
         return false
     }
-
 }
