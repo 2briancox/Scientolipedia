@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4L2-dF-eE2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4L2-dF-eE2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -264,7 +264,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Scientolipedia:General Disclaimer
 
-    “And I believe the freedom of the material which we know and understand is guaranteed only by lightness of organization, a maximum of people, good training and good, reliable, sound relay of information.
+    “And I believe the freedom of the material which we know and understand is guaranteed only by lightness of organization, a maximum of people, good training and good, reliable, sound relay of information."
 
     L Ron Hubbard - Anatomy of the Spirit of Man Congress - Lecture #15 What is Scientology Doing? 6 June 1955
 
@@ -792,7 +792,13 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                             <constraint firstItem="nox-A8-I9K" firstAttribute="top" secondItem="44s-04-nCH" secondAttribute="bottom" constant="7" id="wnM-PW-5xm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Glossary" id="Ft6-Ky-HEO"/>
+                    <navigationItem key="navigationItem" title="Glossary" id="Ft6-Ky-HEO">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="ESa-n0-Gtz">
+                            <connections>
+                                <action selector="sendWordPressed:" destination="5h0-Hx-jYJ" id="llO-a1-kHn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="ryS-6B-8XK" id="TNf-lK-akg"/>
                         <outlet property="definitionTextView" destination="r5J-hu-dVy" id="T0w-X6-ZMc"/>
@@ -842,7 +848,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="63" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="PYf-yF-U3B">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="auditorListViewCell" editingAccessoryType="disclosureIndicator" id="1Rz-lB-5w1" customClass="AuditorListViewCell" customModule="Scientolipedia" customModuleProvider="target">
@@ -949,7 +955,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                             <constraint firstItem="PYf-yF-U3B" firstAttribute="bottom" secondItem="ZvU-Nv-Sf4" secondAttribute="top" id="1Ce-q5-SJM"/>
                             <constraint firstAttribute="centerX" secondItem="OdX-Wb-iHL" secondAttribute="centerX" id="KQx-xI-hFd"/>
                             <constraint firstItem="OdX-Wb-iHL" firstAttribute="top" secondItem="PWD-ar-wby" secondAttribute="bottom" constant="150" id="Kp8-8K-JjH"/>
-                            <constraint firstItem="PYf-yF-U3B" firstAttribute="top" secondItem="y7v-ZP-5fV" secondAttribute="top" constant="20" symbolic="YES" id="MSE-eo-Lhv"/>
+                            <constraint firstItem="PYf-yF-U3B" firstAttribute="top" secondItem="y7v-ZP-5fV" secondAttribute="top" id="MSE-eo-Lhv"/>
                             <constraint firstItem="PYf-yF-U3B" firstAttribute="leading" secondItem="y7v-ZP-5fV" secondAttribute="leading" id="wzf-JL-NdV"/>
                             <constraint firstAttribute="trailing" secondItem="PYf-yF-U3B" secondAttribute="trailing" id="zbk-Wk-tqw"/>
                         </constraints>
@@ -2027,13 +2033,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                             <constraint firstItem="eKu-4T-XgX" firstAttribute="top" secondItem="I6G-VF-xUb" secondAttribute="bottom" constant="1" id="zGG-Lg-bnO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Biography" id="cZi-TA-EZd">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="action" id="aMy-R9-JT3">
-                            <connections>
-                                <action selector="openPageButtonPressed:" destination="81T-g9-FDD" id="Srj-a6-Mbo"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Biography" id="cZi-TA-EZd"/>
                     <connections>
                         <outlet property="activityIndicator" destination="mPg-T2-Y7P" id="jr2-iN-5M4"/>
                         <outlet property="pictureTopSpace" destination="zGG-Lg-bnO" id="mgd-Pr-kH3"/>
@@ -2225,13 +2225,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Auditor Page" id="Ifz-kG-gyq">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="action" id="udk-5Y-Rxk">
-                            <connections>
-                                <action selector="openPageButtonPressed:" destination="fEx-jO-NhN" id="lB2-o6-uFu"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Auditor" id="Ifz-kG-gyq"/>
                     <connections>
                         <outlet property="activityIndicator" destination="fVA-vC-XdX" id="ZHu-JQ-P6R"/>
                         <outlet property="auditorCSLabel" destination="8oc-fj-upV" id="gyE-6L-CN6"/>
@@ -2336,18 +2330,11 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="History" id="lJS-f7-DNl">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="action" id="xM0-Zj-v9b">
-                            <connections>
-                                <action selector="openPageButtonPressed:" destination="EP0-Hq-qCu" id="9Wb-Bd-2ac"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="History" id="lJS-f7-DNl"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicator" destination="6ex-3g-wOw" id="ffS-Kz-S87"/>
                         <outlet property="anthologyNameLabel" destination="4gi-Hk-ykC" id="9u4-Uq-ZXn"/>
-                        <outlet property="openInBrowser" destination="xM0-Zj-v9b" id="cKb-9a-OqT"/>
                         <outlet property="textView" destination="vlH-Oh-46j" id="sfi-gj-suF"/>
                     </connections>
                 </viewController>

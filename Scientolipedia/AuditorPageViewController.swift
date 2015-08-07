@@ -95,6 +95,8 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.addRightNavItemOnView()
+        
         self.activityIndicator.startAnimating()
         
         var parsingAuditorError: NSError? = nil
@@ -547,8 +549,7 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
         UIApplication.sharedApplication().openURL(address!)
     }
     
-    
-    @IBAction func openPageButtonPressed(sender: UIBarButtonItem) {
+    func openPageButtonPressed(sender: UIBarButtonItem) {
         var auditorURL = theAuditor.name.stringByReplacingOccurrencesOfString(" ", withString: "_")
         
         auditorURL = ("http://scientolipedia.org/info/" + auditorURL as NSString) as String
@@ -569,6 +570,41 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    func addRightNavItemOnView()
+    {
+        
+        let buttonBrowse: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        buttonBrowse.frame = CGRectMake(0, 0, 40, 40)
+        buttonBrowse.setImage(UIImage(named:"browser"), forState: UIControlState.Normal)
+        buttonBrowse.addTarget(self, action: "openPageButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        var rightBarButtonItemBrowse: UIBarButtonItem = UIBarButtonItem(customView: buttonBrowse)
+        
+        let buttonAction: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        buttonAction.frame = CGRectMake(0, 0, 40, 40)
+        buttonAction.setImage(UIImage(named:"actionButton"), forState: UIControlState.Normal)
+        buttonAction.addTarget(self, action: "sendPagePressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        var rightBarButtonItemAction: UIBarButtonItem = UIBarButtonItem(customView: buttonAction)
+        
+        self.navigationItem.setRightBarButtonItems([rightBarButtonItemAction, rightBarButtonItemBrowse], animated: true)
+        
+    }
+    
+    func sendPagePressed(sender: AnyObject) {
+        
+        var auditorURL = theAuditor.name.stringByReplacingOccurrencesOfString(" ", withString: "_")
+        
+        auditorURL = ("http://scientolipedia.org/info/" + auditorURL as NSString) as String
+        
+        auditorURL = auditorURL.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        
+        let pageInfo = ["~ " + auditorName + " ~\n\n" + auditorLevelLabel.text! + "\nCase Supervisor Level: " + auditorCSLabel.text! + "\nCase Level: " +  auditorCaseLabel.text! + "\nCountry: " + auditorCountry + "\nState: " + auditorState + "\nCity: " + auditorCity + "\nPhone: " + auditorPhone + "\nEmail: " + auditorEmail + "\nWebsite" + auditorWebsite + "\n\n" +  auditorParagraphText.text! + "\n\n Sent from the Scientolipedia iOS App.\nThis page can be found at:\n\n" + auditorURL]
+        
+        let nextController = UIActivityViewController(activityItems: pageInfo, applicationActivities: nil)
+        
+        self.presentViewController(nextController, animated: true, completion: nil)
+        
+    }
     
     override func shouldAutorotate() -> Bool {
         return false

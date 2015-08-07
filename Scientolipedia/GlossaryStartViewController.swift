@@ -50,6 +50,8 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
     
     var wordURLStrings: [String] = []
     
+    var wordNSURL: NSURL? = nil
+    
     
     //TableView functions
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -87,6 +89,10 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
             
             if error == nil {
                 
+                println("error == nil")
+                
+                self.wordNSURL = NSURL(string: self.wordURLStrings[indexPath.row])
+                
                 var urlContent = NSString(data: data, encoding: NSUTF8StringEncoding) as NSString!
                 
                 var urlContentArray: [String] = []
@@ -104,7 +110,11 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
 
                 }
                 
+                println("urlContentArray")
+                
                 if urlContentArray.count > 0 {
+                    
+                    println("urlContentArray.count > 0")
                     
                     var definitionArray: [String] = []
                     
@@ -113,6 +123,8 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                         definitionArray = urlContentArray[1].componentsSeparatedByString("</p>")
                         
                         definition = definitionArray[0] as String
+                        
+                        println("hasTable")
                         
                     } else {
                         
@@ -171,12 +183,14 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                     
                 } else {
                     
+                    self.wordNSURL = nil
                     urlError = true
                     
                 }
                 
             } else {
                 
+                self.wordNSURL = nil
                 urlError = true
                 
             }
@@ -216,6 +230,8 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
         
         self.activityIndicator.startAnimating()
+        
+        wordNSURL = nil
         
         let frameHeight = self.view.bounds.size.height
         let spacing: CGFloat = (frameHeight - 470)/25 as CGFloat
@@ -261,6 +277,7 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                     
                 } else {
                     
+                    self.wordNSURL = nil
                     urlError = true
                     
                 }
@@ -269,7 +286,7 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                     
                     if urlError == true {
                         
-                        self.showAlertWithText(header: "Warning", message: "That word was not able to load from the server.")
+                        self.showAlertWithText(header: "Warning", message: "The word list was not found on the server.")
                         
                     } else {
                         
@@ -414,6 +431,20 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
     }
     @IBAction func zButtonPressed(sender: UIButton) {
         scrollToLetter("Z")
+    }
+    
+    
+    @IBAction func sendWordPressed(sender: AnyObject) {
+        
+        
+        if (wordNSURL != nil) {
+            let wordDefInfo = [wordTitleLabel.text! + " -\n\n" + definitionTextView.text + "\n\nSent from the Scientolipedia iOS App.\n", wordNSURL!]
+            let nextController = UIActivityViewController(activityItems: wordDefInfo, applicationActivities: nil)
+
+            self.presentViewController(nextController, animated: true, completion: nil)
+        } else {
+            showAlertWithText(header: "No word selected", message: "Please choose a word to send first.")
+        }
     }
     
     override func shouldAutorotate() -> Bool {

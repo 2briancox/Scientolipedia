@@ -46,6 +46,8 @@ class BiographyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.addRightNavItemOnView()
+        
         self.activityIndicator.startAnimating()
         
         self.profileNameLabel.text = self.profileName
@@ -421,7 +423,7 @@ class BiographyViewController: UIViewController {
     }
     
     
-    @IBAction func openPageButtonPressed(sender: UIBarButtonItem) {
+    func openPageButtonPressed(sender: UIButton) {
         var profileURL = profileName.stringByReplacingOccurrencesOfString(" ", withString: "_")
         
         profileURL = ("http://scientolipedia.org/info/" + profileURL as NSString) as String
@@ -430,15 +432,58 @@ class BiographyViewController: UIViewController {
         
         UIApplication.sharedApplication().openURL(NSURL(string:profileURL)!)
         
+//        let theURL = ["This address provided by the Scientolipedia iOS App.", NSURL(string: profileURL)!]
+//        let nextController = UIActivityViewController(activityItems: theURL, applicationActivities: nil)
+//        
+//        self.presentViewController(nextController, animated: true, completion: nil)
     }
-    
+
+
     func showAlertWithText (header : String = "Warning", message : String) {
             var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
     }
-    
+
+
     override func shouldAutorotate() -> Bool {
         return false
     }
+
+
+    func addRightNavItemOnView()
+    {
+
+        let buttonBrowse: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        buttonBrowse.frame = CGRectMake(0, 0, 40, 40)
+        buttonBrowse.setImage(UIImage(named:"browser"), forState: UIControlState.Normal)
+        buttonBrowse.addTarget(self, action: "openPageButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        var rightBarButtonItemBrowse: UIBarButtonItem = UIBarButtonItem(customView: buttonBrowse)
+
+        let buttonAction: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        buttonAction.frame = CGRectMake(0, 0, 40, 40)
+        buttonAction.setImage(UIImage(named:"actionButton"), forState: UIControlState.Normal)
+        buttonAction.addTarget(self, action: "sendPagePressed:", forControlEvents: UIControlEvents.TouchUpInside)
+
+        var rightBarButtonItemAction: UIBarButtonItem = UIBarButtonItem(customView: buttonAction)
+    
+        self.navigationItem.setRightBarButtonItems([rightBarButtonItemAction, rightBarButtonItemBrowse], animated: true)
+
+    }
+
+    func sendPagePressed(sender: AnyObject) {
+        
+        var profileURL = profileName.stringByReplacingOccurrencesOfString(" ", withString: "_")
+        
+        profileURL = ("http://scientolipedia.org/info/" + profileURL as NSString) as String
+        
+        profileURL = profileURL.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+
+        let pageInfo = ["~ " + profileName + " ~\n\n" + textView.text! + "\n\n Sent from the Scientolipedia iOS App.\nThis page can be found at:\n\n" + profileURL]
+        let nextController = UIActivityViewController(activityItems: pageInfo, applicationActivities: nil)
+        
+        self.presentViewController(nextController, animated: true, completion: nil)
+
+    }
+
 }

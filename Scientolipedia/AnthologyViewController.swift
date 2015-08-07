@@ -15,8 +15,6 @@ class AnthologyViewController: UIViewController {
     
     @IBOutlet weak var textView: UITextView!
     
-    @IBOutlet weak var openInBrowser: UIBarButtonItem!
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var anthologyName: String = ""
@@ -34,6 +32,8 @@ class AnthologyViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        self.addRightNavItemOnView()
         
         self.activityIndicator.startAnimating()
         
@@ -314,7 +314,6 @@ class AnthologyViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func showAlertWithText (header : String = "Warning", message : String) {
@@ -327,7 +326,7 @@ class AnthologyViewController: UIViewController {
         
     }
     
-    @IBAction func openPageButtonPressed(sender: UIBarButtonItem) {
+    func openPageButtonPressed(sender: UIBarButtonItem) {
         
         var anthologyURL = anthologyName.stringByReplacingOccurrencesOfString(" ", withString: "_")
         
@@ -339,9 +338,43 @@ class AnthologyViewController: UIViewController {
         
     }
 
+    func addRightNavItemOnView()
+    {
+        
+        let buttonBrowse: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        buttonBrowse.frame = CGRectMake(0, 0, 40, 40)
+        buttonBrowse.setImage(UIImage(named:"browser"), forState: UIControlState.Normal)
+        buttonBrowse.addTarget(self, action: "openPageButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        var rightBarButtonItemBrowse: UIBarButtonItem = UIBarButtonItem(customView: buttonBrowse)
+        
+        let buttonAction: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        buttonAction.frame = CGRectMake(0, 0, 40, 40)
+        buttonAction.setImage(UIImage(named:"actionButton"), forState: UIControlState.Normal)
+        buttonAction.addTarget(self, action: "sendPagePressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        var rightBarButtonItemAction: UIBarButtonItem = UIBarButtonItem(customView: buttonAction)
+        
+        self.navigationItem.setRightBarButtonItems([rightBarButtonItemAction, rightBarButtonItemBrowse], animated: true)
+        
+    }
     
     override func shouldAutorotate() -> Bool {
         return false
+    }
+    
+    func sendPagePressed(sender: AnyObject) {
+        
+        var anthologyURL = anthologyName.stringByReplacingOccurrencesOfString(" ", withString: "_")
+        
+        anthologyURL = ("http://scientolipedia.org/info/" + anthologyURL as NSString) as String
+        
+        anthologyURL = anthologyURL.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        
+        let pageInfo = ["~ " + anthologyName + " ~\n\n" + textView.text! + "\n\n Sent from the Scientolipedia iOS App.\nThis page can be found at:\n\n" + anthologyURL]
+        let nextController = UIActivityViewController(activityItems: pageInfo, applicationActivities: nil)
+        
+        self.presentViewController(nextController, animated: true, completion: nil)
+        
     }
 
 }

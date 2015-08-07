@@ -17,6 +17,7 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
     var countryList: [String] = []
     var auditorCountrySortHold: [AuditorModel] = []
     var auditors:[AuditorModel] = []
+    var auditorPerCountry: [[AuditorModel]] = [[]]
     
     override func viewDidLoad() {
         
@@ -107,8 +108,12 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
                             self.auditorsSorted.append(auditor)
                         }
                         
+                        self.auditorPerCountry.append(self.auditorsSorted)
+                        self.auditorsSorted.removeAll(keepCapacity: true)
+                        
                     }
 
+                    self.auditorPerCountry.removeAtIndex(0)
                     self.auditorTableView.reloadData()
                     self.activityIndicator.hidesWhenStopped = true
                     self.activityIndicator.stopAnimating()
@@ -129,26 +134,31 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
     
     //UITableViewDataSource
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return countryList.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return auditorsSorted.count
+        return auditorPerCountry[section].count
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return countryList[section]
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 35
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell: AuditorListViewCell = auditorTableView.dequeueReusableCellWithIdentifier("auditorListViewCell") as! AuditorListViewCell
+
+        let thisAuditor = auditorPerCountry[indexPath.section][indexPath.row]
         
-        if auditorsSorted.count > 0 {
-            
-            let thisAuditor = auditorsSorted[indexPath.row]
-            
-            cell.auditorLabel.text = thisAuditor.name
-            cell.classLabel.text = thisAuditor.level
-            cell.countryLabel.text = thisAuditor.country
-            cell.stateLabel.text = thisAuditor.state
-        }
+        cell.auditorLabel.text = thisAuditor.name
+        cell.classLabel.text = thisAuditor.level
+        cell.countryLabel.text = thisAuditor.country
+        cell.stateLabel.text = thisAuditor.state
         
         return cell
     }
@@ -171,7 +181,7 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let targetVC = segue.destinationViewController as! AuditorPageViewController
         let indexPath = self.auditorTableView.indexPathForSelectedRow()
-        targetVC.theAuditor = auditorsSorted[indexPath!.row]
+        targetVC.theAuditor = auditorPerCountry[indexPath!.section][indexPath!.row]
     }
     
     func showAlertWithText (header : String = "Warning", message : String) {
