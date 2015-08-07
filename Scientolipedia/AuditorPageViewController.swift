@@ -473,8 +473,12 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                     
                     if self.auditorImage != "" {
                         var imageURL = NSURL(string: showPic(self.auditorImage as String))
-                        var imageData = NSData(contentsOfURL: imageURL!)
-                        self.auditorImageView.image = UIImage(data: imageData!)
+                        if let imageData = NSData(contentsOfURL: imageURL!) {
+                            self.auditorImageView.image = UIImage(data: imageData)
+                        } else {
+                            self.imageViewHeight.setValue(CGFloat(0.0), forKey: "constant")
+                            self.imageViewWidth.setValue(CGFloat(0.0), forKey: "constant")
+                        }
                     } else {
                         self.imageViewHeight.setValue(CGFloat(0.0), forKey: "constant")
                         self.imageViewWidth.setValue(CGFloat(0.0), forKey: "constant")

@@ -114,7 +114,6 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
                         
                     }
                     
-                    
                     self.auditorTableView.backgroundColor = UIColor(red: 0xff, green: 0xF0, blue: 85)
                     self.auditorPerCountry.removeAtIndex(0)
                     self.auditorTableView.reloadData()

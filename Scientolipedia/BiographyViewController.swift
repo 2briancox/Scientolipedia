@@ -398,8 +398,13 @@ class BiographyViewController: UIViewController {
                     self.textView.text = theParagraph
                     
                     if self.imageName != "" {
-                        let imageData = NSData(contentsOfURL: NSURL(string: showPic(self.imageName as String))!)
-                        self.profileImage.image = UIImage(data: imageData!)
+                        if let imageData = NSData(contentsOfURL: NSURL(string: showPic(self.imageName as String))!) {
+                            self.profileImage.image = UIImage(data: imageData)
+                        } else {
+                            self.picutreHeight.setValue(CGFloat(0.0), forKey: "constant")
+                            self.pictureTopSpace.setValue(CGFloat(0.0), forKey: "constant")
+                            self.profileImage.hidden = true
+                        }
                     } else {
                         self.picutreHeight.setValue(CGFloat(0.0), forKey: "constant")
                         self.pictureTopSpace.setValue(CGFloat(0.0), forKey: "constant")
