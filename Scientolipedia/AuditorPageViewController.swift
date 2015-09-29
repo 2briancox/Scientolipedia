@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDelegate, UIPopoverControllerDelegate {
 
     var theAuditor: AuditorModel!
     
@@ -33,6 +33,8 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
     var auditorEvent = ""
     var auditorEventInfo = ""
     var auditorDescription = ""
+    
+    var rightBarButtonItemAction: UIBarButtonItem = UIBarButtonItem()
     
     @IBOutlet weak var auditorNameLabel: UILabel!
     @IBOutlet weak var auditorImageView: UIImageView!
@@ -99,26 +101,32 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
         
         self.activityIndicator.startAnimating()
         
-        var parsingAuditorError: NSError? = nil
         // Do any additional setup after loading the view
         let BASE_URL = "http://scientolipedia.org/w/"
         
         let urlName = theAuditor.name.stringByReplacingOccurrencesOfString(" ", withString: "_")
         
-        let theAuditorJSONURL = (BASE_URL + "api.php?action=query&titles=" + urlName + "&prop=revisions&rvprop=content&format=json").stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+        var theAuditorJSONURL = (BASE_URL + "api.php?action=query&titles=" + urlName + "&prop=revisions&rvprop=content&format=json")
         
-        let pathForJSON = NSURL(string: theAuditorJSONURL!)
+        var urlNSString: NSString = theAuditorJSONURL as NSString
+        
+        urlNSString = urlNSString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        
+        theAuditorJSONURL = urlNSString as String
+        
+        let pathForJSON = NSURL(string: theAuditorJSONURL)
         var parsedJSON: [String: AnyObject] = Dictionary<String, AnyObject>()
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(pathForJSON!, completionHandler: { (data, response, error) -> Void in
             
             var urlError = false
             
+            
             if error == nil {
               
                 let auditorJSON = data
         
-                parsedJSON = NSJSONSerialization.JSONObjectWithData(auditorJSON!, options: .AllowFragments, error: &parsingAuditorError) as! [String: AnyObject]
+                parsedJSON = (try! NSJSONSerialization.JSONObjectWithData(auditorJSON!, options: .AllowFragments)) as! [String: AnyObject]
                 
             } else {
                 
@@ -130,13 +138,13 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                 
                  if urlError == true {
                 
-                     self.showAlertWithText(header: "Warning", message: "This page cannot load right now. Please try again later.")
+                     self.showAlertWithText("Warning", message: "This page cannot load right now. Please try again later.")
                 
                  } else {
                     
                     var auditorJSONArray = parsedJSON["query"] as! [String: AnyObject]
                     
-                    var this = auditorJSONArray["pages"] as! NSDictionary
+                    let this = auditorJSONArray["pages"] as! NSDictionary
                     
                     var dataForAuditor = this.allValues.last as! [String: AnyObject]
                     
@@ -150,64 +158,64 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                     
                     while theData.containsString("[[File:") {
                         let tempArray = theData.componentsSeparatedByString("[[File:")
-                        let subString = tempArray[1].componentsSeparatedByString("]]")[0] as! String
+                        let subString = tempArray[1].componentsSeparatedByString("]]")[0] 
                         let removeString = "[[File:" + subString + "]]"
                         theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
                     }
                     
                     while theData.containsString("<ref") {
                         let tempArray = theData.componentsSeparatedByString("<ref")
-                        let subString = tempArray[1].componentsSeparatedByString(">")[0] as! String
+                        let subString = tempArray[1].componentsSeparatedByString(">")[0] 
                         let removeString = "<ref" + subString + ">"
                         theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
                     }
                     
                     while theData.containsString("<div") {
                         let tempArray = theData.componentsSeparatedByString("<div")
-                        let subString = tempArray[1].componentsSeparatedByString(">")[0] as! String
+                        let subString = tempArray[1].componentsSeparatedByString(">")[0] 
                         let removeString = "<div" + subString + ">"
                         theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
                     }
                     
                     while theData.containsString("{|") {
                         let tempArray = theData.componentsSeparatedByString("{|")
-                        let subString = tempArray[1].componentsSeparatedByString("|}")[0] as! String
+                        let subString = tempArray[1].componentsSeparatedByString("|}")[0] 
                         let removeString = "{|" + subString + "|}"
                         theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
                     }
                     
                     while theData.containsString("<span") {
                         let tempArray = theData.componentsSeparatedByString("<span")
-                        let subString = tempArray[1].componentsSeparatedByString(">")[0] as! String
+                        let subString = tempArray[1].componentsSeparatedByString(">")[0] 
                         let removeString = "<span" + subString + ">"
                         theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
                     }
                     
                     while theData.containsString("{{#") {
                         let tempArray = theData.componentsSeparatedByString("{{#")
-                        let subString = tempArray[1].componentsSeparatedByString("}}")[0] as! String
+                        let subString = tempArray[1].componentsSeparatedByString("}}")[0] 
                         let removeString = "{{#" + subString + "}}"
                         theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
                     }
                     
                     while theData.containsString("<DynamicPageList>") {
                         let tempArray = theData.componentsSeparatedByString("<DynamicPageList>")
-                        let subString = tempArray[1].componentsSeparatedByString("</DynamicPageList>")[0] as! String
+                        let subString = tempArray[1].componentsSeparatedByString("</DynamicPageList>")[0] 
                         let removeString = "<DynamicPageList>" + subString + "</DynamicPageList>"
                         theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
                     }
 
                     while theData.containsString("<flashmp3>") {
                         let tempArray = theData.componentsSeparatedByString("<flashmp3>")
-                        let subString = tempArray[1].componentsSeparatedByString("</flashmp3>")[0] as! String
+                        let subString = tempArray[1].componentsSeparatedByString("</flashmp3>")[0] 
                         let removeString = "<flashmp3>" + subString + "</flashmp3>"
                         theData = theData.stringByReplacingOccurrencesOfString(removeString, withString: "")
                     }
                                         
-                    var theDataArray = theData.componentsSeparatedByString("\n") as! [NSString]
+                    var theDataArray = theData.componentsSeparatedByString("\n")
                     
                     for var i = 0; i < (theDataArray.count); i++ {
-                        theDataArray[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                        theDataArray[i] = theDataArray[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
                         if theDataArray[i].containsString("{") || theDataArray[i].containsString("}") || theDataArray[i].containsString("<") || theDataArray[i].containsString(">") || theDataArray[i].containsString("__") || theDataArray[i].hasPrefix("[[Category:") || theDataArray[i].hasPrefix("width: ") || theDataArray[i].hasPrefix("height: ") || theDataArray[i].hasPrefix("[[File:") || theDataArray[i] == "" || theDataArray[i] == "-" || theDataArray[i] == " " || theDataArray[i].hasPrefix("|Year=") || theDataArray[i].hasPrefix("|Intro=") || theDataArray[i].hasPrefix("|LR=") || theDataArray[i].hasPrefix("|Grades=") || theDataArray[i].hasPrefix("|WDAH=") || theDataArray[i].hasPrefix("|keywords=") || theDataArray[i].hasPrefix("|Purif=") || theDataArray[i].hasPrefix("|Clears=") || theDataArray[i].hasPrefix("|OTs=") || theDataArray[i].hasPrefix("|Basic Courses=") || theDataArray[i].hasPrefix("|St Hat=") || theDataArray[i].hasPrefix("|Levels=") || theDataArray[i].hasPrefix("|Internships=") || theDataArray[i].hasPrefix("|Solo Crse=") {
                             theDataArray.removeAtIndex(i)
                             i--; continue
@@ -223,22 +231,22 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                         }
                         
                         if theDataArray[i].hasPrefix("|Auditing Delivery=") {
-                            self.auditorAuditOffer = theDataArray[i].substringFromIndex(19)
+                            self.auditorAuditOffer = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(19))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Training Offered=") {
-                            self.auditorTrainOffer = theDataArray[i].substringFromIndex(18)
+                            self.auditorTrainOffer = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(18))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Auditing Offered=") {
-                            self.auditorAuditOffer = theDataArray[i].substringFromIndex(18)
+                            self.auditorAuditOffer = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(18))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Case Supervision=") {
-                            self.auditorCaseSup = theDataArray[i].substringFromIndex(18)
+                            self.auditorCaseSup = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(18))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
@@ -247,17 +255,17 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Training Level=") {
-                            self.auditorLevel = theDataArray[i].substringFromIndex(16)
+                            self.auditorLevel = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(16))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Social Media=") {
-                            self.auditorSocial = theDataArray[i].substringFromIndex(14)
+                            self.auditorSocial = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(14))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Postal Code=") {
-                            self.auditorPostalCode = theDataArray[i].substringFromIndex(13)
+                            self.auditorPostalCode = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(13))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
@@ -266,12 +274,12 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Event Info=") {
-                            self.auditorEventInfo = theDataArray[i].substringFromIndex(12)
+                            self.auditorEventInfo = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(12))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Case Level=") {
-                            self.auditorCase = theDataArray[i].substringFromIndex(12)
+                            self.auditorCase = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(12))
                             if self.auditorCase.hasPrefix("Original") {
                                 self.auditorCase = (self.auditorCase as NSString).substringFromIndex(8)
                             }
@@ -287,12 +295,12 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Country=") {
-                            self.auditorCountry = theDataArray[i].substringFromIndex(9)
+                            self.auditorCountry = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(9))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Website=") {
-                            self.auditorWebsite = theDataArray[i].substringFromIndex(9)
+                            self.auditorWebsite = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(9))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
@@ -305,27 +313,27 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Image=") {
-                            self.auditorImage = theDataArray[i].substringFromIndex(7)
+                            self.auditorImage = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(7))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Email=") {
-                            self.auditorEmail = theDataArray[i].substringFromIndex(7)
+                            self.auditorEmail = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(7))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|State=") {
-                            self.auditorState = theDataArray[i].substringFromIndex(7)
+                            self.auditorState = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(7))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Phone=") {
-                            self.auditorPhone = theDataArray[i].substringFromIndex(7)
+                            self.auditorPhone = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(7))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Skype=") {
-                            self.auditorSkype = theDataArray[i].substringFromIndex(7)
+                            self.auditorSkype = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(7))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
@@ -346,12 +354,12 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|City=") {
-                            self.auditorCity = theDataArray[i].substringFromIndex(6)
+                            self.auditorCity = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(6))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Name=") {
-                            self.auditorName = theDataArray[i].substringFromIndex(6)
+                            self.auditorName = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(6))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
@@ -360,12 +368,12 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|Geo=") {
-                            self.auditorGEO = theDataArray[i].substringFromIndex(5)
+                            self.auditorGEO = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(5))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
                         if theDataArray[i].hasPrefix("|description=") {
-                            self.auditorDescription = theDataArray[i].substringFromIndex(13)
+                            self.auditorDescription = theDataArray[i].substringFromIndex(theDataArray[i].startIndex.advancedBy(13))
                             theDataArray.removeAtIndex(i)
                             i--; continue
                         }
@@ -374,11 +382,11 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                     var theParagraph = ""
                     
                     for var i = 0; i < theDataArray.count; i++ {
-                        if theDataArray[i].substringToIndex(1) == "=" {
+                        if theDataArray[i].substringToIndex(theDataArray[i].startIndex.successor()) == "=" {
                             theParagraph += "\n\n"
                         }
                         theParagraph = theParagraph + (theDataArray[i] as String) + " "
-                        if theDataArray[i].substringFromIndex(theDataArray[i].length - 1)  == "=" || theDataArray[i].substringFromIndex(theDataArray[i].length - 1)  == ":" {
+                        if theDataArray[i].substringFromIndex(theDataArray[i].endIndex.predecessor())  == "=" || theDataArray[i].substringFromIndex(theDataArray[i].endIndex.predecessor())  == ":" {
                             
                             theParagraph = theParagraph + "\n"
                         }
@@ -472,7 +480,7 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
                     }
                     
                     if self.auditorImage != "" {
-                        var imageURL = NSURL(string: showPic(self.auditorImage as String))
+                        let imageURL = NSURL(string: showPic(self.auditorImage as String))
                         if let imageData = NSData(contentsOfURL: imageURL!) {
                             self.auditorImageView.image = UIImage(data: imageData)
                         } else {
@@ -541,15 +549,16 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
     @IBAction func emailButtonPressed(sender: UIButton) {
         let messageBody: NSString = "== This message was sent through the Scientolipedia phone app. ==\n\n"
         let toRecipients: NSArray = NSArray(array: [auditorEmail])
-        var mailComposer: MFMailComposeViewController = MFMailComposeViewController()
+        let mailComposer: MFMailComposeViewController = MFMailComposeViewController()
         mailComposer.mailComposeDelegate = self
-        mailComposer.setToRecipients(toRecipients as [AnyObject])
+        mailComposer.setToRecipients((toRecipients as! [String]))
         mailComposer.setMessageBody(messageBody as String, isHTML: false)
         self.presentViewController(mailComposer, animated: true, completion: nil)
     }
     
     @IBAction func websiteButtonPressed(sender: UIButton) {
-        var address = NSURL(string: auditorWebsite)
+        let address = NSURL(string: auditorWebsite)
+        
         UIApplication.sharedApplication().openURL(address!)
     }
     
@@ -558,18 +567,22 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
         
         auditorURL = ("http://scientolipedia.org/info/" + auditorURL as NSString) as String
         
-        auditorURL = auditorURL.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        var urlNSString: NSString = auditorURL as NSString
+        
+        urlNSString = urlNSString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        
+        auditorURL = urlNSString as String
         
         UIApplication.sharedApplication().openURL(NSURL(string:auditorURL)!)
         
     }
     
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func showAlertWithText (header : String = "Warning", message : String) {
-        var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -577,21 +590,20 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
     func addRightNavItemOnView()
     {
         
-        let buttonBrowse: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        let buttonBrowse: UIButton = UIButton(type: UIButtonType.Custom)
         buttonBrowse.frame = CGRectMake(0, 0, 40, 40)
         buttonBrowse.setImage(UIImage(named:"browser"), forState: UIControlState.Normal)
         buttonBrowse.addTarget(self, action: "openPageButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-        var rightBarButtonItemBrowse: UIBarButtonItem = UIBarButtonItem(customView: buttonBrowse)
+        let rightBarButtonItemBrowse: UIBarButtonItem = UIBarButtonItem(customView: buttonBrowse)
         
-        let buttonAction: UIButton = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+        let buttonAction: UIButton = UIButton(type: UIButtonType.Custom)
         buttonAction.frame = CGRectMake(0, 0, 40, 40)
         buttonAction.setImage(UIImage(named:"actionButton"), forState: UIControlState.Normal)
         buttonAction.addTarget(self, action: "sendPagePressed:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        var rightBarButtonItemAction: UIBarButtonItem = UIBarButtonItem(customView: buttonAction)
+        self.rightBarButtonItemAction = UIBarButtonItem(customView: buttonAction)
         
         self.navigationItem.setRightBarButtonItems([rightBarButtonItemAction, rightBarButtonItemBrowse], animated: true)
-        
     }
     
     func sendPagePressed(sender: AnyObject) {
@@ -600,14 +612,28 @@ class AuditorPageViewController: UIViewController, MFMailComposeViewControllerDe
         
         auditorURL = ("http://scientolipedia.org/info/" + auditorURL as NSString) as String
         
-        auditorURL = auditorURL.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        var urlNSString: NSString = auditorURL as NSString
+        
+        urlNSString = urlNSString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        
+        auditorURL = urlNSString as String
         
         let pageInfo = ["~ " + auditorName + " ~\n\n" + auditorLevelLabel.text! + "\nCase Supervisor Level: " + auditorCSLabel.text! + "\nCase Level: " +  auditorCaseLabel.text! + "\nCountry: " + auditorCountry + "\nState: " + auditorState + "\nCity: " + auditorCity + "\nPhone: " + auditorPhone + "\nEmail: " + auditorEmail + "\nWebsite" + auditorWebsite + "\n\n" +  auditorParagraphText.text! + "\n\n Sent from the Scientolipedia iOS App.\nThis page can be found at:\n\n" + auditorURL]
         
         let nextController = UIActivityViewController(activityItems: pageInfo, applicationActivities: nil)
         
-        self.presentViewController(nextController, animated: true, completion: nil)
         
+        let deviceName = (UIDevice.currentDevice().modelName as NSString).substringToIndex(4)
+        
+        print("~" + deviceName + "~")
+        
+        if deviceName == "iPad" {
+            let popover = UIPopoverController(contentViewController: nextController)
+            popover.delegate = self
+            popover.presentPopoverFromBarButtonItem(self.rightBarButtonItemAction, permittedArrowDirections: UIPopoverArrowDirection.Up, animated: true)
+        } else {
+            self.presentViewController(nextController, animated: true, completion: nil)
+        }
     }
     
     override func shouldAutorotate() -> Bool {

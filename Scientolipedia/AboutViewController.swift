@@ -24,10 +24,10 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
     
     @IBAction func briansEmailPressed(sender: UIButton) {
         let messageBody: NSString = "== This message was sent through the Scientolipedia phone app. ==\n\n"
-        let toRecipients: NSArray = NSArray(array: ["2briancox@gmail.com"])
-        var mailComposer: MFMailComposeViewController = MFMailComposeViewController()
+        let toRecipients: [String] = ["2briancox@gmail.com"]
+        let mailComposer: MFMailComposeViewController = MFMailComposeViewController()
         mailComposer.mailComposeDelegate = self
-        mailComposer.setToRecipients(toRecipients as [AnyObject])
+        mailComposer.setToRecipients(toRecipients )
         mailComposer.setSubject("Scientolipedia App")
         mailComposer.setMessageBody(messageBody as String, isHTML: false)
         self.presentViewController(mailComposer, animated: true, completion: nil)
@@ -39,7 +39,7 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
     }
 
     
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

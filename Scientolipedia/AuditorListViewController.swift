@@ -33,15 +33,12 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
             
             if error == nil {
                 
-                /* Error object */
-                var parsingAuditorError: NSError? = nil
-                
                 /* Parse the data into usable form */
-                var parsedAuditorJSON = NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments, error: &parsingAuditorError) as! [String: AnyObject]
+                var parsedAuditorJSON = (try! NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)) as! [String: AnyObject]
                 
                 auditorArray = parsedAuditorJSON["results"] as! [String: AnyObject]
                 
-                keysForDict = auditorArray.keys.array as [String]
+                keysForDict = Array(auditorArray.keys) as [String]
                 
             } else {
 
@@ -52,7 +49,7 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
                 
                 if urlError == true {
                     
-                    self.showAlertWithText(header: "Warning", message: "This page cannot load right now. Please try again later.")
+                    self.showAlertWithText("Warning", message: "This page cannot load right now. Please try again later.")
 
                 } else {
                     
@@ -85,7 +82,7 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
                         }
                     }
                     
-                    self.countryList = self.countryList.sorted{
+                    self.countryList = self.countryList.sort{
                         (countryOne: String, countryTwo: String) -> Bool in
                         
                         return countryOne < countryTwo
@@ -99,7 +96,7 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
                             }
                         }
                         
-                        self.auditorCountrySortHold = self.auditorCountrySortHold.sorted{
+                        self.auditorCountrySortHold = self.auditorCountrySortHold.sort{
                             (auditorOne: AuditorModel, auditorTwo: AuditorModel) -> Bool in
                             
                             return auditorOne.name < auditorTwo.name
@@ -153,7 +150,7 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell: AuditorListViewCell = auditorTableView.dequeueReusableCellWithIdentifier("auditorListViewCell") as! AuditorListViewCell
+        let cell: AuditorListViewCell = auditorTableView.dequeueReusableCellWithIdentifier("auditorListViewCell") as! AuditorListViewCell
 
         let thisAuditor = auditorPerCountry[indexPath.section][indexPath.row]
         
@@ -186,12 +183,12 @@ class AuditorListViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let targetVC = segue.destinationViewController as! AuditorPageViewController
-        let indexPath = self.auditorTableView.indexPathForSelectedRow()
+        let indexPath = self.auditorTableView.indexPathForSelectedRow
         targetVC.theAuditor = auditorPerCountry[indexPath!.section][indexPath!.row]
     }
     
     func showAlertWithText (header : String = "Warning", message : String) {
-        var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }

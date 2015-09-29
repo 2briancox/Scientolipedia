@@ -47,7 +47,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell: TableViewCell = tableView.dequeueReusableCellWithIdentifier("mainViewCell") as! TableViewCell
+        let cell: TableViewCell = tableView.dequeueReusableCellWithIdentifier("mainViewCell") as! TableViewCell
         
         let menuItem:Dictionary = mainMenuArray[indexPath.row]
         
@@ -74,12 +74,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let address = NSURL(string: "http://scientolipedia.org/info/Main_Page")
             UIApplication.sharedApplication().openURL(address!)
         case 5:
-            var address = NSURL(string: "http://scientolipedia.org/info/Project_Supporters")
+            let address = NSURL(string: "http://scientolipedia.org/info/Project_Supporters")
             UIApplication.sharedApplication().openURL(address!)
         case 6:
             performSegueWithIdentifier("showAbout", sender: self)
         default:
-            println(indexPath.row)
+            print(indexPath.row)
         }
     }
     

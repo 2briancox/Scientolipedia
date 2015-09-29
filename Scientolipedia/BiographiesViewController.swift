@@ -90,9 +90,7 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
             
             if error == nil {
                 
-                var parsingProfileError: NSError? = nil
-                
-                parsedProfileData = NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments, error: &parsingProfileError) as! [String: AnyObject]
+                parsedProfileData = (try! NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)) as! [String: AnyObject]
             
             } else {
             
@@ -104,17 +102,17 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
             
                  if urlError == true {
                 
-                     self.showAlertWithText(header: "Warning", message: "This page cannot load right now. Please try again.")
+                     self.showAlertWithText("Warning", message: "This page cannot load right now. Please try again.")
                 
                  } else {
 
                     let wordListDict = parsedProfileData["results"] as! Dictionary<String, AnyObject>
                     
-                    for this in wordListDict.keys.array {
+                    for this in Array(wordListDict.keys) {
                         self.profileNames.append(this)
                     }
                     
-                    self.profileNames = self.profileNames.sorted{
+                    self.profileNames = self.profileNames.sort{
                         (nameOne: String, nameTwo: String) -> Bool in
                         return nameOne < nameTwo
                     }
@@ -141,11 +139,11 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
     override func shouldAutorotate() -> Bool {
         return false
     }
-    
+   
     
     //TableView Functions
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: ProfileTableViewCell = profileTableView.dequeueReusableCellWithIdentifier("profileCell") as! ProfileTableViewCell
+        let cell: ProfileTableViewCell = profileTableView.dequeueReusableCellWithIdentifier("profileCell") as! ProfileTableViewCell
         cell.profileNameLabel.text = profileNames[indexPath.row]
         return cell
     }
@@ -257,7 +255,7 @@ class BiographiesViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func showAlertWithText (header : String = "Warning", message : String) {
-        var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }

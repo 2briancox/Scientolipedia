@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4L2-dF-eE2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4L2-dF-eE2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -19,17 +20,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="GcB-9u-Xhs">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="4" y="0.0" width="592" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainViewCell" editingAccessoryType="disclosureIndicator" rowHeight="90" id="6pg-80-hGn" customClass="TableViewCell" customModule="Scientolipedia" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="65" width="592" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6pg-80-hGn" id="DaX-h4-9DH">
+                                            <rect key="frame" x="0.0" y="0.0" width="592" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explanation of Section" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeE-L1-fMB">
-                                                    <rect key="frame" x="90" y="51" width="487" height="28"/>
+                                                    <rect key="frame" x="90" y="51" width="479" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -42,7 +44,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of Section" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nz-hn-fTI">
-                                                    <rect key="frame" x="90" y="8" width="487" height="35"/>
+                                                    <rect key="frame" x="90" y="8" width="479" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="ln1-xa-0f6"/>
                                                     </constraints>
@@ -113,20 +115,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScientolipediaLogo" translatesAutoresizingMaskIntoConstraints="NO" id="KmU-b4-F8Y">
-                                <rect key="frame" x="16" y="64" width="568" height="84"/>
+                                <rect key="frame" x="20" y="64" width="560" height="84"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="84" id="HFi-Z0-GJn"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lo6-QH-MC4">
-                                <rect key="frame" x="16" y="156" width="568" height="86"/>
+                                <rect key="frame" x="20" y="156" width="560" height="84"/>
                                 <string key="text">Scientolipedia.org is a collaberative website for collecting, sharing and promoting information about the subject of Scientology.  We are a group of unaffiliated Scientologists who work independently to preserve the subject outside of the corporations of the Church of Scientology.  Please visit the website to help contribute to comprehensiveness of this project.</string>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7P-hq-EOC">
-                                <rect key="frame" x="16" y="250" width="568" height="21"/>
+                                <rect key="frame" x="20" y="248" width="560" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="pOi-5T-ots"/>
                                 </constraints>
@@ -158,7 +160,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMf-gx-BCx">
-                                <rect key="frame" x="16" y="279" width="568" height="21"/>
+                                <rect key="frame" x="20" y="277" width="560" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="4VG-NF-DKT"/>
                                 </constraints>
@@ -175,7 +177,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wlj-VY-2tJ">
-                                <rect key="frame" x="16" y="308" width="568" height="21"/>
+                                <rect key="frame" x="20" y="306" width="560" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="KD7-TT-dNd"/>
                                 </constraints>
@@ -191,7 +193,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZS-lS-arC">
-                                <rect key="frame" x="205" y="337" width="190" height="30"/>
+                                <rect key="frame" x="205" y="335" width="190" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="m6F-yA-SOr"/>
                                 </constraints>
@@ -260,7 +262,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jd1-Rb-uab">
-                                <rect key="frame" x="16" y="64" width="568" height="536"/>
+                                <rect key="frame" x="20" y="64" width="560" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Scientolipedia:General Disclaimer
 
@@ -319,7 +321,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Definition: ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gc9-ob-zCG">
-                                <rect key="frame" x="16" y="64" width="550" height="19"/>
+                                <rect key="frame" x="20" y="64" width="542" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="bkN-Wz-lbk"/>
                                 </constraints>
@@ -328,20 +330,21 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="30" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yDj-5v-Bdg">
-                                <rect key="frame" x="16" y="352" width="550" height="240"/>
+                                <rect key="frame" x="20" y="352" width="542" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="7Sq-f9-wbX"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="wordCell" rowHeight="30" id="hwL-DR-Xa9" customClass="WordTableViewCell" customModule="Scientolipedia" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="568" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="542" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hwL-DR-Xa9" id="TUB-mC-bMX">
+                                            <rect key="frame" x="0.0" y="0.0" width="542" height="29"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZi-NG-kwL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="550" height="29"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="542" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.51260653410000001" green="0.0" blue="0.020598493369999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -366,7 +369,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9K-fQ-Wwt">
-                                <rect key="frame" x="568" y="138" width="32" height="15"/>
+                                <rect key="frame" x="564" y="138" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="m9b-M3-DC2"/>
                                     <constraint firstAttribute="height" constant="15" id="ng5-UT-mlN"/>
@@ -379,7 +382,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WYs-pg-z59">
-                                <rect key="frame" x="568" y="160" width="32" height="15"/>
+                                <rect key="frame" x="564" y="160" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="3i8-Vb-Nrk"/>
                                     <constraint firstAttribute="width" constant="32" id="hl7-uu-wsZ"/>
@@ -392,7 +395,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9b-Rd-lcf">
-                                <rect key="frame" x="568" y="116" width="32" height="15"/>
+                                <rect key="frame" x="564" y="116" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="3Th-zo-J9U"/>
                                     <constraint firstAttribute="width" constant="32" id="4Dc-MM-QM9"/>
@@ -405,7 +408,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaM-rH-N2V" userLabel="K">
-                                <rect key="frame" x="568" y="292" width="32" height="15"/>
+                                <rect key="frame" x="564" y="292" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="08v-EH-aM2"/>
                                     <constraint firstAttribute="width" constant="32" id="G4J-vq-5ca"/>
@@ -418,7 +421,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ymv-wy-OR2">
-                                <rect key="frame" x="568" y="512" width="32" height="15"/>
+                                <rect key="frame" x="564" y="512" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="PPu-R2-pp7"/>
                                     <constraint firstAttribute="height" constant="15" id="gEQ-aB-ACS"/>
@@ -431,7 +434,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajw-Hs-YU3">
-                                <rect key="frame" x="568" y="534" width="32" height="15"/>
+                                <rect key="frame" x="564" y="534" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="u78-dY-Cgy"/>
                                     <constraint firstAttribute="width" constant="32" id="ycH-ek-6mI"/>
@@ -444,7 +447,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KRu-it-3Qs">
-                                <rect key="frame" x="568" y="270" width="32" height="15"/>
+                                <rect key="frame" x="564" y="270" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="5Jj-7s-Dt5"/>
                                     <constraint firstAttribute="width" constant="32" id="ITn-bD-HpG"/>
@@ -457,7 +460,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zpr-rP-MSd">
-                                <rect key="frame" x="568" y="182" width="32" height="15"/>
+                                <rect key="frame" x="564" y="182" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="NDc-RO-Kl1"/>
                                     <constraint firstAttribute="width" constant="32" id="o1t-ar-8tl"/>
@@ -470,7 +473,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gVZ-Nv-DzN">
-                                <rect key="frame" x="568" y="402" width="32" height="15"/>
+                                <rect key="frame" x="564" y="402" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="2W1-xG-811"/>
                                     <constraint firstAttribute="width" constant="32" id="Ddb-S4-UmP"/>
@@ -483,7 +486,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uey-X8-8B8">
-                                <rect key="frame" x="568" y="446" width="32" height="15"/>
+                                <rect key="frame" x="564" y="446" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="bWz-KW-24o"/>
                                     <constraint firstAttribute="width" constant="32" id="beN-4G-Nlk"/>
@@ -496,7 +499,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hJ-xo-X4Q">
-                                <rect key="frame" x="568" y="490" width="32" height="15"/>
+                                <rect key="frame" x="564" y="490" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="Ftd-wI-yyh"/>
                                     <constraint firstAttribute="width" constant="32" id="M80-F4-I41"/>
@@ -509,7 +512,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bM-eY-fma">
-                                <rect key="frame" x="568" y="314" width="32" height="15"/>
+                                <rect key="frame" x="564" y="314" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="6yU-CB-yD4"/>
                                     <constraint firstAttribute="height" constant="15" id="BUu-hF-GHu"/>
@@ -522,7 +525,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeF-I0-yXf">
-                                <rect key="frame" x="568" y="226" width="32" height="15"/>
+                                <rect key="frame" x="564" y="226" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="M13-6B-FFV"/>
                                     <constraint firstAttribute="width" constant="32" id="fN0-nv-W0l"/>
@@ -535,7 +538,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HiE-VN-kz9">
-                                <rect key="frame" x="568" y="72" width="32" height="15"/>
+                                <rect key="frame" x="564" y="72" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="EX0-mQ-V7p"/>
                                     <constraint firstAttribute="width" constant="32" id="Mvv-Km-lAl"/>
@@ -548,7 +551,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSM-c1-hcA">
-                                <rect key="frame" x="568" y="204" width="32" height="15"/>
+                                <rect key="frame" x="564" y="204" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="5uM-sF-Ufr"/>
                                     <constraint firstAttribute="width" constant="32" id="UQQ-05-MRL"/>
@@ -561,7 +564,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAE-xz-2VH">
-                                <rect key="frame" x="568" y="468" width="32" height="15"/>
+                                <rect key="frame" x="564" y="468" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="30Q-q7-9Gf"/>
                                     <constraint firstAttribute="height" constant="15" id="7cQ-A7-B2B"/>
@@ -574,7 +577,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ER-dH-rj1">
-                                <rect key="frame" x="568" y="336" width="32" height="15"/>
+                                <rect key="frame" x="564" y="336" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="QsL-ln-TG8"/>
                                     <constraint firstAttribute="height" constant="15" id="U1w-cz-unQ"/>
@@ -587,7 +590,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sXn-fD-X2U">
-                                <rect key="frame" x="568" y="94" width="32" height="15"/>
+                                <rect key="frame" x="564" y="94" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="Dt2-sF-zN2"/>
                                     <constraint firstAttribute="width" constant="32" id="MXw-1b-oUY"/>
@@ -600,7 +603,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T2T-aK-bxB">
-                                <rect key="frame" x="568" y="556" width="32" height="15"/>
+                                <rect key="frame" x="564" y="556" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="7jp-8F-Bhq"/>
                                     <constraint firstAttribute="width" constant="32" id="iJI-2H-Kec"/>
@@ -613,7 +616,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44s-04-nCH">
-                                <rect key="frame" x="568" y="578" width="32" height="15"/>
+                                <rect key="frame" x="564" y="578" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="L4e-DQ-i41"/>
                                     <constraint firstAttribute="height" constant="15" id="hWo-q7-vGM"/>
@@ -626,7 +629,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDc-Pe-6XP">
-                                <rect key="frame" x="568" y="380" width="32" height="15"/>
+                                <rect key="frame" x="564" y="380" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="CW9-gW-oUj"/>
                                     <constraint firstAttribute="height" constant="15" id="yln-WK-MlH"/>
@@ -639,7 +642,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1nX-Kj-FC3">
-                                <rect key="frame" x="568" y="248" width="32" height="15"/>
+                                <rect key="frame" x="564" y="248" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="TG0-Dt-luD"/>
                                     <constraint firstAttribute="height" constant="15" id="lg3-tr-4Ot"/>
@@ -652,7 +655,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fwt-Bd-Kn0">
-                                <rect key="frame" x="568" y="424" width="32" height="15"/>
+                                <rect key="frame" x="564" y="424" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="MFK-y1-oUH"/>
                                     <constraint firstAttribute="height" constant="15" id="hef-hV-50W"/>
@@ -665,7 +668,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqq-YT-1dH">
-                                <rect key="frame" x="568" y="358" width="32" height="15"/>
+                                <rect key="frame" x="564" y="358" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="l5t-he-yoa"/>
                                     <constraint firstAttribute="height" constant="15" id="xPZ-MJ-HfA"/>
@@ -678,7 +681,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nox-A8-I9K">
-                                <rect key="frame" x="568" y="600" width="32" height="15"/>
+                                <rect key="frame" x="564" y="600" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="2Hu-7R-Zbf"/>
                                     <constraint firstAttribute="width" constant="32" id="2gH-GE-pG9"/>
@@ -691,7 +694,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ec-QU-zEJ">
-                                <rect key="frame" x="568" y="622" width="32" height="15"/>
+                                <rect key="frame" x="564" y="622" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="CC2-1D-LPr"/>
                                     <constraint firstAttribute="height" constant="15" id="ic9-3o-PYh"/>
@@ -704,7 +707,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" showsHorizontalScrollIndicator="NO" editable="NO" text=" 1. Select the first letter on the right.  2. Choose the word to define below." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r5J-hu-dVy">
-                                <rect key="frame" x="16" y="91" width="550" height="253"/>
+                                <rect key="frame" x="20" y="91" width="542" height="253"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="135" id="G1T-vr-IEy"/>
@@ -852,9 +855,10 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="auditorListViewCell" editingAccessoryType="disclosureIndicator" id="1Rz-lB-5w1" customClass="AuditorListViewCell" customModule="Scientolipedia" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="86" width="600" height="63"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Rz-lB-5w1" id="nXz-ph-wVg">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auditor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPl-cx-tnL">
@@ -984,7 +988,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8r-IL-fIH">
-                                <rect key="frame" x="568" y="72" width="32" height="15"/>
+                                <rect key="frame" x="564" y="72" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="0Mm-30-vLO"/>
                                     <constraint firstAttribute="width" constant="32" id="XRm-Cz-piL"/>
@@ -997,7 +1001,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vF-Ql-ush">
-                                <rect key="frame" x="568" y="87" width="32" height="15"/>
+                                <rect key="frame" x="564" y="87" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="1ZE-Hq-nRD"/>
                                     <constraint firstAttribute="height" constant="15" id="aBY-7q-s5z"/>
@@ -1010,7 +1014,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCi-0c-xLp">
-                                <rect key="frame" x="568" y="102" width="32" height="15"/>
+                                <rect key="frame" x="564" y="102" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="d0x-hg-eDu"/>
                                     <constraint firstAttribute="width" constant="32" id="n5R-1T-TZ4"/>
@@ -1023,7 +1027,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l9O-Sz-vga">
-                                <rect key="frame" x="568" y="117" width="32" height="15"/>
+                                <rect key="frame" x="564" y="117" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="aY4-9j-oNN"/>
                                     <constraint firstAttribute="width" constant="32" id="uAq-KR-3TW"/>
@@ -1036,7 +1040,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAd-on-ptq">
-                                <rect key="frame" x="568" y="132" width="32" height="15"/>
+                                <rect key="frame" x="564" y="132" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="iMS-qr-S68"/>
                                     <constraint firstAttribute="height" constant="15" id="oSF-U2-8ln"/>
@@ -1049,7 +1053,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HG6-n6-cWe">
-                                <rect key="frame" x="568" y="147" width="32" height="15"/>
+                                <rect key="frame" x="564" y="147" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="Lt1-g2-uSr"/>
                                     <constraint firstAttribute="height" constant="15" id="sSQ-xN-N8c"/>
@@ -1062,7 +1066,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Soi-oO-Hw1">
-                                <rect key="frame" x="568" y="162" width="32" height="15"/>
+                                <rect key="frame" x="564" y="162" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="bfI-mb-yJ7"/>
                                     <constraint firstAttribute="width" constant="32" id="eSP-A6-R8P"/>
@@ -1075,7 +1079,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bw6-5g-g5c">
-                                <rect key="frame" x="568" y="177" width="32" height="15"/>
+                                <rect key="frame" x="564" y="177" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="Agj-KP-SgB"/>
                                     <constraint firstAttribute="height" constant="15" id="bMC-nx-6lt"/>
@@ -1088,7 +1092,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBf-35-Vax">
-                                <rect key="frame" x="568" y="192" width="32" height="15"/>
+                                <rect key="frame" x="564" y="192" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="DYN-5k-r97"/>
                                     <constraint firstAttribute="height" constant="15" id="rx9-h6-mTX"/>
@@ -1101,7 +1105,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVx-bG-R8L">
-                                <rect key="frame" x="568" y="207" width="32" height="15"/>
+                                <rect key="frame" x="564" y="207" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="Fck-bi-5sA"/>
                                     <constraint firstAttribute="height" constant="15" id="izE-DM-e8g"/>
@@ -1114,7 +1118,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EZ7-02-Fcn" userLabel="K">
-                                <rect key="frame" x="568" y="222" width="32" height="15"/>
+                                <rect key="frame" x="564" y="222" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="J7A-L1-WZE"/>
                                     <constraint firstAttribute="width" constant="32" id="y60-wV-eK2"/>
@@ -1127,7 +1131,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYS-DA-yy8">
-                                <rect key="frame" x="568" y="237" width="32" height="15"/>
+                                <rect key="frame" x="564" y="237" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="KfT-c9-fnc"/>
                                     <constraint firstAttribute="width" constant="32" id="eNj-ig-fbd"/>
@@ -1140,7 +1144,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrm-4b-v21">
-                                <rect key="frame" x="568" y="252" width="32" height="15"/>
+                                <rect key="frame" x="564" y="252" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="8fI-bC-5P4"/>
                                     <constraint firstAttribute="height" constant="15" id="ZuK-Bh-DzI"/>
@@ -1153,7 +1157,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zb1-iX-taT">
-                                <rect key="frame" x="568" y="267" width="32" height="15"/>
+                                <rect key="frame" x="564" y="267" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="SOB-U4-oQK"/>
                                     <constraint firstAttribute="width" constant="32" id="gQD-uY-ZMA"/>
@@ -1166,7 +1170,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wqd-hX-a9w">
-                                <rect key="frame" x="568" y="282" width="32" height="15"/>
+                                <rect key="frame" x="564" y="282" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="cr5-WK-2Le"/>
                                     <constraint firstAttribute="height" constant="15" id="u3l-SB-fW1"/>
@@ -1179,7 +1183,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86p-a2-47D">
-                                <rect key="frame" x="568" y="297" width="32" height="15"/>
+                                <rect key="frame" x="564" y="297" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="aSp-7e-an8"/>
                                     <constraint firstAttribute="height" constant="15" id="weF-rz-HqQ"/>
@@ -1192,7 +1196,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yND-tt-2rd">
-                                <rect key="frame" x="568" y="312" width="32" height="15"/>
+                                <rect key="frame" x="564" y="312" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="TGs-8w-G2f"/>
                                     <constraint firstAttribute="width" constant="32" id="bXN-ee-2oM"/>
@@ -1205,7 +1209,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fPg-HP-FWK">
-                                <rect key="frame" x="568" y="327" width="32" height="15"/>
+                                <rect key="frame" x="564" y="327" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="OWz-fm-AEX"/>
                                     <constraint firstAttribute="width" constant="32" id="wdC-OP-8Ex"/>
@@ -1218,7 +1222,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awx-DL-Rtt">
-                                <rect key="frame" x="568" y="342" width="32" height="15"/>
+                                <rect key="frame" x="564" y="342" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="0me-OO-BLF"/>
                                     <constraint firstAttribute="width" constant="32" id="Zea-iB-LIh"/>
@@ -1231,7 +1235,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oui-oF-BNR">
-                                <rect key="frame" x="568" y="357" width="32" height="15"/>
+                                <rect key="frame" x="564" y="357" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="0WQ-Mw-Izi"/>
                                     <constraint firstAttribute="width" constant="32" id="Ypo-Qb-VBr"/>
@@ -1244,7 +1248,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBh-QZ-18M">
-                                <rect key="frame" x="568" y="372" width="32" height="15"/>
+                                <rect key="frame" x="564" y="372" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="HpY-fv-K0R"/>
                                     <constraint firstAttribute="width" constant="32" id="ZEW-5R-HKn"/>
@@ -1257,7 +1261,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9y9-Uw-ISl">
-                                <rect key="frame" x="568" y="387" width="32" height="15"/>
+                                <rect key="frame" x="564" y="387" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="DuP-eT-8lu"/>
                                     <constraint firstAttribute="height" constant="15" id="xnJ-9d-TZC"/>
@@ -1270,7 +1274,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRQ-Kb-hG0">
-                                <rect key="frame" x="568" y="402" width="32" height="15"/>
+                                <rect key="frame" x="564" y="402" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="KBe-mS-yKA"/>
                                     <constraint firstAttribute="height" constant="15" id="Tgn-fD-EtI"/>
@@ -1283,7 +1287,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwz-bm-JON">
-                                <rect key="frame" x="568" y="417" width="32" height="15"/>
+                                <rect key="frame" x="564" y="417" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="9zq-oh-Cug"/>
                                     <constraint firstAttribute="height" constant="15" id="cgE-uw-z85"/>
@@ -1296,7 +1300,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Au-sM-J6U">
-                                <rect key="frame" x="568" y="432" width="32" height="15"/>
+                                <rect key="frame" x="564" y="432" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="XJ3-rS-1eZ"/>
                                     <constraint firstAttribute="width" constant="32" id="fwH-Jh-Q0r"/>
@@ -1309,7 +1313,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LlS-QL-apt">
-                                <rect key="frame" x="568" y="447" width="32" height="15"/>
+                                <rect key="frame" x="564" y="447" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="FJ6-9I-KmX"/>
                                     <constraint firstAttribute="height" constant="15" id="uhy-bQ-V3O"/>
@@ -1321,18 +1325,22 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                     <action selector="zButtonPressed:" destination="NRO-Rm-aYp" eventType="touchUpInside" id="XG9-JB-mea"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sdD-Dk-xC5">
+                                <rect key="frame" x="290" y="214" width="20" height="20"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="EuY-G1-IjV">
-                                <rect key="frame" x="16" y="64" width="550" height="528"/>
+                                <rect key="frame" x="20" y="64" width="542" height="528"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileCell" editingAccessoryType="disclosureIndicator" id="2Hg-ML-BeY" customClass="ProfileTableViewCell" customModule="Scientolipedia" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="550" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="542" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Hg-ML-BeY" id="BRC-gx-FO9">
+                                            <rect key="frame" x="0.0" y="0.0" width="542" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AzZ-CE-5Da">
-                                                    <rect key="frame" x="8" y="11" width="534" height="21"/>
+                                                    <rect key="frame" x="8" y="11" width="526" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1355,9 +1363,6 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                     <outlet property="delegate" destination="NRO-Rm-aYp" id="dPi-82-Zmi"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sdD-Dk-xC5">
-                                <rect key="frame" x="290" y="214" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1470,7 +1475,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjN-Ec-xcw">
-                                <rect key="frame" x="568" y="72" width="32" height="15"/>
+                                <rect key="frame" x="564" y="72" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="Hyb-C8-nsS"/>
                                     <constraint firstAttribute="height" constant="15" id="guQ-Bu-PsY"/>
@@ -1483,7 +1488,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vps-pG-wKw">
-                                <rect key="frame" x="568" y="95" width="32" height="15"/>
+                                <rect key="frame" x="564" y="95" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="07u-ma-wLU"/>
                                     <constraint firstAttribute="height" constant="15" id="1lt-qE-shv"/>
@@ -1496,7 +1501,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DoC-90-dGu">
-                                <rect key="frame" x="568" y="115" width="32" height="15"/>
+                                <rect key="frame" x="564" y="115" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="ObZ-lz-svh"/>
                                     <constraint firstAttribute="width" constant="32" id="vQt-1a-djR"/>
@@ -1509,7 +1514,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQN-sd-7Xo">
-                                <rect key="frame" x="568" y="138" width="32" height="15"/>
+                                <rect key="frame" x="564" y="138" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="jyg-XP-cT6"/>
                                     <constraint firstAttribute="height" constant="15" id="q6c-ja-PU9"/>
@@ -1522,7 +1527,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSs-zu-IDl">
-                                <rect key="frame" x="568" y="161" width="32" height="15"/>
+                                <rect key="frame" x="564" y="161" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="7aN-Xb-DEv"/>
                                     <constraint firstAttribute="width" constant="32" id="hGF-on-6yJ"/>
@@ -1535,7 +1540,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ouj-X4-eOx">
-                                <rect key="frame" x="568" y="184" width="32" height="15"/>
+                                <rect key="frame" x="564" y="184" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="Grk-fD-oxn"/>
                                     <constraint firstAttribute="height" constant="15" id="idj-X7-dDN"/>
@@ -1548,7 +1553,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exo-x3-SQj">
-                                <rect key="frame" x="568" y="207" width="32" height="15"/>
+                                <rect key="frame" x="564" y="207" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="4lm-PG-0CD"/>
                                     <constraint firstAttribute="height" constant="15" id="5LJ-Xq-2SV"/>
@@ -1561,7 +1566,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aK9-Vh-hS7">
-                                <rect key="frame" x="568" y="230" width="32" height="15"/>
+                                <rect key="frame" x="564" y="230" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="92R-HU-nCP"/>
                                     <constraint firstAttribute="width" constant="32" id="9GR-lJ-b15"/>
@@ -1574,7 +1579,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdg-Q2-RVf">
-                                <rect key="frame" x="568" y="253" width="32" height="15"/>
+                                <rect key="frame" x="564" y="253" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="4lY-c2-zb3"/>
                                     <constraint firstAttribute="height" constant="15" id="qpq-pA-v4a"/>
@@ -1587,7 +1592,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OC4-aW-DHG">
-                                <rect key="frame" x="568" y="276" width="32" height="15"/>
+                                <rect key="frame" x="564" y="276" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="G6Z-xo-9Ga"/>
                                     <constraint firstAttribute="height" constant="15" id="ntg-Wi-Iog"/>
@@ -1600,7 +1605,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sif-Ap-J3v" userLabel="K">
-                                <rect key="frame" x="568" y="299" width="32" height="15"/>
+                                <rect key="frame" x="564" y="299" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="k1j-D9-9UM"/>
                                     <constraint firstAttribute="width" constant="32" id="wV6-sG-oUq"/>
@@ -1613,7 +1618,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofp-lW-1Wx">
-                                <rect key="frame" x="568" y="322" width="32" height="15"/>
+                                <rect key="frame" x="564" y="322" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="Dcg-iQ-M8h"/>
                                     <constraint firstAttribute="height" constant="15" id="H4t-Qt-w1M"/>
@@ -1626,7 +1631,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4mT-JO-JG6">
-                                <rect key="frame" x="568" y="345" width="32" height="15"/>
+                                <rect key="frame" x="564" y="345" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="5lW-uc-EON"/>
                                     <constraint firstAttribute="width" constant="32" id="bLC-Hv-yQg"/>
@@ -1639,7 +1644,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQP-70-8Ai">
-                                <rect key="frame" x="568" y="368" width="32" height="15"/>
+                                <rect key="frame" x="564" y="368" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="1YJ-Nd-IcV"/>
                                     <constraint firstAttribute="height" constant="15" id="P4e-OM-wrQ"/>
@@ -1652,7 +1657,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQe-to-mjN">
-                                <rect key="frame" x="568" y="391" width="32" height="15"/>
+                                <rect key="frame" x="564" y="391" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="KSv-0s-UAJ"/>
                                     <constraint firstAttribute="height" constant="15" id="vWu-xu-Pkk"/>
@@ -1665,7 +1670,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DhN-wO-GYH">
-                                <rect key="frame" x="568" y="414" width="32" height="15"/>
+                                <rect key="frame" x="564" y="414" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="0CS-EZ-hJt"/>
                                     <constraint firstAttribute="height" constant="15" id="1i1-FW-CHy"/>
@@ -1678,7 +1683,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAO-Ov-fyi">
-                                <rect key="frame" x="568" y="437" width="32" height="15"/>
+                                <rect key="frame" x="564" y="437" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="POo-Is-45d"/>
                                     <constraint firstAttribute="width" constant="32" id="Sn9-cm-Vko"/>
@@ -1691,7 +1696,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHm-x6-NxX">
-                                <rect key="frame" x="568" y="460" width="32" height="15"/>
+                                <rect key="frame" x="564" y="460" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="7Jb-v2-9Bf"/>
                                     <constraint firstAttribute="height" constant="15" id="F5r-Vt-UKn"/>
@@ -1704,7 +1709,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDe-r1-yIf">
-                                <rect key="frame" x="568" y="483" width="32" height="15"/>
+                                <rect key="frame" x="564" y="483" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="0ow-tl-90I"/>
                                     <constraint firstAttribute="height" constant="15" id="Xaw-vb-Fv6"/>
@@ -1717,7 +1722,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWn-K7-VTE">
-                                <rect key="frame" x="568" y="506" width="32" height="15"/>
+                                <rect key="frame" x="564" y="506" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="3l8-Ta-dru"/>
                                     <constraint firstAttribute="width" constant="32" id="YQR-kW-y3a"/>
@@ -1730,7 +1735,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNJ-hx-LPC">
-                                <rect key="frame" x="568" y="529" width="32" height="15"/>
+                                <rect key="frame" x="564" y="529" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="PI4-BK-89w"/>
                                     <constraint firstAttribute="width" constant="32" id="iCJ-T0-4Cq"/>
@@ -1743,7 +1748,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1U-Pb-ryS">
-                                <rect key="frame" x="568" y="552" width="32" height="15"/>
+                                <rect key="frame" x="564" y="552" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="WCx-bV-3Mi"/>
                                     <constraint firstAttribute="height" constant="15" id="pDI-LG-c76"/>
@@ -1756,7 +1761,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCo-kA-ZKg">
-                                <rect key="frame" x="568" y="575" width="32" height="15"/>
+                                <rect key="frame" x="564" y="575" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="FM5-CG-doz"/>
                                     <constraint firstAttribute="width" constant="32" id="Jde-Zy-rG3"/>
@@ -1769,7 +1774,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Zr-Oe-xA7">
-                                <rect key="frame" x="568" y="598" width="32" height="15"/>
+                                <rect key="frame" x="564" y="598" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="5M3-zd-Skq"/>
                                     <constraint firstAttribute="height" constant="15" id="xXT-8z-w3Q"/>
@@ -1782,7 +1787,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4L-Ui-1QT">
-                                <rect key="frame" x="568" y="621" width="32" height="15"/>
+                                <rect key="frame" x="564" y="621" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="2lS-LD-WcJ"/>
                                     <constraint firstAttribute="height" constant="15" id="4S1-Ud-G8z"/>
@@ -1795,7 +1800,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pom-wh-Os2">
-                                <rect key="frame" x="568" y="644" width="32" height="15"/>
+                                <rect key="frame" x="564" y="644" width="32" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="J0J-CU-nyv"/>
                                     <constraint firstAttribute="width" constant="32" id="fQa-YK-gme"/>
@@ -1807,18 +1812,22 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                     <action selector="zButtonPressed:" destination="8kq-ke-2pH" eventType="touchUpInside" id="zoS-tX-a6V"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ue5-os-gZc">
+                                <rect key="frame" x="290" y="214" width="20" height="20"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ioj-VI-TZs">
-                                <rect key="frame" x="16" y="64" width="550" height="528"/>
+                                <rect key="frame" x="20" y="64" width="542" height="528"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="anthologyCell" editingAccessoryType="disclosureIndicator" id="VsY-To-iWH" customClass="AnthologyListTableViewCell" customModule="Scientolipedia" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="550" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="542" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VsY-To-iWH" id="vGf-2v-HrW">
+                                            <rect key="frame" x="0.0" y="0.0" width="542" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rT-Jb-LOe">
-                                                    <rect key="frame" x="8" y="11" width="534" height="21"/>
+                                                    <rect key="frame" x="8" y="11" width="526" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1841,9 +1850,6 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                     <outlet property="delegate" destination="8kq-ke-2pH" id="Xx2-td-xrZ"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ue5-os-gZc">
-                                <rect key="frame" x="290" y="214" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1982,7 +1988,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="profileNameLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6G-VF-xUb">
-                                <rect key="frame" x="16" y="72" width="568" height="33"/>
+                                <rect key="frame" x="20" y="72" width="560" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="EPz-bG-b7q"/>
                                 </constraints>
@@ -2007,16 +2013,16 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                     <constraint firstAttribute="width" constant="280" id="eLM-pz-4eV"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mPg-T2-Y7P">
+                                <rect key="frame" x="290" y="276" width="20" height="20"/>
+                            </activityIndicatorView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" showsHorizontalScrollIndicator="NO" editable="NO" text="                      ... Please wait ..." translatesAutoresizingMaskIntoConstraints="NO" id="dhd-tf-UwH">
-                                <rect key="frame" x="16" y="239" width="568" height="353"/>
+                                <rect key="frame" x="20" y="239" width="560" height="353"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                             </textView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mPg-T2-Y7P">
-                                <rect key="frame" x="290" y="276" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -2060,7 +2066,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auditor Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYt-XH-I3V">
-                                <rect key="frame" x="8" y="64" width="584" height="25"/>
+                                <rect key="frame" x="12" y="64" width="576" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="eaw-Jf-l60"/>
                                 </constraints>
@@ -2069,7 +2075,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BtP-WV-BoS">
-                                <rect key="frame" x="168" y="92" width="416" height="15"/>
+                                <rect key="frame" x="172" y="92" width="408" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="uwH-OD-BRs"/>
                                 </constraints>
@@ -2078,7 +2084,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CS: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oc-fj-upV">
-                                <rect key="frame" x="168" y="115" width="416" height="15"/>
+                                <rect key="frame" x="172" y="115" width="408" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="sSd-M1-KXv"/>
                                 </constraints>
@@ -2087,7 +2093,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Case: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8O-Kg-pU3">
-                                <rect key="frame" x="168" y="138" width="416" height="15"/>
+                                <rect key="frame" x="172" y="138" width="408" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="uwf-Tl-f5C"/>
                                 </constraints>
@@ -2096,7 +2102,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Jp-HD-mI1">
-                                <rect key="frame" x="168" y="161" width="416" height="15"/>
+                                <rect key="frame" x="172" y="161" width="408" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="Fz4-TY-ogk"/>
                                 </constraints>
@@ -2105,7 +2111,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zre-FA-ah9">
-                                <rect key="frame" x="168" y="184" width="416" height="15"/>
+                                <rect key="frame" x="172" y="184" width="408" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="GJk-aX-aKo"/>
                                 </constraints>
@@ -2114,7 +2120,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3Q-GR-lmg">
-                                <rect key="frame" x="16" y="230" width="568" height="21"/>
+                                <rect key="frame" x="20" y="230" width="560" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="70l-F1-ATk"/>
                                 </constraints>
@@ -2126,7 +2132,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yhb-3l-NI4">
-                                <rect key="frame" x="16" y="259" width="568" height="21"/>
+                                <rect key="frame" x="20" y="259" width="560" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ak4-jf-0Ya"/>
                                 </constraints>
@@ -2138,7 +2144,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeJ-Bi-9PL">
-                                <rect key="frame" x="16" y="288" width="568" height="21"/>
+                                <rect key="frame" x="20" y="288" width="560" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="pVu-xp-fLK"/>
                                 </constraints>
@@ -2150,14 +2156,14 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfilePicture" translatesAutoresizingMaskIntoConstraints="NO" id="O1x-b8-Cp2">
-                                <rect key="frame" x="16" y="92" width="144" height="130"/>
+                                <rect key="frame" x="20" y="92" width="144" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="144" id="4de-1G-UG4"/>
                                     <constraint firstAttribute="height" constant="130" id="M2o-Mu-Vxm"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scO-kv-DtS">
-                                <rect key="frame" x="168" y="207" width="416" height="15"/>
+                                <rect key="frame" x="172" y="207" width="408" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="EVE-v9-6mb"/>
                                 </constraints>
@@ -2166,7 +2172,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" showsHorizontalScrollIndicator="NO" editable="NO" text="                      ... Please wait ..." translatesAutoresizingMaskIntoConstraints="NO" id="0FR-Gy-7bB">
-                                <rect key="frame" x="16" y="309" width="568" height="271"/>
+                                <rect key="frame" x="20" y="309" width="560" height="271"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -2193,7 +2199,6 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                             <constraint firstItem="scO-kv-DtS" firstAttribute="leading" secondItem="O1x-b8-Cp2" secondAttribute="trailing" constant="8" id="MlL-jE-SYN"/>
                             <constraint firstItem="zre-FA-ah9" firstAttribute="trailing" secondItem="QdV-Wh-Izr" secondAttribute="trailingMargin" id="Mww-h7-HW0"/>
                             <constraint firstItem="scO-kv-DtS" firstAttribute="top" secondItem="zre-FA-ah9" secondAttribute="bottom" constant="8" id="PQ0-RP-qlc"/>
-                            <constraint firstItem="M3Q-GR-lmg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="O1x-b8-Cp2" secondAttribute="bottom" constant="8" id="Skb-X2-vbL"/>
                             <constraint firstItem="b8O-Kg-pU3" firstAttribute="top" secondItem="8oc-fj-upV" secondAttribute="bottom" constant="8" id="Syy-GF-Ntx"/>
                             <constraint firstItem="0FR-Gy-7bB" firstAttribute="top" secondItem="CeJ-Bi-9PL" secondAttribute="bottom" id="TKO-iB-Djq"/>
                             <constraint firstItem="scO-kv-DtS" firstAttribute="trailing" secondItem="QdV-Wh-Izr" secondAttribute="trailingMargin" id="TfX-Kd-SHg"/>
@@ -2219,11 +2224,6 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                             <constraint firstItem="fVA-vC-XdX" firstAttribute="top" secondItem="CeJ-Bi-9PL" secondAttribute="bottom" constant="30" id="wmR-Ml-OHg"/>
                             <constraint firstItem="8oc-fj-upV" firstAttribute="top" secondItem="BtP-WV-BoS" secondAttribute="bottom" constant="8" id="xTQ-cK-W01"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Skb-X2-vbL"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Auditor" id="Ifz-kG-gyq"/>
                     <connections>
@@ -2297,7 +2297,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Article Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gi-Hk-ykC">
-                                <rect key="frame" x="16" y="72" width="568" height="33"/>
+                                <rect key="frame" x="20" y="72" width="560" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="9ml-UK-6sH"/>
                                 </constraints>
@@ -2306,7 +2306,7 @@ Copyright 2011-2015   The question mark cube for the "About" photo on this a
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" showsHorizontalScrollIndicator="NO" editable="NO" text="                      ... Please wait ..." translatesAutoresizingMaskIntoConstraints="NO" id="vlH-Oh-46j">
-                                <rect key="frame" x="16" y="113" width="568" height="435"/>
+                                <rect key="frame" x="20" y="113" width="560" height="435"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

@@ -9,9 +9,9 @@
 import UIKit
 
 class AnthologyListViewController: UIViewController {
-    
+
     var anthologyNames: [String] = []
-    
+
     @IBOutlet weak var spaceAB: NSLayoutConstraint!
     @IBOutlet weak var spaceBC: NSLayoutConstraint!
     @IBOutlet weak var spaceCD: NSLayoutConstraint!
@@ -137,7 +137,7 @@ class AnthologyListViewController: UIViewController {
         spaceYZ.setValue(spacing, forKey: "constant")
         
         var urlError = false
-        var parsingError: NSError? = nil
+        
         var anthologyParsedData: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
         
         let anthologyListAddress = "http://scientolipedia.org/w/index.php?title=Special%3AAsk&q=[[Category%3AHistory+of+Scientology]]+OR+[[Category%3AAnthology]]&po=%3FCategory%0D%0A&eq=yes&p[format]=json&sort_num=&order_num=ASC&p[limit]=500&p[offset]=&p[link]=all&p[sort]=&p[order][ascending]=1&p[headers]=show&p[mainlabel]=&p[intro]=&p[outro]=&p[searchlabel]=further+results&p[default]=&p[class]=sortable+wikitable+smwtable&eq=yes"
@@ -147,7 +147,7 @@ class AnthologyListViewController: UIViewController {
             
             if error == nil {
                 
-                anthologyParsedData = NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
+                anthologyParsedData = (try! NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)) as! [String: AnyObject]
                 
             } else {
                 
@@ -159,15 +159,15 @@ class AnthologyListViewController: UIViewController {
                 
                 if urlError == true {
                     
-                    self.showAlertWithText(header: "Warning", message: "This list was not able to load from the server.  Please try again.")
+                    self.showAlertWithText("Warning", message: "This list was not able to load from the server.  Please try again.")
                     
                 } else {
                     
-                    var data1 = NSData(contentsOfURL: NSURL(string: anthologyListAddress)!)
+                    let data1 = NSData(contentsOfURL: NSURL(string: anthologyListAddress)!)
                     
-                    anthologyParsedData = NSJSONSerialization.JSONObjectWithData(data1!, options: .AllowFragments, error: &parsingError) as! [String: AnyObject]
+                    anthologyParsedData = (try! NSJSONSerialization.JSONObjectWithData(data1!, options: .AllowFragments)) as! [String: AnyObject]
                     
-                    var anthologyKeys = (anthologyParsedData["results"] as! Dictionary<String, AnyObject>).keys.array
+                    var anthologyKeys = Array((anthologyParsedData["results"] as! Dictionary<String, AnyObject>).keys)
                     
                     for var i = 0; i < anthologyKeys.count; i++ {
                         
@@ -192,7 +192,7 @@ class AnthologyListViewController: UIViewController {
                         
                     }
                     
-                    anthologyKeys = anthologyKeys.sorted{
+                    anthologyKeys = anthologyKeys.sort{
                         (nameOne: String, nameTwo: String) -> Bool in
                         return nameOne < nameTwo
                     }
@@ -264,7 +264,7 @@ class AnthologyListViewController: UIViewController {
     
     //TableView Functions
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: AnthologyListTableViewCell = anthologyTableView.dequeueReusableCellWithIdentifier("anthologyCell") as! AnthologyListTableViewCell
+        let cell: AnthologyListTableViewCell = anthologyTableView.dequeueReusableCellWithIdentifier("anthologyCell") as! AnthologyListTableViewCell
         cell.anthologyNameLabel.text = anthologyNames[indexPath.row]
         return cell
     }
@@ -370,7 +370,7 @@ class AnthologyListViewController: UIViewController {
     }
     
     func showAlertWithText (header : String = "Warning", message : String) {
-        var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -378,5 +378,4 @@ class AnthologyListViewController: UIViewController {
     override func shouldAutorotate() -> Bool {
         return false
     }
-    
 }

@@ -63,7 +63,7 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: WordTableViewCell = wordTableView.dequeueReusableCellWithIdentifier("wordCell") as! WordTableViewCell
+        let cell: WordTableViewCell = wordTableView.dequeueReusableCellWithIdentifier("wordCell") as! WordTableViewCell
         
         cell.wordNameInCell.text = wordList[indexPath.row]
         
@@ -89,32 +89,24 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
             
             if error == nil {
                 
-                println("error == nil")
-                
                 self.wordNSURL = NSURL(string: self.wordURLStrings[indexPath.row])
                 
-                var urlContent = NSString(data: data, encoding: NSUTF8StringEncoding) as NSString!
+                let urlContent = NSString(data: data!, encoding: NSUTF8StringEncoding) as NSString!
                 
                 var urlContentArray: [String] = []
                 
                 var hasTable = false
                 
-                var takenFromLink = false
-                
                 if urlContent.containsString("</td></tr></table>\n<p>") {
-                    urlContentArray = urlContent.componentsSeparatedByString("</td></tr></table>\n<p>") as! [String]
+                    urlContentArray = urlContent.componentsSeparatedByString("</td></tr></table>\n<p>")
                     hasTable = true
 
                 } else if urlContent.containsString("</td></tr><tr><th> Definition\n</th>\n<td>") {
-                    urlContentArray = urlContent.componentsSeparatedByString("</td></tr><tr><th> Definition\n</th>\n<td>") as! [String]
+                    urlContentArray = urlContent.componentsSeparatedByString("</td></tr><tr><th> Definition\n</th>\n<td>") 
 
                 }
                 
-                println("urlContentArray")
-                
                 if urlContentArray.count > 0 {
-                    
-                    println("urlContentArray.count > 0")
                     
                     var definitionArray: [String] = []
                     
@@ -124,8 +116,6 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                         
                         definition = definitionArray[0] as String
                         
-                        println("hasTable")
-                        
                     } else {
                         
                         definitionArray = urlContentArray[1].componentsSeparatedByString("\n</td></tr>")
@@ -134,25 +124,25 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                     }
                     
                     definition = definition.stringByReplacingOccurrencesOfString("<b>", withString: "")
-                    
+
                     definition = definition.stringByReplacingOccurrencesOfString("<p>", withString: "")
-                    
+
                     definition = definition.stringByReplacingOccurrencesOfString("</b>", withString: "")
-                    
+
                     definition = definition.stringByReplacingOccurrencesOfString("</i>", withString: "")
-                    
+
                     definition = definition.stringByReplacingOccurrencesOfString("<i>", withString: "")
-                    
+
                     definition = definition.stringByReplacingOccurrencesOfString("&#8220;", withString: "\"")
-                    
+
                     definition = definition.stringByReplacingOccurrencesOfString("&#8221;", withString: "\"")
-                    
+
                     definition = definition.stringByReplacingOccurrencesOfString("&#160;", withString: " ")
-                    
+
                     definition = definition.stringByReplacingOccurrencesOfString("&#8217;", withString: "'")
-                    
+
                     definition = definition.stringByReplacingOccurrencesOfString("&amp;", withString: "&")
-                    
+
                 
                     if (definition as NSString).containsString("<span class=\"mw-lingo-tooltip \"><span class=\"mw-lingo-tooltip-abbr\">") {
                         var defTemp: String = ""
@@ -160,7 +150,7 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                         defTemp = definitionSplitArray[0]
 
                         for var i = 1; i < definitionSplitArray.count; i++ {
-                            var tempStringSandwichedPart: String = (definitionSplitArray[i] as NSString).componentsSeparatedByString("</span><span class=\"mw-lingo-tooltip-tip \"><span class=\"mw-lingo-tooltip-definition \">")[0] as! String
+                            let tempStringSandwichedPart: String = (definitionSplitArray[i] as NSString).componentsSeparatedByString("</span><span class=\"mw-lingo-tooltip-tip \"><span class=\"mw-lingo-tooltip-definition \">")[0]
                             let tempStringLastPart = definitionSplitArray[i].componentsSeparatedByString("</span></span></span>")[1]
                             defTemp += tempStringSandwichedPart + tempStringLastPart
                         }
@@ -199,7 +189,7 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                 
                 if urlError == true {
                     
-                    self.showAlertWithText(header: "Warning", message: "That word was not able to load from the server.")
+                    self.showAlertWithText("Warning", message: "That word was not able to load from the server.")
                     
                 } else {
                     
@@ -228,7 +218,6 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.activityIndicator.startAnimating()
         
         wordNSURL = nil
@@ -262,8 +251,6 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
         spaceXY.setValue(spacing, forKey: "constant")
         spaceYZ.setValue(spacing, forKey: "constant")
         
-        var parsingAuditorError: NSError? = nil
-        
         let glossaryURL = NSURL(string: "http://scientolipedia.org/w/index.php?title=Special:Ask&offset=0&limit=500&q=[[Category%3A+Glossary]]%0A&p=format%3Djson%2Flink%3Dall%2Fheaders%3Dshow%2Fsearchlabel%3D%E2%80%A6-20further-20results%2Fclass%3Dsortable-20wikitable-20smwtable&eq=yes")
         var parsedGlossaryJSON: [String: AnyObject] = Dictionary<String, AnyObject>()
         
@@ -273,7 +260,7 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                 
                 if error == nil {
             
-                    parsedGlossaryJSON = NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments, error: &parsingAuditorError) as! [String: AnyObject]
+                    parsedGlossaryJSON = (try! NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)) as! [String: AnyObject]
                     
                 } else {
                     
@@ -286,13 +273,13 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                     
                     if urlError == true {
                         
-                        self.showAlertWithText(header: "Warning", message: "The word list was not found on the server.")
+                        self.showAlertWithText("Warning", message: "The word list was not found on the server.")
                         
                     } else {
                         
                         let wordListDict = parsedGlossaryJSON["results"] as! Dictionary<String, AnyObject>
                         
-                        let words = wordListDict.keys.array
+                        let words = Array(wordListDict.keys)
                         
                         self.wordList.removeAll(keepCapacity: false)
                         self.wordURLStrings.removeAll(keepCapacity: false)
@@ -302,7 +289,7 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
                             self.wordList.append(word)
                         }
                         
-                        self.wordList = self.wordList.sorted{
+                        self.wordList = self.wordList.sort{
                             (wordOne: String, wordTwo: String) -> Bool in
                             return wordOne < wordTwo
                         }
@@ -331,7 +318,6 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
         })
     
         task.resume()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -340,7 +326,7 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func showAlertWithText (header : String = "Warning", message : String) {
-        var alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: header, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -433,7 +419,7 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
         scrollToLetter("Z")
     }
     
-    
+
     @IBAction func sendWordPressed(sender: AnyObject) {
         
         
@@ -443,7 +429,7 @@ class GlossaryStartViewController: UIViewController, UITableViewDataSource, UITa
 
             self.presentViewController(nextController, animated: true, completion: nil)
         } else {
-            showAlertWithText(header: "No word selected", message: "Please choose a word to send first.")
+            showAlertWithText("No word selected", message: "Please choose a word to send first.")
         }
     }
     

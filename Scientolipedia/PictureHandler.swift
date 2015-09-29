@@ -15,13 +15,19 @@ import UIKit
         
         let imName = imageName.stringByReplacingOccurrencesOfString(" ", withString: "_")
         
-        let imageJSONURL: NSURL = NSURL(string: ("http://scientolipedia.org/w/api.php?action=query&list=allimages&aiprefix=" + imName + "&format=json").stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)!
+        var imageJSONURLString = "http://scientolipedia.org/w/api.php?action=query&list=allimages&aiprefix=" + imName + "&format=json"
         
-        var parsedJSONData = NSData(contentsOfURL: imageJSONURL)
-                
-        var parsingAuditorError: NSError? = nil
-                
-        var parsedImageJSON = NSJSONSerialization.JSONObjectWithData(parsedJSONData!, options: .AllowFragments, error: &parsingAuditorError) as! [String: AnyObject]
+        var urlNSString: NSString = imageJSONURLString as NSString
+        
+        urlNSString = urlNSString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        
+        imageJSONURLString = urlNSString as String
+        
+        let imageJSONURL = NSURL(string: imageJSONURLString)
+        
+        let parsedJSONData = NSData(contentsOfURL: imageJSONURL!)
+        
+        var parsedImageJSON = (try! NSJSONSerialization.JSONObjectWithData(parsedJSONData!, options: .AllowFragments)) as! [String: AnyObject]
         
         let imageJSONArray = parsedImageJSON["query"] as! [String: AnyObject]
         

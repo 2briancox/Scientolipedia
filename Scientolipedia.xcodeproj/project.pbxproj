@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0411BDF61AFB3723001B8080 /* AuditorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411BDF51AFB3723001B8080 /* AuditorPageViewController.swift */; };
+		041FFCCF1BB8B9E10095A6E7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 041FFCCE1BB8B9E10095A6E7 /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
 		0445A90D1AEC7CE500D9D773 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445A90C1AEC7CE500D9D773 /* TableViewCell.swift */; };
 		0445A9111AEDAFE500D9D773 /* AuditorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445A9101AEDAFE500D9D773 /* AuditorListViewController.swift */; };
 		0445A9131AEDB23B00D9D773 /* AuditorListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445A9121AEDB23B00D9D773 /* AuditorListViewCell.swift */; };
@@ -30,21 +31,11 @@
 		04E394001AE9A89D00E4F342 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E393FE1AE9A89D00E4F342 /* Main.storyboard */; };
 		04E394021AE9A89D00E4F342 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04E394011AE9A89D00E4F342 /* Images.xcassets */; };
 		04E394051AE9A89D00E4F342 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E394031AE9A89D00E4F342 /* LaunchScreen.xib */; };
-		04E394111AE9A89D00E4F342 /* ScientolipediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E394101AE9A89D00E4F342 /* ScientolipediaTests.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		04E3940B1AE9A89D00E4F342 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04E393EA1AE9A89D00E4F342 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 04E393F11AE9A89D00E4F342;
-			remoteInfo = Scientolipedia;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0411BDF51AFB3723001B8080 /* AuditorPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuditorPageViewController.swift; sourceTree = "<group>"; };
+		041FFCCE1BB8B9E10095A6E7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		0445A90C1AEC7CE500D9D773 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		0445A9101AEDAFE500D9D773 /* AuditorListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuditorListViewController.swift; sourceTree = "<group>"; };
 		0445A9121AEDB23B00D9D773 /* AuditorListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuditorListViewCell.swift; sourceTree = "<group>"; };
@@ -69,7 +60,6 @@
 		04E393FF1AE9A89D00E4F342 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04E394011AE9A89D00E4F342 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		04E394041AE9A89D00E4F342 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		04E3940A1AE9A89D00E4F342 /* ScientolipediaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScientolipediaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E3940F1AE9A89D00E4F342 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04E394101AE9A89D00E4F342 /* ScientolipediaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScientolipediaTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,13 +70,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A4FA171B24BD9000CE4E4A /* MessageUI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04E394071AE9A89D00E4F342 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				04E393F21AE9A89D00E4F342 /* Scientolipedia.app */,
-				04E3940A1AE9A89D00E4F342 /* ScientolipediaTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,6 +127,7 @@
 		04E393F51AE9A89D00E4F342 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				041FFCCE1BB8B9E10095A6E7 /* Default-568h@2x.png */,
 				04E393F61AE9A89D00E4F342 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -187,40 +170,20 @@
 			productReference = 04E393F21AE9A89D00E4F342 /* Scientolipedia.app */;
 			productType = "com.apple.product-type.application";
 		};
-		04E394091AE9A89D00E4F342 /* ScientolipediaTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 04E394171AE9A89D00E4F342 /* Build configuration list for PBXNativeTarget "ScientolipediaTests" */;
-			buildPhases = (
-				04E394061AE9A89D00E4F342 /* Sources */,
-				04E394071AE9A89D00E4F342 /* Frameworks */,
-				04E394081AE9A89D00E4F342 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				04E3940C1AE9A89D00E4F342 /* PBXTargetDependency */,
-			);
-			name = ScientolipediaTests;
-			productName = ScientolipediaTests;
-			productReference = 04E3940A1AE9A89D00E4F342 /* ScientolipediaTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		04E393EA1AE9A89D00E4F342 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Melodity.com, LLC";
 				TargetAttributes = {
 					04E393F11AE9A89D00E4F342 = {
 						CreatedOnToolsVersion = 6.3;
 						DevelopmentTeam = 974SQCAZGA;
-					};
-					04E394091AE9A89D00E4F342 = {
-						CreatedOnToolsVersion = 6.3;
-						TestTargetID = 04E393F11AE9A89D00E4F342;
 					};
 				};
 			};
@@ -238,7 +201,6 @@
 			projectRoot = "";
 			targets = (
 				04E393F11AE9A89D00E4F342 /* Scientolipedia */,
-				04E394091AE9A89D00E4F342 /* ScientolipediaTests */,
 			);
 		};
 /* End PBXProject section */
@@ -249,15 +211,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				04E394001AE9A89D00E4F342 /* Main.storyboard in Resources */,
+				041FFCCF1BB8B9E10095A6E7 /* Default-568h@2x.png in Resources */,
 				04E394051AE9A89D00E4F342 /* LaunchScreen.xib in Resources */,
 				04E394021AE9A89D00E4F342 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		04E394081AE9A89D00E4F342 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,23 +246,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		04E394061AE9A89D00E4F342 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				04E394111AE9A89D00E4F342 /* ScientolipediaTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		04E3940C1AE9A89D00E4F342 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 04E393F11AE9A89D00E4F342 /* Scientolipedia */;
-			targetProxy = 04E3940B1AE9A89D00E4F342 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		04E393FE1AE9A89D00E4F342 /* Main.storyboard */ = {
@@ -349,6 +289,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -364,10 +305,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos9.0;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -403,9 +344,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos9.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -421,8 +362,10 @@
 				INFOPLIST_FILE = Scientolipedia/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.melodity.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "65e51eb2-047a-4caa-9853-2ae48c07790d";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -439,44 +382,12 @@
 				INFOPLIST_FILE = Scientolipedia/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.melodity.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "65e51eb2-047a-4caa-9853-2ae48c07790d";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-			};
-			name = Release;
-		};
-		04E394181AE9A89D00E4F342 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ScientolipediaTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scientolipedia.app/Scientolipedia";
-			};
-			name = Debug;
-		};
-		04E394191AE9A89D00E4F342 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ScientolipediaTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scientolipedia.app/Scientolipedia";
 			};
 			name = Release;
 		};
@@ -497,15 +408,6 @@
 			buildConfigurations = (
 				04E394151AE9A89D00E4F342 /* Debug */,
 				04E394161AE9A89D00E4F342 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		04E394171AE9A89D00E4F342 /* Build configuration list for PBXNativeTarget "ScientolipediaTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				04E394181AE9A89D00E4F342 /* Debug */,
-				04E394191AE9A89D00E4F342 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -18,11 +18,6 @@ class LegalViewController: UIViewController {
         self.legalTextView.scrollRangeToVisible(NSRange(0...0))
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     
     override func shouldAutorotate() -> Bool {
